@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CartItem from "./CartItem";
-import { ContainerCartComponent, Line } from "./style";
+import CartComponent from "./CartComponent";
+import { ContainerCartComponent } from "./style";
 
 class Cart extends Component {
     render() {
@@ -8,17 +8,7 @@ class Cart extends Component {
             <ContainerCartComponent>
                 <section>
                     <h1>CART</h1>
-                    <Line />
-                    <CartItem />
-                    <Line />
-                    <CartItem />
-                    <Line />
-                    <CartItem />
-                    <Line />
-                    <CartItem />
-                    <Line />
-                    <CartItem />
-                    <Line />
+                    <CartComponent />
                 </section>
             </ContainerCartComponent>
         );

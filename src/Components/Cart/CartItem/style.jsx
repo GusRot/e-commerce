@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartContainer = styled.div`
+export const CartContainer = styled.header`
     height: 25vh;
     width: 100%;
     display: flex;
@@ -40,7 +40,7 @@ export const CartInfo = styled.div`
     }
 `;
 
-export const CarrouselContainer = styled.div`
+export const CarrouselContainer = styled.aside`
     width: 300px;
     height: 100%;
 
