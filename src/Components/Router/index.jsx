@@ -9,9 +9,9 @@ class Router extends Component {
         return (
             <Routes>
                 <Route path="/" element={<Page />} />
-                <Route path="/men" element={<Page404 />} />
-                <Route path="kids" element={<Page404 />} />
-                <Route path="cart" element={<Cart />} />
+                <Route path="/men" element={<Cart />} />
+                <Route path="/kids" element={<Page404 />} />
+                <Route path="/cart" element={<Cart />} />
             </Routes>
         );
     }

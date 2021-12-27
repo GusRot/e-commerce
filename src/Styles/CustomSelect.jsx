@@ -39,6 +39,7 @@ const customSelect = {
         ...styles,
         cursor: "pointer",
         backgroundColor: transparentize(0.5, state.selectProps.colors.primary),
+        justifyContent: "center",
     }),
     container: (styles) => ({
         ...styles,
@@ -53,12 +54,7 @@ const customSelect = {
     menuList: (styles, state) => ({
         ...styles,
         backgroundColor: state.selectProps.colors.primary,
-        borderRadius: "2px",
-        display: "flex",
         flexDirection: "column",
-        minWidth: "100%",
-        padding: "0px",
-        margin: "0px",
         color: state.selectProps.colors.secondary,
     }),
 };

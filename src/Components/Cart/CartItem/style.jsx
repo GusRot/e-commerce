@@ -12,7 +12,7 @@ export const CartContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 70%;
         height: 100%;
         margin-right: 10px;
     }
@@ -40,5 +40,10 @@ export const CartQtd = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    height: 100%;
+`;
+
+export const CarrouselContainer = styled.div`
+    width: 300px;
     height: 100%;
 `;

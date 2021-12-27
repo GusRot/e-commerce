@@ -11,6 +11,9 @@ class Page extends Component {
                     <Card />
                     <Card />
                     <Card />
+                    <Card />
+                    <Card />
+                    <Card />
                 </CardsContainer>
             </PagesContainer>
         );

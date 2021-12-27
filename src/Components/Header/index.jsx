@@ -9,6 +9,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import SelectComponent from "../SelectComponent";
 import Theme from "../Theme";
 import CartModal from "../CartModal";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
     constructor(props) {
@@ -31,9 +32,15 @@ class Header extends Component {
             <HeaderFixed>
                 <HeaderContainer>
                     <OptionsContainer>
-                        <h3>MEN</h3>
-                        <h3>WOMAN</h3>
-                        <h3>KID</h3>
+                        <Link to="/">
+                            <h3>WOMEN</h3>
+                        </Link>
+                        <Link to="/men">
+                            <h3>MEN</h3>
+                        </Link>
+                        <Link to="/kids">
+                            <h3>KID</h3>
+                        </Link>
                     </OptionsContainer>
                     <div>
                         <Theme

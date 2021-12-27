@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { transparentize } from "polished";
 
 export const GlobalStyle = createGlobalStyle` 
 
@@ -58,6 +59,7 @@ body {
 	-webkit-font-smoothing: antialiased;
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary}
+	
 }
 
 h1 {
@@ -94,7 +96,7 @@ html {
 	min-height: 20vh;
 	height: 100%;
 	position: relative;
-	background-color: ${({ theme }) => theme.header};;
+	background-color: ${({ theme }) => theme.header};
 	padding: 0.5rem;
 	display: flex;
     align-items: center;
@@ -114,6 +116,32 @@ html {
 
 	&:hover {
 		filter: brightness(0.7);
+	}
+}
+
+.swiper-container {
+
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+
+	.swiper-button-next, .swiper-button-prev {
+		color: ${({ theme }) => transparentize(0.25, theme.button)};
+
+		&:after {
+			font-size: 1.4rem;
+		}
+
+		&:hover {
+			color: ${({ theme }) => theme.button};
+		}
+
+	}
+
+	img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
 	}
 }
 

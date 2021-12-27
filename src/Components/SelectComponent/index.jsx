@@ -54,9 +54,7 @@ class SelectComponent extends Component {
                 defaultValue={options[0]}
                 formatOptionLabel={this.formatOptionLabel}
                 options={options}
-            >
-                {console.log(this.state.value, this.state.select)}
-            </Select>
+            />
         );
     }
 }

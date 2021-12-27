@@ -5,12 +5,11 @@ import { CardContainer } from "./style";
 class Card extends Component {
     render() {
         return (
-            <CardContainer img={true}>
+            <CardContainer img={false}>
                 <img src={Img} />
                 <span>OUT OF STOCK</span>
                 <p>asdsadsada</p>
-                <p>asdsadsada</p>
-                <p>asdsadsada</p>
+                <h6>$ 50.00</h6>
             </CardContainer>
         );
     }

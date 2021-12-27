@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { CartContainer, CartInfo, CartQtd, CartAttribute } from "./style";
+import Slider from "../Slider";
+import {
+    CartContainer,
+    CartInfo,
+    CartQtd,
+    CartAttribute,
+    CarrouselContainer,
+} from "./style";
 
 class CartItem extends Component {
     render() {
@@ -23,7 +30,9 @@ class CartItem extends Component {
                         <p>A</p>
                     </CartQtd>
                 </section>
-                <div>IasdsadnsakdjsankdsandkajsMG</div>
+                <CarrouselContainer>
+                    <Slider />
+                </CarrouselContainer>
             </CartContainer>
         );
     }

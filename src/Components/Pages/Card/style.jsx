@@ -2,11 +2,16 @@ import styled from "styled-components";
 import { transparentize } from "polished";
 
 export const CardContainer = styled.div`
-    width: 300px;
+    width: 280px;
     display: flex;
     flex-direction: column;
+    padding-bottom: 1rem;
     border-radius: 2px;
+    margin-bottom: 0.5rem;
+    gap: 0.7rem;
     position: relative;
+    box-shadow: 1px 0.2px 6px 0px ${({ theme }) =>
+        transparentize(0.7, theme.secondary)};
 
     span {
         position: absolute;
@@ -32,5 +37,13 @@ export const CardContainer = styled.div`
         filter: ${(props) => (props.img ? "blur(2px);" : "")} 
         opacity: ${(props) => (props.img ? "0.85;" : "")} 
         -webkit-filter: ${(props) => (props.img ? "blur(2px);" : "")}
+    }
+
+    h6 {
+        font-weight: 700;
+    }
+
+    h6,p {
+        padding-left: 1rem;
     }
 `;

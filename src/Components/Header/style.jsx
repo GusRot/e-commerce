@@ -59,6 +59,10 @@ export const HeaderContainer = styled.div`
 export const OptionsContainer = styled.div`
     gap: 1rem;
 
+    a {
+        text-decoration: none;
+    }
+
     h3 {
         text-align: center;
         width: 4.5rem;
