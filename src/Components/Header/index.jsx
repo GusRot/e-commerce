@@ -45,7 +45,11 @@ class Header extends Component {
                         <SelectComponent theme={this.props.theme} />
                         <AiOutlineShoppingCart
                             onClick={this.handleModalOpen}
-                            style={{ cursor: "pointer" }}
+                            style={{
+                                cursor: "pointer",
+                                height: "1.2rem",
+                                width: "1.2rem",
+                            }}
                         />
                         <CartModal
                             modal={this.state.modal}

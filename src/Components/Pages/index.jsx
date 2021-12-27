@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import Card from "./Card";
-import { PagesContainer } from "./style";
+import { PagesContainer, CardsContainer } from "./style";
 
 class Page extends Component {
     render() {
         return (
             <PagesContainer>
                 <h1>Category</h1>
-                <div>
+                <CardsContainer>
                     <Card />
-                </div>
+                    <Card />
+                    <Card />
+                </CardsContainer>
             </PagesContainer>
         );
     }
