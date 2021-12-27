@@ -7,7 +7,6 @@ import { lightTheme, darkTheme } from "./Styles/Theme";
 import store from "./Components/Store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-
 class App extends Component {
     constructor() {
         super();

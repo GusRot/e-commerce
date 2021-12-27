@@ -19,6 +19,7 @@ export const HeaderContainer = styled.div`
     height: 100%;
     width: 100%;
     max-width: 1024px;
+    position: relative;
     margin: 0 auto;
     padding: 0 0.5rem;
     display: flex;

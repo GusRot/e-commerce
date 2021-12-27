@@ -72,5 +72,45 @@ html {
 	min-width: 400px;
 }
 
+.react-modal-overlay {
+        position: absolute;
+        top:3.3rem;
+        right:0.5rem;
+		background-color:white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		z-index: 2;
+		width: 15rem;
+		min-height: 20vh;
+		border-radius: 2px;
+}
+
+.react-modal-content {
+	width:100%;
+	height: 100%;
+	position: relative;
+	background-color:white;
+	padding: 0.5rem;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	flex-direction: column;
+	
+}
+
+.react-modal-close {
+	position:absolute;
+	right: 2rem;
+	top: 2rem;
+	border: 0;
+	background: transparent;
+	transition: filter 0.2s;
+	cursor: pointer;
+
+	&:hover {
+		filter: brightness(0.9);
+	}
+}
 
 `;

@@ -8,6 +8,7 @@ import {
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import SelectComponent from "../SelectComponent";
 import Theme from "../Theme";
+import CartModal from "../CartModal";
 
 class Header extends Component {
     render() {
@@ -25,9 +26,10 @@ class Header extends Component {
                             theme={this.props.theme}
                         />
                     </div>
-                    <SelectContainer>
+                    <SelectContainer id="selectContainer">
                         <SelectComponent theme={this.props.theme} />
-                        <AiOutlineShoppingCart />
+                        <AiOutlineShoppingCart style={{ cursor: "pointer" }} />
+                        <CartModal />
                     </SelectContainer>
                 </HeaderContainer>
             </HeaderFixed>
