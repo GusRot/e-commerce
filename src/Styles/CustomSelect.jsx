@@ -3,7 +3,7 @@ import { transparentize } from "polished";
 const customSelect = {
     control: (styles, state) => ({
         ...styles,
-        backgroundColor: state.selectProps.colors.primary,
+        backgroundColor: state.selectProps.colors.header,
         border: "none",
         gap: "0px",
         width: "75px",
@@ -36,10 +36,7 @@ const customSelect = {
         ...styles,
         cursor: "pointer",
 
-        backgroundColor: transparentize(
-            0.9,
-            state.selectProps.colors.secondary
-        ),
+        backgroundColor: transparentize(0.5, state.selectProps.colors.primary),
     }),
     container: (styles) => ({
         ...styles,

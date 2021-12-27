@@ -11,6 +11,21 @@ import Theme from "../Theme";
 import CartModal from "../CartModal";
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { modal: false };
+        this.handleModalOpen = this.handleModalOpen.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
+    }
+
+    handleModalOpen() {
+        this.setState({ modal: true });
+    }
+
+    handleModalClose() {
+        this.setState({ modal: false });
+    }
+
     render() {
         return (
             <HeaderFixed>
@@ -28,8 +43,15 @@ class Header extends Component {
                     </div>
                     <SelectContainer id="selectContainer">
                         <SelectComponent theme={this.props.theme} />
-                        <AiOutlineShoppingCart style={{ cursor: "pointer" }} />
-                        <CartModal />
+                        <AiOutlineShoppingCart
+                            onClick={this.handleModalOpen}
+                            style={{ cursor: "pointer" }}
+                        />
+                        <CartModal
+                            modal={this.state.modal}
+                            open={this.handleModalOpen}
+                            close={this.handleModalClose}
+                        />
                     </SelectContainer>
                 </HeaderContainer>
             </HeaderFixed>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
+import closeModal from "../../assets/close.svg";
 
 class CartModal extends Component {
     render() {
@@ -8,10 +9,19 @@ class CartModal extends Component {
                 parentSelector={() =>
                     document.querySelector("#selectContainer")
                 }
-                isOpen={true}
+                isOpen={this.props.modal}
+                onRequestClose={this.props.close}
                 overlayClassName="react-modal-overlay"
                 className="react-modal-content"
-            ></Modal>
+            >
+                <button
+                    className="react-modal-close"
+                    type="button"
+                    onClick={this.props.close}
+                >
+                    <img src={closeModal} alt="close" />
+                </button>
+            </Modal>
         );
     }
 }

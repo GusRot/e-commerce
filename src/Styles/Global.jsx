@@ -61,8 +61,11 @@ body {
 }
 
 h1 {
-	font-size: 1.2rem;
-}
+        padding-left: 2rem;
+        font-weight: 700;
+        margin: 1.5rem 0;
+        font-size: 2rem;
+    }
 
 p {
 	font-size: 1rem;
@@ -88,28 +91,29 @@ html {
 
 .react-modal-content {
 	width:100%;
+	min-height: 20vh;
 	height: 100%;
 	position: relative;
-	background-color:white;
+	background-color: ${({ theme }) => theme.header};;
 	padding: 0.5rem;
 	display: flex;
     align-items: center;
     justify-content: center;
 	flex-direction: column;
-	
+
 }
 
 .react-modal-close {
 	position:absolute;
-	right: 2rem;
-	top: 2rem;
+	right: 0.1rem;
+	top: 0.2rem;
 	border: 0;
 	background: transparent;
 	transition: filter 0.2s;
 	cursor: pointer;
 
 	&:hover {
-		filter: brightness(0.9);
+		filter: brightness(0.7);
 	}
 }
 

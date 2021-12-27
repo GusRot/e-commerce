@@ -1,7 +1,6 @@
 import React from "react";
 import { IoBagHandleSharp } from "react-icons/io5";
 import { Container } from "./style";
-import { buttonLight } from "../../Styles/Palletes";
 
 const Theme = ({ theme, themeFunction }) => (
     <Container onClick={themeFunction}>
@@ -9,7 +8,7 @@ const Theme = ({ theme, themeFunction }) => (
             style={{
                 height: "1.5rem",
                 width: "1.5rem",
-                color: buttonLight,
+                color: theme.theme.button,
             }}
         />
         <span>{theme.text}</span>

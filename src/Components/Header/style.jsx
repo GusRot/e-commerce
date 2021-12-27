@@ -3,11 +3,12 @@ import { transparentize } from "polished";
 
 export const HeaderFixed = styled.header`
     height: 3.3rem;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.header};
     border: 1px solid ${({ theme }) => transparentize(0.9, theme.secondary)};
     position: fixed;
     width: 100%;
     z-index: 1;
+    margin-bottom: 5rem;
 
     div {
         display: flex;
