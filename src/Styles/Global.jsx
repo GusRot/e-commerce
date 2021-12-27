@@ -73,6 +73,11 @@ p {
 	font-size: 1rem;
 	font-weight: 400;	
 }
+
+h6, h2 {
+        font-weight: 700;
+    }
+
 html {
 	min-width: 400px;
 }

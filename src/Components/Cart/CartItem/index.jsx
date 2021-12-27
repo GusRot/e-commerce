@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import Slider from "../Slider";
-import {
-    CartContainer,
-    CartInfo,
-    CartQtd,
-    CartAttribute,
-    CarrouselContainer,
-} from "./style";
+import { CartContainer, CartInfo, CarrouselContainer } from "./style";
+import Attribute from "../Attributes";
+import ItemQuantities from "./ItemQuantities";
 
 class CartItem extends Component {
     render() {
@@ -14,21 +10,14 @@ class CartItem extends Component {
             <CartContainer>
                 <section>
                     <CartInfo>
-                        <p>tsadsadsadsakdnsajdnsaitle</p>
-                        <p>ttext</p>
-                        <p>price</p>
-                        <CartAttribute>
-                            <p>A</p>
-                            <p>B</p>
-                            <p>C</p>
-                            <p>D</p>
-                        </CartAttribute>
+                        <div>
+                            <h2>tsadsadsadsakdnsajdnsaitle</h2>
+                            <h4>ttext</h4>
+                            <h6>$ 50.00</h6>
+                        </div>
+                        <Attribute />
                     </CartInfo>
-                    <CartQtd>
-                        <p>A</p>
-                        <p>2</p>
-                        <p>A</p>
-                    </CartQtd>
+                    <ItemQuantities />
                 </section>
                 <CarrouselContainer>
                     <Slider />
