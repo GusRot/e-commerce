@@ -52,6 +52,14 @@ export const ContainerSlider = styled.div`
         text-align: justify;
     }
 
+    .swiper-container-vertical .swiper-slide {
+        opacity: 0.75;
+    }
+
+    .swiper-container-vertical .swiper-slide-thumb-active {
+        opacity: 1;
+    }
+
     .swiper-container.vertical {
         max-width: 500px;
 

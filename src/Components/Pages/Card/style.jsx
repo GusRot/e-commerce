@@ -11,8 +11,14 @@ export const CardContainer = styled.div`
     margin-bottom: 0.5rem;
     gap: 0.7rem;
     position: relative;
-    box-shadow: 1px 0.2px 6px 0px
-        ${({ theme }) => transparentize(0.7, theme.secondary)};
+    box-shadow: 1px 0.2px 9px 0px
+        ${({ theme }) => transparentize(0.95, theme.secondary)};
+    transition: 0.1s;
+
+    &:hover {
+        box-shadow: 1px 0.2px 9px 0px
+            ${({ theme }) => transparentize(0.85, theme.secondary)};
+    }
 
     span {
         position: absolute;

@@ -10,10 +10,11 @@ class Router extends Component {
         return (
             <Routes>
                 <Route path="/" element={<Page />} />
+                <Route path="/woman" element={<Page />} />
                 <Route path="/men" element={<Cart />} />
                 <Route path="/kids" element={<Products />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/outros" element={<Page404 />} />
+                <Route path="*" element={<Page404 />} />
             </Routes>
         );
     }

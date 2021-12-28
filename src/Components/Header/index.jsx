@@ -32,7 +32,7 @@ class Header extends Component {
             <HeaderFixed>
                 <HeaderContainer>
                     <OptionsContainer>
-                        <Link to="/">
+                        <Link to="/woman">
                             <h5>WOMEN</h5>
                         </Link>
                         <Link to="/men">

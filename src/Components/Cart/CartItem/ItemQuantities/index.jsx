@@ -7,6 +7,7 @@ class ItemQuantities extends Component {
         return (
             <CartQtd>
                 <AiOutlinePlusSquare
+                    id="item-add"
                     style={{
                         cursor: "pointer",
                         height: "2.2rem",
@@ -15,6 +16,7 @@ class ItemQuantities extends Component {
                 />
                 <span>1</span>
                 <AiOutlineMinusSquare
+                    id="item-remove"
                     style={{
                         cursor: "pointer",
                         height: "2.2rem",

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CartComponent from "../../Cart/CartComponent";
 import Button from "../../Button";
-
+import { Link } from "react-router-dom";
 import { ModalCartContainer, MyBag, MyOrder, CheckOut } from "./style";
 import ItemPrice from "../../Cart/CartItem/Item/ItemPrice";
 
@@ -19,7 +19,9 @@ class ModalCart extends Component {
                     <ItemPrice />
                 </MyOrder>
                 <CheckOut>
-                    <Button>View Bag</Button>
+                    <Button>
+                        <Link to="/cart">View Bag</Link>
+                    </Button>
                     <Button>Check Out</Button>
                 </CheckOut>
             </ModalCartContainer>
