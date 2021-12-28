@@ -87,5 +87,11 @@ export const CheckOut = styled.div`
         width:49%;
         margin-bottom: 10px;
         margin-top: 20px;
+
+        &:first-child {
+            background-color: ${({ theme }) => theme.header};
+            color: ${({ theme }) => theme.secondary};
+            border: 1px solid ${({ theme }) => theme.secondary};
+        }
     }
 `;

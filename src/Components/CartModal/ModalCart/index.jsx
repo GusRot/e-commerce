@@ -19,7 +19,7 @@ class ModalCart extends Component {
                     <ItemPrice />
                 </MyOrder>
                 <CheckOut>
-                    <Button>Check Out</Button>
+                    <Button>View Bag</Button>
                     <Button>Check Out</Button>
                 </CheckOut>
             </ModalCartContainer>

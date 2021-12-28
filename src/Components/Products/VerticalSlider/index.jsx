@@ -26,6 +26,7 @@ function App() {
                 className="swiper-container-vertical"
                 spaceBetween={0}
                 slidesPerView={3}
+                loop={true}
                 onSwiper={setThumbsSwiper}
                 direction={"vertical"}
             >
@@ -48,7 +49,7 @@ function App() {
                 slidesPerView={1}
             >
                 {slides.map((slide, i) => (
-                    <SwiperSlide key={`slide-${i}`} tag="li">
+                    <SwiperSlide key={`Vslide-${i}`} tag="li">
                         <img src={slide} alt="" />
                     </SwiperSlide>
                 ))}

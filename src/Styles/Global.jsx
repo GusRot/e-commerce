@@ -165,11 +165,14 @@ html {
 		height: 320px;
 		z-index: 0;
 
-
 		img {
 			object-fit: cover;
 			height: 100px;
 		}
+
+		@media (max-width: 500px) {
+            display: none;
+        }
 	}
 }
 

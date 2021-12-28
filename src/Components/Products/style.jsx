@@ -8,15 +8,33 @@ export const ContainerSlider = styled.div`
     padding: 6.5rem 1rem 0 1rem;
 
     section {
-        width: 650px;
+        max-width: 650px;
         display: flex;
 
         div:first-child {
-            width: 130px;
-        }
+            width: 120px;
 
-        img {
-            object-fit: contain;
+            img {
+                width: 80%;
+            }
+
+            @media (max-width: 960px) {
+                width: 100px;
+            }
+            @media (max-width: 750px) {
+                width: 80px;
+
+                img {
+                    height: 80px;
+                }
+            }
+            @media (max-width: 660px) {
+                max-width: 100px;
+
+                img {
+                    height: 100px;
+                }
+            }
         }
     }
     div {
@@ -32,5 +50,25 @@ export const ContainerSlider = styled.div`
 
     p {
         text-align: justify;
+    }
+
+    .swiper-container.vertical {
+        max-width: 500px;
+
+        @media (max-width: 960px) {
+            max-width: 400px;
+        }
+
+        @media (max-width: 750px) {
+            max-width: 350px;
+        }
+
+        @media (max-width: 660px) {
+            max-width: 500px;
+        }
+    }
+
+    @media (max-width: 660px) {
+        flex-direction: column;
     }
 `;
