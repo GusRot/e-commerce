@@ -162,8 +162,9 @@ html {
 			}
 		}
 	&-vertical {
-		height: 300px;
+		height: 320px;
 		z-index: 0;
+
 
 		img {
 			object-fit: cover;

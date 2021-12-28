@@ -15,8 +15,6 @@ class CartComponent extends Component {
                 <Line />
                 <CartItem />
                 <Line />
-                <CartItem />
-                <Line />
             </>
         );
     }

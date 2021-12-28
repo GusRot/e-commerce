@@ -59,4 +59,33 @@ export const ModalCartContainer = styled.div`
 export const MyBag = styled.div`
     margin-left: -145px;
     gap: 0.5rem;
+
+    h3 {
+        font-weight: 600;
+    }
+`;
+
+export const MyOrder = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+
+    h3 {
+        display: none;
+    }
+`;
+
+export const CheckOut = styled.div`
+    width:100%
+    display:flex;
+    gap:0.5rem;
+    justify-content: space-between;
+
+    button {
+        height: 30px;
+        width:49%;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
 `;

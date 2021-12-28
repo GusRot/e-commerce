@@ -4,7 +4,7 @@ import { CartAttribute } from "./style";
 class Attribute extends Component {
     render() {
         return (
-            <CartAttribute selected={true}>
+            <CartAttribute selected={false}>
                 <div>
                     <p>A</p>
                 </div>

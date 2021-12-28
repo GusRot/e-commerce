@@ -33,13 +33,13 @@ class Header extends Component {
                 <HeaderContainer>
                     <OptionsContainer>
                         <Link to="/">
-                            <h3>WOMEN</h3>
+                            <h5>WOMEN</h5>
                         </Link>
                         <Link to="/men">
-                            <h3>MEN</h3>
+                            <h5>MEN</h5>
                         </Link>
                         <Link to="/kids">
-                            <h3>KID</h3>
+                            <h5>KID</h5>
                         </Link>
                     </OptionsContainer>
                     <div>

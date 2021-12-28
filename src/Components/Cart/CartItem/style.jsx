@@ -22,7 +22,6 @@ export const CartContainer = styled.header`
 export const CartInfo = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-direction: column;
     height: 100%;
     padding: 0.4rem 0;
@@ -35,8 +34,20 @@ export const CartInfo = styled.div`
         word-break: break-all;
     }
 
+    h3 {
+        font-weight: bold;
+        font-size: 1.2rem;
+        display: none;
+    }
+
     h6 {
         font-size: 1.2rem;
+    }
+
+    span {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: -0.4rem;
     }
 `;
 

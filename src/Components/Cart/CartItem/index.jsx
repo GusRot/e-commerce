@@ -3,6 +3,7 @@ import Slider from "../Slider";
 import { CartContainer, CartInfo, CarrouselContainer } from "./style";
 import Attribute from "../Attributes";
 import ItemQuantities from "./ItemQuantities";
+import Item from "./Item";
 
 class CartItem extends Component {
     render() {
@@ -10,11 +11,7 @@ class CartItem extends Component {
             <CartContainer>
                 <section>
                     <CartInfo>
-                        <div>
-                            <h2>tsadsadsadsakdnsajdnsaitle</h2>
-                            <h4>ttext</h4>
-                            <h6>$ 50.00</h6>
-                        </div>
+                        <Item />
                         <Attribute />
                     </CartInfo>
                     <ItemQuantities />

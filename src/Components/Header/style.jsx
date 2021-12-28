@@ -28,7 +28,7 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     
 
-        h3 {
+        h5 {
             font-size: 1.2rem;
             color: ${({ theme }) => theme.secondary};
             position: relative;
@@ -63,7 +63,7 @@ export const OptionsContainer = styled.div`
         text-decoration: none;
     }
 
-    h3 {
+    h5 {
         text-align: center;
         width: 4.5rem;
     }

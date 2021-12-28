@@ -11,5 +11,9 @@ export const CartAttribute = styled.div`
         background-color: ${(props) => (props.selected ? "black" : "")};
         color: ${(props) => (props.selected ? "#e5e5e5" : "")};
         padding: 0.4rem;
+
+        &:hover {
+            background-color: ${(props) =>
+                props.selected ? "black" : "rgba(0,0,0,0.3)"}
     }
 `;
