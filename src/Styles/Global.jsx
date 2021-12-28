@@ -140,13 +140,35 @@ html {
 		&:hover {
 			color: ${({ theme }) => theme.button};
 		}
-
 	}
 
 	img {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
+	}
+
+	&.vertical {
+		height: 500px;
+
+			.swiper-button-next, .swiper-button-prev {
+				display:none;
+			}
+
+			img {
+				object-fit: cover;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	&-vertical {
+		height: 300px;
+		z-index: 0;
+
+		img {
+			object-fit: cover;
+			height: 100px;
+		}
 	}
 }
 
