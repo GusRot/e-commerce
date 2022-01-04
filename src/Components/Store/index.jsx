@@ -1,41 +1,11 @@
 import { createStore } from "redux";
+import { combineReducers } from "redux";
+import counterReducer from "./reducers/counterReducer";
 
-const initialState = {
-    products: [
-        {
-            title: "",
-            text: "Entregar Projeto X",
-            price: 1,
-            attribute: ["", ""],
-            qtd: 2,
-            img: ["", ""],
-            id: 1,
-        },
-        {
-            title: "",
-            text: "Entregar Projeto X",
-            price: 1,
-            attribute: ["", ""],
-            qtd: 2,
-            img: ["", ""],
-            id: 1,
-        },
-        {
-            title: "",
-            text: "Entregar Projeto X",
-            price: 1,
-            attribute: ["", ""],
-            qtd: 2,
-            img: ["", ""],
-            id: 1,
-        },
-    ],
-};
+const reducers = combineReducers({
+    counters: counterReducer,
+});
 
-function reducer(state = initialState, action) {
-    return state;
-}
-
-const store = createStore(reducer);
+const store = createStore(reducers);
 
 export default store;

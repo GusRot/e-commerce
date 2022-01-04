@@ -6,8 +6,8 @@ class Item extends Component {
     render() {
         return (
             <div>
-                <ItemName />
-                <ItemPrice />
+                <ItemName text={this.props.text} title={this.props.title} />
+                <ItemPrice price={this.props.price} />
             </div>
         );
     }

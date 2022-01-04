@@ -5,7 +5,7 @@ class ItemPrice extends Component {
         return (
             <>
                 <h3>Price</h3>
-                <h6>$ 50.00</h6>
+                <h6>$ {this.props.price}</h6>
             </>
         );
     }

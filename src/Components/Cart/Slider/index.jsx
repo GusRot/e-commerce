@@ -9,11 +9,9 @@ import SwiperCore, {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import Img from "../../../assets/Ciri.jpg";
 
 SwiperCore.use([Navigation, Scrollbar, A11y, Autoplay, Keyboard, Mousewheel]);
 
-const slides = [Img, Img, Img, Img, Img];
 class Slider extends Component {
     render() {
         return (
@@ -31,7 +29,7 @@ class Slider extends Component {
                     disableOnInteraction: false,
                 }}
             >
-                {slides.map((slide, i) => (
+                {this.props.slides.map((slide, i) => (
                     <SwiperSlide key={`Hslide-${i}`} tag="li">
                         <img src={slide} alt="" />
                     </SwiperSlide>

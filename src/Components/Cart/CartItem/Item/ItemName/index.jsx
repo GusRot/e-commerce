@@ -4,8 +4,8 @@ class ItemName extends Component {
     render() {
         return (
             <>
-                <h2>tsadsadsadsakdnsajdnsaitle</h2>
-                <h4>ttext</h4>
+                <h2>{this.props.title}</h2>
+                <h4>{this.props.text}</h4>
             </>
         );
     }
