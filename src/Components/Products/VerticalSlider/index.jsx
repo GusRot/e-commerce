@@ -8,15 +8,10 @@ import SwiperCore, {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import Img from "../../../assets/Ciri.jpg";
 
 SwiperCore.use([Navigation, A11y, Keyboard, Thumbs, Mousewheel]);
 
-const slides = [Img, Img, Img, Img, Img];
-
-const thumbs = [Img, Img, Img, Img, Img];
-
-function App() {
+function App({ slides }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
@@ -30,7 +25,7 @@ function App() {
                 onSwiper={setThumbsSwiper}
                 direction={"vertical"}
             >
-                {thumbs.map((slide, i) => (
+                {slides.map((slide, i) => (
                     <SwiperSlide key={`thumb-${i}`}>
                         <img src={slide} alt="" />
                     </SwiperSlide>

@@ -6,20 +6,39 @@ import Button from "../Button";
 import { CartInfo } from "../Cart/CartItem/style";
 import ItemName from "../Cart/CartItem/Item/ItemName";
 import ItemPrice from "../Cart/CartItem/Item/ItemPrice";
+import { connect } from "react-redux";
+import { newCartItem } from "../Store/actions";
 
 class Products extends Component {
     render() {
         return (
             <ContainerSlider>
                 <section>
-                    <VerticalSlider />
+                    <VerticalSlider
+                        slides={this.props.counters.products[0].img}
+                    />
                 </section>
                 <CartInfo>
-                    <ItemName />
+                    <ItemName
+                        text={this.props.counters.products[0].text}
+                        title={this.props.counters.products[0].title}
+                    />
                     <span>Size:</span>
-                    <Attribute />
-                    <ItemPrice />
-                    <Button>ADD TO CART</Button>
+                    <Attribute
+                        selected={this.props.counters.products[0].attribute}
+                        attributes={this.props.counters.products[0].attributes}
+                        index={0}
+                    />
+                    <ItemPrice price={this.props.counters.products[0].price} />
+                    <Button
+                        submit={() =>
+                            this.props.newCartItem(
+                                this.props.counters.products[0]
+                            )
+                        }
+                    >
+                        ADD TO CART
+                    </Button>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Expedita, nihil? Accusantium vero eligendi neque
@@ -33,4 +52,14 @@ class Products extends Component {
     }
 }
 
-export default Products;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newCartItem: (i) => dispatch(newCartItem(i)),
+    };
+};
+
+const mapStateToProps = (state) => {
+    return { counters: state.counters };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

@@ -18,6 +18,7 @@ class CartItem extends Component {
                         <Attribute
                             selected={this.props.products.attribute}
                             attributes={this.props.products.attributes}
+                            index={this.props.index}
                         />
                     </CartInfo>
                     <ItemQuantities

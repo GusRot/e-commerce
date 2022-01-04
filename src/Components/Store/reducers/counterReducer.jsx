@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, ATTRIBUTE } from "../actions";
+import { INCREMENT, DECREMENT, ATTRIBUTE, NEW_ITEM } from "../actions";
 import Hjalmar from "../../../assets/Hjalmar.jpg";
 import Ciri from "../../../assets/Ciri.jpg";
 import Triss from "../../../assets/Triss.jpg";
@@ -11,7 +11,7 @@ const initialState = {
             price: "12.00",
             attributes: ["A", "B", "C"],
             qtd: 2,
-            img: [Hjalmar, Triss],
+            img: [Hjalmar, Triss, Ciri],
             id: 1,
             attribute: "A",
         },
@@ -56,7 +56,7 @@ const counterReducer = (state = initialState, action) => {
             const arrDec = [];
             for (let i = 0; i < state.products.length; i++) {
                 arrDec.push(state.products[i]);
-                if (i === action.payload.index) {
+                if (i === action.payload.index && arrDec[i].qtd > 0) {
                     arrDec[i].qtd -= 1;
                 }
             }
@@ -69,11 +69,21 @@ const counterReducer = (state = initialState, action) => {
             for (let i = 0; i < state.products.length; i++) {
                 arrAtt.push(state.products[i]);
                 if (i === action.payload.index) {
-                    arrAtt[i].attribute -= action.payload.attribute;
+                    arrAtt[i].attribute = action.payload.attribute;
                 }
             }
             return {
                 products: [...arrAtt],
+            };
+
+        case NEW_ITEM:
+            for (let i = 0; i < state.products.length; i++) {
+                if (action.payload.item.title === state.products[i].title)
+                    alert("Este produto já esta no carrinho");
+                return state;
+            }
+            return {
+                products: [...state.products, action.payload.item],
             };
 
         default:
