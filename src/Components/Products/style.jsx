@@ -54,6 +54,7 @@ export const ContainerSlider = styled.div`
 
     .swiper-container-vertical .swiper-slide {
         opacity: 0.75;
+        cursor: pointer;
     }
 
     .swiper-container-vertical .swiper-slide-thumb-active {

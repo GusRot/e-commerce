@@ -1,29 +1,42 @@
 import React, { Component } from "react";
-import { RiMoneyEuroCircleLine } from "@react-icons/all-files/ri/RiMoneyEuroCircleLine";
-import { RiMoneyDollarCircleLine } from "@react-icons/all-files/ri/RiMoneyDollarCircleLine";
-import { RiMoneyCnyCircleLine } from "@react-icons/all-files/ri/RiMoneyCnyCircleLine";
 import Select from "react-select";
 import customSelect from "../../Styles/CustomSelect";
+import { graphql } from "react-apollo";
+import { LOAD_CURRENCIES } from "../GraphQL/Queries";
 
 class SelectComponent extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            select: "USD",
-            value: {
-                value: "USD",
-                label: "USD",
-                symbol: (
-                    <RiMoneyDollarCircleLine
-                        style={{
-                            height: "1.2rem",
-                            width: "1.2rem",
-                        }}
-                    />
-                ),
-            },
+            select: "",
+            value: {},
+            options: [],
         };
         this.onChange = this.onChange.bind(this);
+    }
+
+    rerender() {
+        const arr = [];
+        for (let i = 0; i < this.props.data.currencies.length; i++) {
+            arr.push({
+                value: this.props.data.currencies[i].label,
+                label: this.props.data.currencies[i].label,
+                symbol: this.props.data.currencies[i].symbol,
+            });
+        }
+        this.setState({
+            value: {
+                value: this.props.data.currencies[0].label,
+                label: this.props.data.currencies[0].label,
+                symbol: this.props.data.currencies[0].symbol,
+            },
+            select: this.props.data.currencies[0].label,
+            options: [...arr],
+        });
+    }
+
+    componentDidMount() {
+        setTimeout(this.rerender.bind(this), 150);
     }
 
     onChange(value) {
@@ -42,60 +55,24 @@ class SelectComponent extends Component {
 
     render() {
         return (
-            <Select
-                value={{
-                    value: this.state.value.value,
-                    label: "",
-                    symbol: this.state.value.symbol,
-                }}
-                onChange={this.onChange}
-                colors={this.props.theme.theme}
-                styles={customSelect}
-                defaultValue={options[0]}
-                formatOptionLabel={this.formatOptionLabel}
-                options={options}
-            />
+            <>
+                {console.log(this.state)}
+                <Select
+                    value={{
+                        value: this.state.value.value,
+                        label: "",
+                        symbol: this.state.value.symbol,
+                    }}
+                    onChange={this.onChange}
+                    colors={this.props.theme.theme}
+                    styles={customSelect}
+                    defaultValue={this.state.options[0]}
+                    formatOptionLabel={this.formatOptionLabel}
+                    options={this.state.options}
+                />
+            </>
         );
     }
 }
 
-const options = [
-    {
-        value: "USD",
-        label: "USD",
-        symbol: (
-            <RiMoneyDollarCircleLine
-                style={{
-                    height: "1.2rem",
-                    width: "1.2rem",
-                }}
-            />
-        ),
-    },
-    {
-        value: "EUR",
-        label: "EUR",
-        symbol: (
-            <RiMoneyEuroCircleLine
-                style={{
-                    height: "1.2rem",
-                    width: "1.2rem",
-                }}
-            />
-        ),
-    },
-    {
-        value: "JPY",
-        label: "JPY",
-        symbol: (
-            <RiMoneyCnyCircleLine
-                style={{
-                    height: "1.2rem",
-                    width: "1.2rem",
-                }}
-            />
-        ),
-    },
-];
-
-export default SelectComponent;
+export default graphql(LOAD_CURRENCIES)(SelectComponent);

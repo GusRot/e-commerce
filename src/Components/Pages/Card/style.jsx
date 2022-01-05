@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { transparentize } from "polished";
 
 export const CardContainer = styled.div`
-    cursor: pointer;
+    pointer-events: ${(props) => (props.img ? "none" : "all")};
     width: 280px;
     display: flex;
     flex-direction: column;

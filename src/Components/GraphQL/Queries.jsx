@@ -23,3 +23,12 @@ export const LOAD_PRODUCTS = gql`
         }
     }
 `;
+
+export const LOAD_CURRENCIES = gql`
+    query Query {
+        currencies {
+            label
+            symbol
+        }
+    }
+`;

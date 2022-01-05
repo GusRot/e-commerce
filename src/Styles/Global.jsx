@@ -74,6 +74,11 @@ p {
 	font-weight: 400;	
 }
 
+a {
+        text-decoration: none;
+		color: ${({ theme }) => theme.secondary};
+    }
+
 h6, h2 {
         font-weight: 700;
     }

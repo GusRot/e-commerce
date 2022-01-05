@@ -88,12 +88,6 @@ export const CheckOut = styled.div`
         margin-bottom: 10px;
         margin-top: 20px;
 
-        a {
-            text-decoration: none;
-            color: ${({ theme }) => theme.secondary};
-            
-            
-        }
 
         &:first-child {
             background-color: ${({ theme }) => theme.header};

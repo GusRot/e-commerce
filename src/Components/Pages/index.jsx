@@ -6,7 +6,7 @@ class Page extends Component {
     render() {
         return (
             <PagesContainer>
-                <h1>Category</h1>
+                <h1>{this.props.category.toUpperCase()}</h1>
                 <CardsContainer>
                     {this.props.products ? (
                         this.props.products.map((product) => (

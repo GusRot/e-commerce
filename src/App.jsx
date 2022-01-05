@@ -45,7 +45,6 @@ class App extends Component {
                 <Provider store={store}>
                     <ApolloProvider client={client}>
                         <BrowserRouter>
-                            {console.log(this.state.users)}
                             <Header
                                 themeFunction={this.handleTheme.bind(this)}
                                 theme={this.state}

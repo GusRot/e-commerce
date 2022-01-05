@@ -32,13 +32,13 @@ class Header extends Component {
             <HeaderFixed>
                 <HeaderContainer>
                     <OptionsContainer>
-                        <Link to="/woman">
+                        <Link to="/all">
                             <h5>ALL</h5>
                         </Link>
-                        <Link to="/men">
+                        <Link to="/tech">
                             <h5>TECH</h5>
                         </Link>
-                        <Link to="/kids">
+                        <Link to="/clothes">
                             <h5>CLOTHES</h5>
                         </Link>
                     </OptionsContainer>
