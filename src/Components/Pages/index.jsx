@@ -8,12 +8,19 @@ class Page extends Component {
             <PagesContainer>
                 <h1>Category</h1>
                 <CardsContainer>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {this.props.products ? (
+                        this.props.products.map((product) => (
+                            <Card
+                                key={product.id}
+                                inStock={product.inStock}
+                                name={product.name}
+                                prices={product.prices}
+                                image={product.gallery[0]}
+                            />
+                        ))
+                    ) : (
+                        <></>
+                    )}
                 </CardsContainer>
             </PagesContainer>
         );

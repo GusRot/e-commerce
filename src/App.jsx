@@ -7,6 +7,15 @@ import { lightTheme, darkTheme } from "./Styles/Theme";
 import store from "./Components/Store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { ApolloClient, InMemoryCache, HttpLink, from } from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
+const link = from([new HttpLink({ uri: "http://localhost:4000" })]);
+
+const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: link,
+});
 class App extends Component {
     constructor() {
         super();
@@ -34,13 +43,16 @@ class App extends Component {
         return (
             <ThemeProvider theme={this.state.theme}>
                 <Provider store={store}>
-                    <BrowserRouter>
-                        <Header
-                            themeFunction={this.handleTheme.bind(this)}
-                            theme={this.state}
-                        />
-                        <Router />
-                    </BrowserRouter>
+                    <ApolloProvider client={client}>
+                        <BrowserRouter>
+                            {console.log(this.state.users)}
+                            <Header
+                                themeFunction={this.handleTheme.bind(this)}
+                                theme={this.state}
+                            />
+                            <Router />
+                        </BrowserRouter>
+                    </ApolloProvider>
                 </Provider>
                 <GlobalStyle />
             </ThemeProvider>
