@@ -1,4 +1,10 @@
-import { INCREMENT, DECREMENT, ATTRIBUTE, NEW_ITEM } from "../actions";
+import {
+    INCREMENT,
+    DECREMENT,
+    ATTRIBUTE,
+    NEW_ITEM,
+    REMOVE_ITEM,
+} from "../actions";
 import Hjalmar from "../../../assets/Hjalmar.jpg";
 import Ciri from "../../../assets/Ciri.jpg";
 import Triss from "../../../assets/Triss.jpg";
@@ -85,6 +91,9 @@ const counterReducer = (state = initialState, action) => {
             return {
                 products: [...state.products, action.payload.item],
             };
+
+        case REMOVE_ITEM:
+            break;
 
         default:
             return state;

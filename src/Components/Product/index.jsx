@@ -18,15 +18,42 @@ class Product extends Component {
             brand: "",
             gallery: [],
             description: "",
+            price: "",
+            symbol: "",
+            currency: "",
+            attributes: [],
         };
     }
 
     rerender() {
+        let currency = "";
+        let price = "";
+        let symbol = "";
+        const attributes = this.props.data.product.attributes[0]
+            ? [...this.props.data.product.attributes[0].items]
+            : [];
+
+        if (this.props.currency) {
+            currency = this.props.currency;
+        } else {
+            currency = this.props.data.product.prices[0].currency.label;
+        }
+        for (let i = 0; i < this.props.data.product.prices.length; i++) {
+            if (this.props.data.product.prices[i].currency.label === currency) {
+                price = this.props.data.product.prices[i].amount;
+                symbol = this.props.data.product.prices[i].currency.symbol;
+            }
+        }
+
         this.setState({
             name: this.props.data.product.name,
             brand: this.props.data.product.brand,
             gallery: [...this.props.data.product.gallery],
             description: this.props.data.product.description,
+            price,
+            currency: this.props.currency,
+            symbol,
+            attributes: [...attributes],
         });
     }
 
@@ -34,26 +61,36 @@ class Product extends Component {
         setTimeout(this.rerender.bind(this), 150);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.currency !== this.props.currency) {
+            this.rerender();
+        }
+    }
+
     render() {
         return (
             <ContainerSlider>
-                {console.log(this.props.data.product)}
                 <section>
                     <VerticalSlider slides={this.state.gallery} />
                 </section>
                 <CartInfo>
                     <ItemName title={this.state.name} text={this.state.brand} />
-                    <span>Size:</span>
-                    <Attribute
-                        selected={this.props.products[0].attribute}
-                        attributes={this.props.products[0].attributes}
-                        index={0}
+                    <span>
+                        {this.props.data.product
+                            ? this.props.data.product.attributes[0]
+                                ? this.props.data.product.attributes[0].name
+                                : ""
+                            : ""}
+                    </span>
+                    <Attribute attributes={this.state.attributes} />
+                    <ItemPrice
+                        symbol={this.state.symbol}
+                        price={this.state.price}
                     />
-                    <ItemPrice price={this.props.products[0].price} />
                     <Link to="/cart">
                         <Button
                             submit={() =>
-                                this.props.newCartItem(this.props.products[0])
+                                this.props.newCartItem(this.props.data.product)
                             }
                         >
                             ADD TO CART

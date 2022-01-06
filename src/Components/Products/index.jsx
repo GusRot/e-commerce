@@ -9,8 +9,9 @@ class Products extends Component {
             <Product
                 products={this.props.state.counters.products}
                 api={this.props.state.api}
-                submit={newCartItem}
-            />
+                newCartItem={newCartItem}
+                currency={this.props.state.currency}
+            ></Product>
         );
     }
 }

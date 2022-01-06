@@ -5,7 +5,9 @@ class ItemPrice extends Component {
         return (
             <>
                 <h3>Price</h3>
-                <h6>$ {this.props.price}</h6>
+                <h6>
+                    {this.props.symbol} {this.props.price}
+                </h6>
             </>
         );
     }

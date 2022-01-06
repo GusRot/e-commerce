@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Select from "react-select";
 import customSelect from "../../Styles/CustomSelect";
 import { graphql } from "react-apollo";
 import { LOAD_CURRENCIES } from "../GraphQL/Queries";
+import SelectOptions from "./SelectOptions";
 
 class SelectComponent extends Component {
     constructor(props) {
@@ -56,17 +56,17 @@ class SelectComponent extends Component {
     render() {
         return (
             <>
-                <Select
+                <SelectOptions
                     value={{
                         value: this.state.value.value,
                         label: "",
                         symbol: this.state.value.symbol,
                     }}
-                    onChange={this.onChange}
-                    colors={this.props.theme.theme}
-                    styles={customSelect}
-                    defaultValue={this.state.options[0]}
-                    formatOptionLabel={this.formatOptionLabel}
+                    change={this.onChange}
+                    color={this.props.theme.theme}
+                    style={customSelect}
+                    default={this.state.options[0]}
+                    option={this.formatOptionLabel}
                     options={this.state.options}
                 />
             </>

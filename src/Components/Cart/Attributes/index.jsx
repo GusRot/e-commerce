@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { CartAttribute, SelectedAttribute } from "./style";
-import { handleAttribute } from "../../Store/actions";
+import { getAttribute } from "../../Store/actions";
 import { connect } from "react-redux";
 
 class Attribute extends Component {
@@ -8,28 +8,27 @@ class Attribute extends Component {
         return (
             <CartAttribute>
                 {this.props.attributes.map((attribute, index) => {
-                    if (attribute !== this.props.selected) {
+                    if (this.props.attributes.length === 0) {
+                        return <></>;
+                    } else if (attribute.value !== this.props.state) {
                         return (
                             <SelectedAttribute
-                                key={attribute + index}
+                                key={attribute.id + index}
                                 selected={false}
                                 onClick={() =>
-                                    this.props.handleAttribute(
-                                        this.props.index,
-                                        attribute
-                                    )
+                                    this.props.getAttribute(attribute.value)
                                 }
                             >
-                                <p>{attribute}</p>
+                                <p>{attribute.displayValue}</p>
                             </SelectedAttribute>
                         );
                     } else {
                         return (
                             <SelectedAttribute
-                                key={attribute + index}
+                                key={attribute.id + index}
                                 selected={true}
                             >
-                                <p>{attribute}</p>
+                                <p>{attribute.displayValue}</p>
                             </SelectedAttribute>
                         );
                     }
@@ -39,11 +38,14 @@ class Attribute extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return { state: state.attribute };
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleAttribute: (i, attribute) =>
-            dispatch(handleAttribute(i, attribute)),
+        getAttribute: (attribute) => dispatch(getAttribute(attribute)),
     };
 };
 
-export default connect(null, mapDispatchToProps)(Attribute);
+export default connect(mapStateToProps, mapDispatchToProps)(Attribute);
