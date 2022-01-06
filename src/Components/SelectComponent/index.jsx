@@ -56,7 +56,6 @@ class SelectComponent extends Component {
     render() {
         return (
             <>
-                {console.log(this.state)}
                 <Select
                     value={{
                         value: this.state.value.value,

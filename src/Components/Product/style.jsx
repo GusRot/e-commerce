@@ -4,6 +4,7 @@ export const ContainerSlider = styled.div`
     display: flex;
     gap: 2rem;
     max-width: 1024px;
+    width: 100%;
     margin: 0px auto;
     padding: 6.5rem 1rem 0 1rem;
 
@@ -79,5 +80,9 @@ export const ContainerSlider = styled.div`
 
     @media (max-width: 660px) {
         flex-direction: column;
+    }
+
+    section + div {
+        width: 100%;
     }
 `;

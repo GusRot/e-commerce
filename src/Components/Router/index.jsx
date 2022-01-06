@@ -6,16 +6,19 @@ import Products from "../Products";
 import AllCategories from "./AllCategories";
 import Tech from "./Tech";
 import Clothes from "./Clothes";
+import { Category3 } from "./Clothes";
+import { Category1 } from "./AllCategories";
+import { Category2 } from "./Tech";
 
 class Router extends Component {
     render() {
         return (
             <Routes>
                 <Route path="/" element={<AllCategories />} />
-                <Route path="/all" element={<AllCategories />} />
-                <Route path="/tech" element={<Tech />} />
-                <Route path="/clothes" element={<Clothes />} />
-                <Route path="/products/" element={<Products />} />
+                <Route path={`/${Category1}`} element={<AllCategories />} />
+                <Route path={`/${Category2}`} element={<Tech />} />
+                <Route path={`/${Category3}`} element={<Clothes />} />
+                <Route path="/products/:id" element={<Products />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="*" element={<Page404 />} />
             </Routes>

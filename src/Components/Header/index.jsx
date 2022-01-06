@@ -10,6 +10,9 @@ import SelectComponent from "../SelectComponent";
 import Theme from "../Theme";
 import CartModal from "../CartModal";
 import { Link } from "react-router-dom";
+import { Category3 } from "../Router/Clothes";
+import { Category2 } from "../Router/Tech";
+import { Category1 } from "../Router/AllCategories";
 
 class Header extends Component {
     constructor(props) {
@@ -33,13 +36,13 @@ class Header extends Component {
                 <HeaderContainer>
                     <OptionsContainer>
                         <Link to="/all">
-                            <h5>ALL</h5>
+                            <h5>{Category1.toUpperCase()}</h5>
                         </Link>
                         <Link to="/tech">
-                            <h5>TECH</h5>
+                            <h5>{Category2.toUpperCase()}</h5>
                         </Link>
                         <Link to="/clothes">
-                            <h5>CLOTHES</h5>
+                            <h5>{Category3.toUpperCase()}</h5>
                         </Link>
                     </OptionsContainer>
                     <div>

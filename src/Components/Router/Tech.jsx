@@ -4,14 +4,14 @@ import Page from "../Pages";
 import { LOAD_PRODUCTS } from "../GraphQL/Queries";
 import { graphql } from "react-apollo";
 
-const category = "tech";
+export const Category2 = "tech";
 
 class Tech extends Component {
     render() {
         return (
             <>
                 <Page
-                    category={category}
+                    category={Category2}
                     products={this.props.data.category?.products}
                 />
             </>
@@ -23,7 +23,7 @@ export default graphql(LOAD_PRODUCTS, {
     options: {
         variables: {
             input: {
-                title: category,
+                title: Category2,
             },
         },
     },
