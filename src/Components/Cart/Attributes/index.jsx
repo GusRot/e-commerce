@@ -11,29 +11,27 @@ class Attribute extends Component {
                     if (this.props.attributes.length === 0) {
                         return <></>;
                     } else if (
-                        `${attribute.id}-${index}` !== this.props.state
+                        `${attribute.id}-${index}${this.props.length.length}` !==
+                        this.props.state[this.props.length.index]
                     ) {
                         return attribute.displayValue ? (
                             <SelectedAttribute
                                 swatch={
                                     this.props.attribute
-                                        ? this.props.attribute[index - 1]
+                                        ? this.props.attribute[index]
                                         : ""
                                 }
                                 key={attribute.id + index}
                                 selected={false}
                                 color={attribute.displayValue}
                                 onClick={() =>
-                                    this.props.getAttribute(attribute.id, index)
+                                    this.props.getAttribute(
+                                        attribute.id,
+                                        index,
+                                        this.props.length
+                                    )
                                 }
                             >
-                                {this.props.attribute
-                                    ? this.props.attribute.index === index
-                                        ? console.log(
-                                              this.props.attribute.swatch
-                                          )
-                                        : ""
-                                    : ""}
                                 <p>{attribute.displayValue}</p>
                             </SelectedAttribute>
                         ) : (
@@ -44,6 +42,11 @@ class Attribute extends Component {
                             <SelectedAttribute
                                 key={attribute.id + index}
                                 selected={true}
+                                swatch={
+                                    this.props.attribute
+                                        ? this.props.attribute[index]
+                                        : ""
+                                }
                             >
                                 <p>{attribute.displayValue}</p>
                             </SelectedAttribute>
@@ -61,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAttribute: (attribute, i) => dispatch(getAttribute(attribute, i)),
+        getAttribute: (attribute, i, length) =>
+            dispatch(getAttribute(attribute, i, length)),
     };
 };
 

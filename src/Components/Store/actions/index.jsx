@@ -56,9 +56,9 @@ export function getCurrency(currency) {
     };
 }
 
-export function getAttribute(attributes, index) {
+export function getAttribute(attributes, index, arr) {
     return {
         type: GET_ATTRIBUTE,
-        payload: { attributes, index },
+        payload: { attributes, index, arr },
     };
 }

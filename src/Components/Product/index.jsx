@@ -59,6 +59,9 @@ class Product extends Component {
                     }
                     swatchObject.index = i;
                 }
+                for (let j = 0; j < swatchObject.index; j++) {
+                    swatchObject.swatch.unshift("");
+                }
             }
         }
 
@@ -132,6 +135,10 @@ class Product extends Component {
                                               : ""
                                       }
                                       attributes={att}
+                                      length={{
+                                          length: this.state.attributes.length,
+                                          index: index,
+                                      }}
                                   />
                               </div>
                           ))
