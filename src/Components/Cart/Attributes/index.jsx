@@ -10,17 +10,34 @@ class Attribute extends Component {
                 {this.props.attributes.map((attribute, index) => {
                     if (this.props.attributes.length === 0) {
                         return <></>;
-                    } else if (attribute.value !== this.props.state) {
-                        return (
+                    } else if (
+                        `${attribute.id}-${index}` !== this.props.state
+                    ) {
+                        return attribute.displayValue ? (
                             <SelectedAttribute
+                                swatch={
+                                    this.props.attribute
+                                        ? this.props.attribute[index - 1]
+                                        : ""
+                                }
                                 key={attribute.id + index}
                                 selected={false}
+                                color={attribute.displayValue}
                                 onClick={() =>
-                                    this.props.getAttribute(attribute.value)
+                                    this.props.getAttribute(attribute.id, index)
                                 }
                             >
+                                {this.props.attribute
+                                    ? this.props.attribute.index === index
+                                        ? console.log(
+                                              this.props.attribute.swatch
+                                          )
+                                        : ""
+                                    : ""}
                                 <p>{attribute.displayValue}</p>
                             </SelectedAttribute>
+                        ) : (
+                            ""
                         );
                     } else {
                         return (
@@ -44,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAttribute: (attribute) => dispatch(getAttribute(attribute)),
+        getAttribute: (attribute, i) => dispatch(getAttribute(attribute, i)),
     };
 };
 

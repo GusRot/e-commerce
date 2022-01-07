@@ -5,7 +5,7 @@ const initialState = "";
 const attributeReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ATTRIBUTE:
-            return action.payload.attributes;
+            return `${action.payload.attributes}-${action.payload.index}`;
 
         default:
             return state;

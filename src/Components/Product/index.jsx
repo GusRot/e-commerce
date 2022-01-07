@@ -22,6 +22,7 @@ class Product extends Component {
             symbol: "",
             currency: "",
             attributes: [],
+            swatch: {},
         };
     }
 
@@ -29,9 +30,37 @@ class Product extends Component {
         let currency = "";
         let price = "";
         let symbol = "";
-        const attributes = this.props.data.product.attributes[0]
-            ? [...this.props.data.product.attributes[0].items]
-            : [];
+        const attributes = [];
+        const swatchObject = {
+            index: "",
+            swatch: [],
+        };
+
+        if (this.props.data.product.attributes[0]) {
+            for (
+                let i = 0;
+                i < this.props.data.product.attributes.length;
+                i++
+            ) {
+                attributes.push([
+                    ...attributes,
+                    ...this.props.data.product.attributes[i].items,
+                ]);
+
+                if (this.props.data.product.attributes[i].type === "swatch") {
+                    for (
+                        let j = 0;
+                        j < this.props.data.product.attributes[i].items.length;
+                        j++
+                    ) {
+                        swatchObject.swatch.push(
+                            this.props.data.product.attributes[i].items[j].value
+                        );
+                    }
+                    swatchObject.index = i;
+                }
+            }
+        }
 
         if (this.props.currency) {
             currency = this.props.currency;
@@ -54,6 +83,7 @@ class Product extends Component {
             currency: this.props.currency,
             symbol,
             attributes: [...attributes],
+            swatch: { ...swatchObject },
         });
     }
 
@@ -75,14 +105,38 @@ class Product extends Component {
                 </section>
                 <CartInfo>
                     <ItemName title={this.state.name} text={this.state.brand} />
-                    <span>
-                        {this.props.data.product
-                            ? this.props.data.product.attributes[0]
-                                ? this.props.data.product.attributes[0].name
-                                : ""
-                            : ""}
-                    </span>
-                    <Attribute attributes={this.state.attributes} />
+
+                    {this.state.attributes.length
+                        ? this.state.attributes.map((att, index) => (
+                              <div
+                                  key={
+                                      this.props.data.product.attributes[index]
+                                          .id
+                                  }
+                              >
+                                  <span>
+                                      {
+                                          this.props.data.product.attributes[
+                                              index
+                                          ].name
+                                      }
+                                  </span>
+
+                                  <Attribute
+                                      attribute={
+                                          this.state.swatch
+                                              ? this.state.swatch.index ===
+                                                index
+                                                  ? this.state.swatch.swatch
+                                                  : ""
+                                              : ""
+                                      }
+                                      attributes={att}
+                                  />
+                              </div>
+                          ))
+                        : ""}
+
                     <ItemPrice
                         symbol={this.state.symbol}
                         price={this.state.price}
