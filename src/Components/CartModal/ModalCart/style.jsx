@@ -4,13 +4,18 @@ export const ModalCartContainer = styled.div`
     flex-direction: column;
 
     header {
-        height: 10vh;
+        height: fit-content;
         min-height: 100px;
         gap: 0.2rem;
+        align-items: center;
 
         & aside {
             width: 80px;
-            height: 100px;
+            height: 100%;
+
+            div {
+                max-height: 100px;
+            }
 
             .swiper-button-next,
             .swiper-button-prev {

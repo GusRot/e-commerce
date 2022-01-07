@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { transparentize } from "polished";
 
 export const CartAttribute = styled.div`
-    width: 100%;
     display: flex;
+    gap: 0.2rem;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 `;
 
 export const SelectedAttribute = styled.div`

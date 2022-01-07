@@ -5,43 +5,9 @@ import {
     NEW_ITEM,
     REMOVE_ITEM,
 } from "../actions";
-import Hjalmar from "../../../assets/Hjalmar.jpg";
-import Ciri from "../../../assets/Ciri.jpg";
-import Triss from "../../../assets/Triss.jpg";
 
 const initialState = {
-    products: [
-        {
-            title: "Teste",
-            text: "Entregar Projeto X",
-            price: "12.00",
-            attributes: ["A", "B", "C"],
-            qtd: 2,
-            img: [Hjalmar, Triss, Ciri],
-            id: 1,
-            attribute: "A",
-        },
-        {
-            title: "AAAAAAA",
-            text: "Entregar Projeto X",
-            price: "15.00",
-            attributes: ["A", "B", "C"],
-            qtd: 4,
-            img: [Triss, Ciri],
-            id: 1,
-            attribute: "B",
-        },
-        {
-            title: "BBBBBBB",
-            text: "Entregar Projeto X",
-            price: "10.00",
-            attributes: ["A", "B", "C"],
-            qtd: 6,
-            img: [Ciri, Hjalmar],
-            id: 1,
-            attribute: "C",
-        },
-    ],
+    products: [],
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -88,6 +54,7 @@ const counterReducer = (state = initialState, action) => {
                     alert("Este produto já esta no carrinho");
                 return state;
             }
+
             return {
                 products: [...state.products, action.payload.item],
             };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CartQtd } from "./style";
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
-import { incrementCounter, decrementCounter } from "../../../Store/actions";
+import { incrementCounter, decrementCounter } from "../.././Store/actions";
 import { connect } from "react-redux";
 
 class ItemQuantities extends Component {

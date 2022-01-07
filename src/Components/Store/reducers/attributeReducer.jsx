@@ -3,6 +3,7 @@ import { GET_ATTRIBUTE } from "../actions";
 const initialState = [];
 
 const attributeReducer = (state = initialState, action) => {
+    
     switch (action.type) {
         case GET_ATTRIBUTE:
             const arr = [];

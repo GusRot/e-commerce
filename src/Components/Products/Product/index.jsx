@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import Attribute from "../Cart/Attributes";
 import { ContainerSlider } from "./style";
 import VerticalSlider from "./VerticalSlider";
-import Button from "../Button";
-import { CartInfo } from "../Cart/CartItem/style";
-import ItemName from "../Cart/CartItem/Item/ItemName";
-import ItemPrice from "../Cart/CartItem/Item/ItemPrice";
-import { Link } from "react-router-dom";
+import Button from "../../common/Button";
+import { CartInfo } from "../../Cart/CartItem/style";
+import ItemName from "../../common/Item/ItemName";
+import ItemPrice from "../../common/Item/ItemPrice";
 import { graphql } from "react-apollo";
-import { LOAD_PRODUCT } from "../GraphQL/Queries";
+import { LOAD_PRODUCT } from "../../GraphQL/Queries";
+import Attributes from "../../common/Attributes";
+import { Link } from "react-router-dom";
 
 class Product extends Component {
     constructor(props) {
@@ -109,45 +109,21 @@ class Product extends Component {
                 <CartInfo>
                     <ItemName title={this.state.name} text={this.state.brand} />
 
-                    {this.state.attributes.length
-                        ? this.state.attributes.map((att, index) => (
-                              <div
-                                  key={
-                                      this.props.data.product.attributes[index]
-                                          .id
-                                  }
-                              >
-                                  <span>
-                                      {
-                                          this.props.data.product.attributes[
-                                              index
-                                          ].name
-                                      }
-                                  </span>
-
-                                  <Attribute
-                                      attribute={
-                                          this.state.swatch
-                                              ? this.state.swatch.index ===
-                                                index
-                                                  ? this.state.swatch.swatch
-                                                  : ""
-                                              : ""
-                                      }
-                                      attributes={att}
-                                      length={{
-                                          length: this.state.attributes.length,
-                                          index: index,
-                                      }}
-                                  />
-                              </div>
-                          ))
-                        : ""}
+                    <Attributes
+                        swatch={this.state.swatch}
+                        attribute={
+                            this.props.data.product
+                                ? this.props.data.product.attributes
+                                : ""
+                        }
+                        attributes={this.state ? this.state.attributes : ""}
+                    />
 
                     <ItemPrice
                         symbol={this.state.symbol}
                         price={this.state.price}
                     />
+
                     <Link to="/cart">
                         <Button
                             submit={() =>

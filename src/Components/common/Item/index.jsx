@@ -7,7 +7,10 @@ class Item extends Component {
         return (
             <div>
                 <ItemName text={this.props.text} title={this.props.title} />
-                <ItemPrice price={this.props.price} />
+                <ItemPrice
+                    symbol={this.props.symbol}
+                    price={this.props.price}
+                />
             </div>
         );
     }

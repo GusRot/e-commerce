@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { CartAttribute, SelectedAttribute } from "./style";
-import { getAttribute } from "../../Store/actions";
+import { getAttribute } from "../../../Store/actions";
 import { connect } from "react-redux";
 
 class Attribute extends Component {
@@ -32,7 +32,7 @@ class Attribute extends Component {
                                     )
                                 }
                             >
-                                <p>{attribute.displayValue}</p>
+                                <p> {attribute.displayValue}</p>
                             </SelectedAttribute>
                         ) : (
                             ""

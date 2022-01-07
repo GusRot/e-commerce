@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { newCartItem } from "../Store/actions";
-import Product from "../Product";
+import Product from "./Product";
 
 class Products extends Component {
+    callRedux(item) {
+        this.props.newCartItem(item);
+    }
+
     render() {
         return (
-            <Product
-                products={this.props.state.counters.products}
-                api={this.props.state.api}
-                newCartItem={newCartItem}
-                currency={this.props.state.currency}
-            ></Product>
+            <>
+                <Product
+                    products={this.props.state.counters.products}
+                    api={this.props.state.api}
+                    newCartItem={this.callRedux.bind(this)}
+                    currency={this.props.state.currency}
+                ></Product>
+            </>
         );
     }
 }

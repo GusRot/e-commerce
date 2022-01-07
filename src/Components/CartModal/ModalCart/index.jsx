@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import CartComponent from "../../Cart/CartComponent";
-import Button from "../../Button";
+import Button from "../../common/Button";
 import { Link } from "react-router-dom";
 import { ModalCartContainer, MyBag, MyOrder, CheckOut } from "./style";
-import ItemPrice from "../../Cart/CartItem/Item/ItemPrice";
+import ItemPrice from "../../common/Item/ItemPrice";
 
 class ModalCart extends Component {
+    closeOrder() {
+        alert("Thank you for your purchase");
+    }
+
     render() {
         return (
             <ModalCartContainer>
@@ -22,7 +26,10 @@ class ModalCart extends Component {
                     <Button>
                         <Link to="/cart">View Bag</Link>
                     </Button>
-                    <Button>Check Out</Button>
+
+                    <Button submit={this.closeOrder.bind(this)}>
+                        <Link to="/">Check Out</Link>
+                    </Button>
                 </CheckOut>
             </ModalCartContainer>
         );

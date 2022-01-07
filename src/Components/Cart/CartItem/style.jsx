@@ -21,8 +21,10 @@ export const CartContainer = styled.header`
 
 export const CartInfo = styled.div`
     display: flex;
+    overflow: scroll;
     justify-content: space-between;
     flex-direction: column;
+    align-items: start;
     height: 100%;
     padding: 0.4rem 0;
     gap: 0.5rem;
@@ -30,7 +32,7 @@ export const CartInfo = styled.div`
     h2,
     h4 {
         font-size: 1.4rem;
-        padding-bottom: 1.2rem;
+        padding-bottom: 2%;
         word-break: break-all;
     }
 
@@ -48,6 +50,16 @@ export const CartInfo = styled.div`
         font-weight: bold;
         font-size: 1.2rem;
         margin-bottom: -0.4rem;
+    }
+
+    h2 + h4 + div {
+        width: 10rem;
+        & + div {
+            width: 10rem;
+        }
+        & + div {
+            width: 10rem;
+        }
     }
 `;
 

@@ -31,7 +31,7 @@ export function handleAttribute(index, attribute) {
 export function newCartItem(item) {
     return {
         type: NEW_ITEM,
-        payload: { item },
+        payload: { item: { ...item, qtd: 1 } },
     };
 }
 
