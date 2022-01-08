@@ -9,7 +9,11 @@ class CartComponent extends Component {
             <>
                 {this.props.counters.products.map((product, index) => (
                     <section key={product.id + index}>
-                        <CartItem index={index} products={product} />
+                        <CartItem
+                            index={index}
+                            products={product}
+                            currency={this.props.currency}
+                        />
                         <Line />
                     </section>
                 ))}
@@ -19,7 +23,10 @@ class CartComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { counters: state.counters };
+    return {
+        counters: state.counters,
+        currency: state.currency,
+    };
 };
 
 export default connect(mapStateToProps)(CartComponent);

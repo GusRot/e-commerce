@@ -21,13 +21,13 @@ export const CartContainer = styled.header`
 
 export const CartInfo = styled.div`
     display: flex;
-    overflow: scroll;
+    margin: 0;
     justify-content: space-between;
     flex-direction: column;
     align-items: start;
     height: 100%;
-    padding: 0.4rem 0;
-    gap: 0.5rem;
+    padding: 0.25rem 0;
+    gap: 0.35rem;
 
     h2,
     h4 {

@@ -40,6 +40,7 @@ export const ModalCartContainer = styled.div`
 
                     div {
                         padding: 0.2rem;
+                        justify-content: flex-start;
 
                         p {
                             font-size: 0.85rem;

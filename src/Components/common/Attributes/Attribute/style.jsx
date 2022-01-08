@@ -6,6 +6,7 @@ export const CartAttribute = styled.div`
     gap: 0.2rem;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    padding: 0 !important;
 `;
 
 export const SelectedAttribute = styled.div`
@@ -20,13 +21,13 @@ export const SelectedAttribute = styled.div`
     background-color: ${(props) =>
         props.swatch
             ? props.selected
-                ? transparentize(0.15, props.swatch)
-                : transparentize(0.75, props.swatch)
+                ? transparentize(0.1, props.swatch)
+                : transparentize(0.85, props.swatch)
             : ""};
     border-color: ${(props) =>
         props.swatch
             ? props.selected
-                ? transparentize(0.15, props.swatch)
+                ? transparentize(0.1, props.swatch)
                 : ""
             : ""};
 

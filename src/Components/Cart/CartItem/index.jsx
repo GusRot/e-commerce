@@ -10,10 +10,16 @@ class CartItem extends Component {
         this.state = {
             attributes: [],
             swatch: {},
+            price: "",
+            symbol: "",
+            currency: "",
         };
     }
 
-    AttributeOrder() {
+    rerender() {
+        let currency = "";
+        let price = "";
+        let symbol = "";
         const attributes = [];
         const swatchObject = {
             index: "",
@@ -45,14 +51,38 @@ class CartItem extends Component {
             }
         }
 
+        if (this.props.currency) {
+            currency = this.props.currency;
+        } else {
+            currency = this.props.products.prices[0].currency.label;
+        }
+        for (let i = 0; i < this.props.products.prices.length; i++) {
+            if (this.props.products.prices[i].currency.label === currency) {
+                price = this.props.products.prices[i].amount;
+                symbol = this.props.products.prices[i].currency.symbol;
+            }
+        }
+
         this.setState({
             attributes: [...attributes],
             swatch: { ...swatchObject },
+            price,
+            currency: this.props.currency,
+            symbol,
         });
     }
 
     componentDidMount() {
-        setTimeout(this.AttributeOrder.bind(this), 50);
+        setTimeout(this.rerender.bind(this), 50);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.currency !== this.props.currency) {
+            this.rerender();
+        }
+        if (prevProps.products.name !== this.props.products.name) {
+            this.rerender();
+        }
     }
 
     render() {
@@ -63,10 +93,8 @@ class CartItem extends Component {
                         <Item
                             title={this.props.products.name}
                             text={this.props.products.brand}
-                            price={this.props.products.prices[0].amount}
-                            symbol={
-                                this.props.products.prices[0].currency.symbol
-                            }
+                            price={this.state.price}
+                            symbol={this.state.symbol}
                         />
                         <Attributes
                             display={true}

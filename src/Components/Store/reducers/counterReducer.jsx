@@ -1,10 +1,4 @@
-import {
-    INCREMENT,
-    DECREMENT,
-    ATTRIBUTE,
-    NEW_ITEM,
-    REMOVE_ITEM,
-} from "../actions";
+import { INCREMENT, DECREMENT, ATTRIBUTE, NEW_ITEM } from "../actions";
 
 const initialState = {
     products: [],
@@ -25,12 +19,20 @@ const counterReducer = (state = initialState, action) => {
             };
 
         case DECREMENT:
+            let x = 0;
             const arrDec = [];
             for (let i = 0; i < state.products.length; i++) {
                 arrDec.push(state.products[i]);
                 if (i === action.payload.index && arrDec[i].qtd > 0) {
                     arrDec[i].qtd -= 1;
                 }
+                if (arrDec[i].qtd === 0) {
+                    x = i;
+                }
+            }
+
+            if (arrDec[x].qtd === 0) {
+                arrDec.splice(x, 1);
             }
             return {
                 products: [...arrDec],
@@ -49,18 +51,21 @@ const counterReducer = (state = initialState, action) => {
             };
 
         case NEW_ITEM:
-            for (let i = 0; i < state.products.length; i++) {
-                if (action.payload.item.title === state.products[i].title)
-                    alert("Este produto já esta no carrinho");
-                return state;
+            if (state.products.length > 0) {
+                for (let i = 0; i < state.products.length; i++) {
+                    if (action.payload.item.name === state.products[i].name) {
+                        alert("Este produto já esta no carrinho");
+                        return state;
+                    }
+                }
+                return {
+                    products: [...state.products, action.payload.item],
+                };
+            } else {
+                return {
+                    products: [action.payload.item],
+                };
             }
-
-            return {
-                products: [...state.products, action.payload.item],
-            };
-
-        case REMOVE_ITEM:
-            break;
 
         default:
             return state;

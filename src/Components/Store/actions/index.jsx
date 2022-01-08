@@ -1,6 +1,5 @@
 export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
-export const REMOVE_ITEM = "REMOVE_ITEM";
 export const ATTRIBUTE = "ATTRIBUTE";
 export const NEW_ITEM = "NEW_ITEM";
 export const GET_API = "GET_API";
@@ -32,13 +31,6 @@ export function newCartItem(item) {
     return {
         type: NEW_ITEM,
         payload: { item: { ...item, qtd: 1 } },
-    };
-}
-
-export function removeCartItem(item) {
-    return {
-        type: REMOVE_ITEM,
-        payload: { item },
     };
 }
 
