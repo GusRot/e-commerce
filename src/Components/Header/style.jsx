@@ -58,6 +58,7 @@ export const HeaderContainer = styled.div`
 
 export const OptionsContainer = styled.div`
     gap: 1rem;
+    margin-right: 1.8rem;
 
     h5 {
         text-align: center;

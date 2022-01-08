@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ModalCartContainer = styled.div`
     flex-direction: column;
+    overflow: auto;
 
     header {
         height: fit-content;

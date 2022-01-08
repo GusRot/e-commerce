@@ -88,23 +88,30 @@ html {
 }
 
 .react-modal-overlay {
-        position: absolute;
-        top:3.3rem;
-        right:0.5rem;
-		background-color:white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-		z-index: 2;
-		width: 15rem;
-		min-height: 20vh;
-		border-radius: 2px;
+	position: absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	background-color:transparent;
+	z-index: 2;
+	min-height: 200vh;
+	height: fit-content;
+
+	border-radius: 2px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start !important;
+
 }
 
 .react-modal-content {
-	width:100%;
+	position: relative;
+	top:3.3rem;
+	width:16rem;
 	min-height: 20vh;
-	height: 100%;
+	height: fit-content;
+	max-height: 80vh;
 	position: relative;
 	background-color: ${({ theme }) => theme.header};
 	padding: 0.5rem;
@@ -117,8 +124,8 @@ html {
 
 .react-modal-close {
 	position:absolute;
-	right: 0.1rem;
-	top: 0.2rem;
+	right: 1rem;
+	top: 0.6rem;
 	border: 0;
 	background: transparent;
 	transition: filter 0.2s;

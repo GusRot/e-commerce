@@ -28,6 +28,7 @@ export const CartInfo = styled.div`
     height: 100%;
     padding: 0.25rem 0;
     gap: 0.35rem;
+    min-width: 7rem;
 
     h2,
     h4 {

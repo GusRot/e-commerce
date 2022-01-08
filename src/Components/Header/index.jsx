@@ -28,6 +28,7 @@ class Header extends Component {
 
     handleModalClose() {
         this.setState({ modal: false });
+        console.log(this.state.modal);
     }
 
     render() {
@@ -63,7 +64,6 @@ class Header extends Component {
                         />
                         <CartModal
                             modal={this.state.modal}
-                            open={this.handleModalOpen}
                             close={this.handleModalClose}
                         />
                     </SelectContainer>
