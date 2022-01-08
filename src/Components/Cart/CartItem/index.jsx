@@ -4,6 +4,7 @@ import { CartContainer, CartInfo, CarrouselContainer } from "./style";
 import ItemQuantities from "../../common/ItemQuantities";
 import Item from "../../common/Item";
 import Attributes from "../../common/Attributes";
+
 class CartItem extends Component {
     constructor(props) {
         super(props);
@@ -87,31 +88,35 @@ class CartItem extends Component {
 
     render() {
         return (
-            <CartContainer>
-                <section>
-                    <CartInfo>
-                        <Item
-                            title={this.props.products.name}
-                            text={this.props.products.brand}
-                            price={this.state.price}
-                            symbol={this.state.symbol}
+            <>
+                <CartContainer>
+                    <section>
+                        <CartInfo>
+                            <Item
+                                title={this.props.products.name}
+                                text={this.props.products.brand}
+                                price={this.state.price}
+                                symbol={this.state.symbol}
+                            />
+                            <Attributes
+                                display={true}
+                                swatch={this.state.swatch}
+                                attribute={this.props.products.attributes}
+                                attributes={
+                                    this.state ? this.state.attributes : ""
+                                }
+                            />
+                        </CartInfo>
+                        <ItemQuantities
+                            index={this.props.index}
+                            qtd={this.props.products.qtd}
                         />
-                        <Attributes
-                            display={true}
-                            swatch={this.state.swatch}
-                            attribute={this.props.products.attributes}
-                            attributes={this.state ? this.state.attributes : ""}
-                        />
-                    </CartInfo>
-                    <ItemQuantities
-                        index={this.props.index}
-                        qtd={this.props.products.qtd}
-                    />
-                </section>
-                <CarrouselContainer>
-                    <Slider slides={this.props.products.gallery} />
-                </CarrouselContainer>
-            </CartContainer>
+                    </section>
+                    <CarrouselContainer>
+                        <Slider slides={this.props.products.gallery} />
+                    </CarrouselContainer>
+                </CartContainer>
+            </>
         );
     }
 }

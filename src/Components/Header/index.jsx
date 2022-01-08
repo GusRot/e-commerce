@@ -28,7 +28,6 @@ class Header extends Component {
 
     handleModalClose() {
         this.setState({ modal: false });
-        console.log(this.state.modal);
     }
 
     render() {

@@ -14,7 +14,7 @@ class CartModal extends Component {
                 overlayClassName="react-modal-overlay"
                 className="react-modal-content"
             >
-                <ModalCart />
+                <ModalCart close={this.props.close.bind(this)} />
                 <button
                     className="react-modal-close"
                     type="button"

@@ -89,22 +89,26 @@ export const CheckOut = styled.div`
     gap:0.5rem;
     justify-content: space-between;
 
-    button {
-        height: 30px;
+
+    a {
+        height: 35px;
         width:49%;
         margin-bottom: 10px;
         margin-top: 20px;
 
+        button {
+            margin: 0;
+            height: 35px;
+        }
 
-        &:first-child {
+        &:first-child button {
             background-color: ${({ theme }) => theme.header};
             border: 1px solid ${({ theme }) => theme.secondary};
+            color: ${({ theme }) => theme.secondary};
 
             &:hover {
                 background-color: ${({ theme }) => theme.primary};
             }
-            
         }
-    
     }
 `;

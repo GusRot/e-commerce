@@ -1,4 +1,10 @@
-import { INCREMENT, DECREMENT, ATTRIBUTE, NEW_ITEM } from "../actions";
+import {
+    INCREMENT,
+    DECREMENT,
+    ATTRIBUTE,
+    NEW_ITEM,
+    NEW_CART,
+} from "../actions";
 
 const initialState = {
     products: [],
@@ -66,6 +72,9 @@ const counterReducer = (state = initialState, action) => {
                     products: [action.payload.item],
                 };
             }
+
+        case NEW_CART:
+            return initialState;
 
         default:
             return state;
