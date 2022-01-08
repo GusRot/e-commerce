@@ -6,6 +6,7 @@ export const GET_API = "GET_API";
 export const GET_CURRENCY = "GET_CURRENCY";
 export const GET_ATTRIBUTE = "GET_ATTRIBUTE";
 export const NEW_CART = "NEW_CART";
+export const TOTAL_PRICE = "TOTAL_PRICE";
 
 export function incrementCounter(index) {
     return {
@@ -59,5 +60,12 @@ export function getAttribute(attributes, index, arr) {
 export function newCart() {
     return {
         type: NEW_CART,
+    };
+}
+
+export function totalPrice(price) {
+    return {
+        type: TOTAL_PRICE,
+        payload: { price },
     };
 }

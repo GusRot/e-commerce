@@ -8,25 +8,32 @@ import {
 
 const initialState = {
     products: [],
+    qtd: 0,
 };
 
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREMENT:
             const arrInc = [];
+            let qtd1 = state.qtd;
+            qtd1++;
             for (let i = 0; i < state.products.length; i++) {
                 arrInc.push(state.products[i]);
                 if (i === action.payload.index) {
                     arrInc[i].qtd += 1;
                 }
             }
+
             return {
                 products: [...arrInc],
+                qtd: qtd1,
             };
 
         case DECREMENT:
             let x = 0;
             const arrDec = [];
+            let qtd2 = state.qtd;
+            qtd2--;
             for (let i = 0; i < state.products.length; i++) {
                 arrDec.push(state.products[i]);
                 if (i === action.payload.index && arrDec[i].qtd > 0) {
@@ -42,6 +49,7 @@ const counterReducer = (state = initialState, action) => {
             }
             return {
                 products: [...arrDec],
+                qtd: qtd2,
             };
 
         case ATTRIBUTE:
@@ -54,9 +62,12 @@ const counterReducer = (state = initialState, action) => {
             }
             return {
                 products: [...arrAtt],
+                ...state.qtd,
             };
 
         case NEW_ITEM:
+            let qtd3 = state.qtd;
+            qtd3++;
             if (state.products.length > 0) {
                 for (let i = 0; i < state.products.length; i++) {
                     if (action.payload.item.name === state.products[i].name) {
@@ -66,10 +77,12 @@ const counterReducer = (state = initialState, action) => {
                 }
                 return {
                     products: [...state.products, action.payload.item],
+                    qtd: qtd3,
                 };
             } else {
                 return {
                     products: [action.payload.item],
+                    qtd: qtd3,
                 };
             }
 

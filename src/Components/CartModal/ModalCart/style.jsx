@@ -72,17 +72,6 @@ export const MyBag = styled.div`
     }
 `;
 
-export const MyOrder = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.8rem;
-
-    h3 {
-        display: none;
-    }
-`;
-
 export const CheckOut = styled.div`
     width:100%
     display:flex;

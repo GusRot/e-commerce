@@ -35,3 +35,15 @@ export const CheckOutCart = styled.div`
         }
     }
 `;
+
+export const MyOrder = styled.div`
+    display: ${(props) => (props.hidden ? "none !important" : "")};
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+
+    h3 {
+        display: none;
+    }
+`;
