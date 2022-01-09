@@ -23,6 +23,7 @@ class Product extends Component {
             currency: "",
             attributes: [],
             swatch: {},
+            disableButton: true,
         };
     }
 
@@ -77,6 +78,27 @@ class Product extends Component {
             }
         }
 
+        let disableButton = this.props.data.product.attributes.length
+            ? true
+            : false;
+
+        const length = this.props.attributes.attributes.length;
+
+        if (
+            length > 0 &&
+            this.props.data.product.name === this.props.attributes.name
+        ) {
+            let arrLength = 0;
+            for (let i = 0; i < length; i++) {
+                if (this.props.attributes.attributes[i] !== "") {
+                    arrLength++;
+                }
+            }
+            if (arrLength === length) {
+                disableButton = false;
+            }
+        }
+
         this.setState({
             name: this.props.data.product.name,
             brand: this.props.data.product.brand,
@@ -87,15 +109,21 @@ class Product extends Component {
             symbol,
             attributes: [...attributes],
             swatch: { ...swatchObject },
+            disableButton,
         });
     }
 
     componentDidMount() {
-        setTimeout(this.rerender.bind(this), 150);
+        setTimeout(this.rerender.bind(this), 250);
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.currency !== this.props.currency) {
+            this.rerender();
+        }
+        if (
+            prevProps.attributes.attributes !== this.props.attributes.attributes
+        ) {
             this.rerender();
         }
     }
@@ -117,6 +145,8 @@ class Product extends Component {
                                 : ""
                         }
                         attributes={this.state ? this.state.attributes : ""}
+                        attributeSelected={false}
+                        index={this.state.name}
                     />
 
                     <ItemPrice
@@ -126,11 +156,14 @@ class Product extends Component {
 
                     <Link to="/cart">
                         <Button
+                            disabled={this.state.disableButton}
                             submit={() =>
                                 this.props.newCartItem(this.props.data.product)
                             }
                         >
-                            ADD TO CART
+                            {this.state.disableButton
+                                ? "choose attributes"
+                                : "ADD TO CART"}
                         </Button>
                     </Link>
                     {this.state.description.replace(/<[^>]*>?/gm, "")}

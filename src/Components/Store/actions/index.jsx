@@ -22,17 +22,10 @@ export function decrementCounter(index) {
     };
 }
 
-export function handleAttribute(index, attribute) {
-    return {
-        type: ATTRIBUTE,
-        payload: { index, attribute },
-    };
-}
-
-export function newCartItem(item) {
+export function newCartItem(item, attributeSelected) {
     return {
         type: NEW_ITEM,
-        payload: { item: { ...item, qtd: 1 } },
+        payload: { item: { ...item, qtd: 1, attributeSelected } },
     };
 }
 
@@ -50,11 +43,18 @@ export function getCurrency(currency) {
     };
 }
 
-export function getAttribute(attributes, index, arr) {
-    return {
-        type: GET_ATTRIBUTE,
-        payload: { attributes, index, arr },
-    };
+export function getAttribute(attributes, index, arr, inCart, cartIndex) {
+    if (inCart) {
+        return {
+            type: ATTRIBUTE,
+            payload: { index, attributeSelected: attributes, arr, cartIndex },
+        };
+    } else {
+        return {
+            type: GET_ATTRIBUTE,
+            payload: { attributes, index, arr, name: cartIndex },
+        };
+    }
 }
 
 export function newCart() {

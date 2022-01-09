@@ -29,4 +29,9 @@ export const ButtonContainer = styled.button`
     &:hover {
         background-color: ${({ theme }) => theme.button};
     }
+
+    &:disabled {
+        background-color: ${({ theme }) => transparentize(0.6, theme.button)};
+        cursor: default;
+    }
 `;

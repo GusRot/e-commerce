@@ -1,8 +1,10 @@
 import React from "react";
 import { ButtonContainer } from "./style";
 
-const Button = ({ children, submit = console.log("ok") }) => (
-    <ButtonContainer onClick={submit}>{children}</ButtonContainer>
+const Button = ({ disabled, children, submit = () => {} }) => (
+    <ButtonContainer disabled={disabled} onClick={submit}>
+        {children}
+    </ButtonContainer>
 );
 
 export default Button;

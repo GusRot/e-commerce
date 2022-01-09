@@ -1,6 +1,6 @@
 import { GET_CURRENCY } from "../actions";
 
-const initialState = "";
+const initialState = "USD";
 
 const currencyReducer = (state = initialState, action) => {
     switch (action.type) {

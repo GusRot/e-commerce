@@ -8,11 +8,18 @@ class Attribute extends Component {
         return (
             <CartAttribute>
                 {this.props.attributes.map((attribute, index) => {
+                    let x;
+                    this.props.attributeSelected
+                        ? (x =
+                              this.props.state.counters.products[
+                                  this.props.index
+                              ].attributeSelected)
+                        : (x = this.props.state.attribute.attributes);
                     if (this.props.attributes.length === 0) {
                         return <></>;
                     } else if (
                         `${attribute.id}-${index}${this.props.length.length}` !==
-                        this.props.state[this.props.length.index]
+                        x[this.props.length.index]
                     ) {
                         return attribute.displayValue ? (
                             <SelectedAttribute
@@ -28,7 +35,9 @@ class Attribute extends Component {
                                     this.props.getAttribute(
                                         attribute.id,
                                         index,
-                                        this.props.length
+                                        this.props.length,
+                                        this.props.attributeSelected,
+                                        this.props.index
                                     )
                                 }
                             >
@@ -59,13 +68,13 @@ class Attribute extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { state: state.attribute };
+    return { state: state };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAttribute: (attribute, i, length) =>
-            dispatch(getAttribute(attribute, i, length)),
+        getAttribute: (attribute, i, length, x, productIndex) =>
+            dispatch(getAttribute(attribute, i, length, x, productIndex)),
     };
 };
 

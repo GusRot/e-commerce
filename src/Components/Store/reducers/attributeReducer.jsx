@@ -1,39 +1,49 @@
 import { GET_ATTRIBUTE } from "../actions";
 
-const initialState = [];
+const initialState = {
+    name: "",
+    attributes: [],
+};
 
 const attributeReducer = (state = initialState, action) => {
-    
     switch (action.type) {
         case GET_ATTRIBUTE:
-            const arr = [];
+            const arrAtt = [];
             if (action.payload.arr) {
                 if (action.payload.arr.length > 1) {
                     for (let i = 0; i < action.payload.arr.length; i++) {
-                        if (state.length > action.payload.arr.length) {
-                            state.splice(0, state.length);
+                        if (
+                            state.attributes.length > action.payload.arr.length
+                        ) {
+                            state.attributes.splice(0, state.attributes.length);
                         }
-                        if (state.length < action.payload.arr.length) {
-                            arr.push("");
-                            state.push("");
+                        if (
+                            state.attributes.length < action.payload.arr.length
+                        ) {
+                            arrAtt.push("");
+                            state.attributes.push("");
                         } else {
-                            arr.push("");
-                            arr[i] = state[i];
+                            arrAtt.push("");
+                            arrAtt[i] = state.attributes[i];
                         }
 
                         if (action.payload.arr.index === i) {
-                            arr[
+                            arrAtt[
                                 i
                             ] = `${action.payload.attributes}-${action.payload.index}${action.payload.arr.length}`;
                         }
                     }
                 } else {
-                    arr.push(
+                    arrAtt.push(
                         `${action.payload.attributes}-${action.payload.index}${action.payload.arr.length}`
                     );
                 }
             }
-            return arr;
+
+            return {
+                name: action.payload.name,
+                attributes: [...arrAtt],
+            };
 
         default:
             return state;

@@ -6,6 +6,7 @@ class CartModal extends Component {
     render() {
         return (
             <Modal
+                ariaHideApp={false}
                 parentSelector={() =>
                     document.querySelector("#selectContainer")
                 }

@@ -46,7 +46,9 @@ const counterReducer = (state = initialState, action) => {
 
             if (arrDec[x].qtd === 0) {
                 arrDec.splice(x, 1);
+                alert("Removed from cart");
             }
+
             return {
                 products: [...arrDec],
                 qtd: qtd2,
@@ -54,15 +56,31 @@ const counterReducer = (state = initialState, action) => {
 
         case ATTRIBUTE:
             const arrAtt = [];
-            for (let i = 0; i < state.products.length; i++) {
-                arrAtt.push(state.products[i]);
-                if (i === action.payload.index) {
-                    arrAtt[i].attribute = action.payload.attribute;
+            const arrAttCart = [];
+
+            for (let i = 0; i < action.payload.arr.length; i++) {
+                if (action.payload.arr.index === i) {
+                    arrAtt.push(
+                        `${action.payload.attributeSelected}-${action.payload.index}${action.payload.arr.length}`
+                    );
+                } else {
+                    arrAtt.push(
+                        state.products[action.payload.cartIndex]
+                            .attributeSelected[i]
+                    );
                 }
             }
+
+            for (let i = 0; i < state.products.length; i++) {
+                arrAttCart.push(state.products[i]);
+                if (i === action.payload.cartIndex) {
+                    arrAttCart[i].attributeSelected = arrAtt;
+                }
+            }
+
             return {
-                products: [...arrAtt],
-                ...state.qtd,
+                products: [...arrAttCart],
+                qtd: state.qtd,
             };
 
         case NEW_ITEM:
@@ -75,8 +93,15 @@ const counterReducer = (state = initialState, action) => {
                         return state;
                     }
                 }
+
                 return {
-                    products: [...state.products, action.payload.item],
+                    products: [
+                        ...state.products,
+                        {
+                            ...action.payload.item,
+                            ...action.payload.attributeSelected,
+                        },
+                    ],
                     qtd: qtd3,
                 };
             } else {

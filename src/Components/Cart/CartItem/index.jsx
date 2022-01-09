@@ -105,6 +105,8 @@ class CartItem extends Component {
                                 attributes={
                                     this.state ? this.state.attributes : ""
                                 }
+                                attributeSelected={true}
+                                index={this.props.index}
                             />
                         </CartInfo>
                         <ItemQuantities

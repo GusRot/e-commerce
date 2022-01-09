@@ -13,7 +13,6 @@ class Attributes extends Component {
                                       ? ""
                                       : this.props.attribute[index].name}
                               </span>
-
                               <Attribute
                                   attribute={
                                       this.props.swatch
@@ -27,6 +26,10 @@ class Attributes extends Component {
                                       length: this.props.attributes.length,
                                       index: index,
                                   }}
+                                  attributeSelected={
+                                      this.props.attributeSelected
+                                  }
+                                  index={this.props.index}
                               />
                           </div>
                       ))

@@ -12,9 +12,21 @@ import { ApolloProvider } from "react-apollo";
 
 const link = from([new HttpLink({ uri: "http://localhost:4000" })]);
 
+const defaultOptions = {
+    watchQuery: {
+        fetchPolicy: "no-cache",
+        errorPolicy: "ignore",
+    },
+    query: {
+        fetchPolicy: "no-cache",
+        errorPolicy: "all",
+    },
+};
+
 const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: link,
+    defaultOptions,
 });
 class App extends Component {
     constructor() {

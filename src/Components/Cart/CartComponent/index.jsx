@@ -4,7 +4,7 @@ import { CheckOutCart, Line } from "./style";
 import { connect } from "react-redux";
 import Button from "../../common/Button";
 import { Link } from "react-router-dom";
-import { totalPrice } from "../../Store/actions";
+import { totalPrice, newCart } from "../../Store/actions";
 import { MyOrder } from "./style";
 import ItemPrice from "../../common/Item/ItemPrice";
 class CartComponent extends Component {
@@ -110,7 +110,7 @@ class CartComponent extends Component {
                     </section>
                 ))}
 
-                <MyOrder hidden={this.state.qtd > 0 ? false : true}>
+                <MyOrder hidden={this.state.qtd > 1 ? false : true}>
                     <h2>Total</h2>
                     <ItemPrice
                         price={Number(this.props.state.price.price).toFixed(2)}
@@ -137,6 +137,7 @@ class CartComponent extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         totalPrice: (price) => dispatch(totalPrice(price)),
+        newCart: () => dispatch(newCart()),
     };
 };
 

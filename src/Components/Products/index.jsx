@@ -5,7 +5,7 @@ import Product from "./Product";
 
 class Products extends Component {
     callRedux(item) {
-        this.props.newCartItem(item);
+        this.props.newCartItem(item, this.props.state.attribute.attributes);
     }
 
     render() {
@@ -16,7 +16,8 @@ class Products extends Component {
                     api={this.props.state.api}
                     newCartItem={this.callRedux.bind(this)}
                     currency={this.props.state.currency}
-                ></Product>
+                    attributes={this.props.state.attribute}
+                />
             </>
         );
     }
@@ -24,7 +25,7 @@ class Products extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newCartItem: (i) => dispatch(newCartItem(i)),
+        newCartItem: (i, a) => dispatch(newCartItem(i, a)),
     };
 };
 
