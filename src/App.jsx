@@ -4,9 +4,10 @@ import Router from "./Components/Router";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./Styles/Global";
 import { lightTheme, darkTheme } from "./Styles/Theme";
-import store from "./Components/Store";
+import { store, persistor } from "./Components/Store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 import { ApolloClient, InMemoryCache, HttpLink, from } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
@@ -55,15 +56,17 @@ class App extends Component {
         return (
             <ThemeProvider theme={this.state.theme}>
                 <Provider store={store}>
-                    <ApolloProvider client={client}>
-                        <BrowserRouter>
-                            <Header
-                                themeFunction={this.handleTheme.bind(this)}
-                                theme={this.state}
-                            />
-                            <Router />
-                        </BrowserRouter>
-                    </ApolloProvider>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <ApolloProvider client={client}>
+                            <BrowserRouter>
+                                <Header
+                                    themeFunction={this.handleTheme.bind(this)}
+                                    theme={this.state}
+                                />
+                                <Router />
+                            </BrowserRouter>
+                        </ApolloProvider>
+                    </PersistGate>
                 </Provider>
                 <GlobalStyle />
             </ThemeProvider>

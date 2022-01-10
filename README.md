@@ -4,7 +4,7 @@ Simulation of e-commerce application:
 -   PDP - product description page, a.k.a. product page
 -   Cart page + Cart overlay (minicart)
 
-In development were used:
+Used in development:
 
 -   REACT - Class Components as standard;
 -   REDUX to control variables as currency, products, attributes, qtds;

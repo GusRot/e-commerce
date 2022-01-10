@@ -11,6 +11,7 @@ const initialState = {
     qtd: 0,
 };
 
+
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREMENT:
@@ -24,10 +25,11 @@ const counterReducer = (state = initialState, action) => {
                 }
             }
 
-            return {
+            const productIncrement = {
                 products: [...arrInc],
                 qtd: qtd1,
             };
+            return productIncrement;
 
         case DECREMENT:
             let x = 0;
@@ -49,10 +51,11 @@ const counterReducer = (state = initialState, action) => {
                 alert("Removed from cart");
             }
 
-            return {
+            const productDecrement = {
                 products: [...arrDec],
                 qtd: qtd2,
             };
+            return productDecrement;
 
         case ATTRIBUTE:
             const arrAtt = [];
@@ -78,10 +81,11 @@ const counterReducer = (state = initialState, action) => {
                 }
             }
 
-            return {
+            const productsAttribute = {
                 products: [...arrAttCart],
                 qtd: state.qtd,
             };
+            return productsAttribute;
 
         case NEW_ITEM:
             let qtd3 = state.qtd;
@@ -94,7 +98,7 @@ const counterReducer = (state = initialState, action) => {
                     }
                 }
 
-                return {
+                const products = {
                     products: [
                         ...state.products,
                         {
@@ -104,11 +108,14 @@ const counterReducer = (state = initialState, action) => {
                     ],
                     qtd: qtd3,
                 };
+
+                return products;
             } else {
-                return {
+                const products = {
                     products: [action.payload.item],
                     qtd: qtd3,
                 };
+                return products;
             }
 
         case NEW_CART:
