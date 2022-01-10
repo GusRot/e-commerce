@@ -74,7 +74,7 @@ class CartItem extends Component {
     }
 
     componentDidMount() {
-        setTimeout(this.rerender.bind(this), 50);
+        setTimeout(this.rerender.bind(this), 10);
     }
 
     componentDidUpdate(prevProps, prevState) {

@@ -8,41 +8,18 @@ class SelectComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            select: "",
-            value: {},
-            options: [],
+            value: "",
+            symbol: "",
         };
         this.onChange = this.onChange.bind(this);
-    }
-
-    rerender() {
-        const arr = [];
-        for (let i = 0; i < this.props.data.currencies.length; i++) {
-            arr.push({
-                value: this.props.data.currencies[i].label,
-                label: this.props.data.currencies[i].label,
-                symbol: this.props.data.currencies[i].symbol,
-            });
-        }
-        this.setState({
-            value: {
-                value: this.props.data.currencies[0].label,
-                label: this.props.data.currencies[0].label,
-                symbol: this.props.data.currencies[0].symbol,
-            },
-            select: this.props.data.currencies[0].label,
-            options: [...arr],
-        });
-    }
-
-    componentDidMount() {
-        setTimeout(this.rerender.bind(this), 150);
+        this.firstRender = this.firstRender.bind(this);
+        this.rerender = this.rerender.bind(this);
     }
 
     onChange(value) {
         this.setState({
-            select: value.value,
-            value: value,
+            value: value.value,
+            symbol: value.symbol,
         });
     }
 
@@ -53,24 +30,58 @@ class SelectComponent extends Component {
         </div>
     );
 
+    rerender() {
+        const arr = [];
+        for (let i = 0; i < this.props.data.currencies.length; i++) {
+            arr.push({
+                value: this.props.data.currencies[i].label,
+                label: this.props.data.currencies[i].label,
+                symbol: this.props.data.currencies[i].symbol,
+            });
+        }
+        return {
+            value: {
+                value: this.props.data.currencies[0].label,
+                label: this.props.data.currencies[0].label,
+                symbol: this.props.data.currencies[0].symbol,
+            },
+            select: this.props.data.currencies[0].label,
+            options: [...arr],
+        };
+    }
+
+    firstRender() {
+        const data = this.props.data;
+        let state = {};
+
+        if (!data.loading) {
+            state = { ...this.rerender() };
+            return (
+                <>
+                    <SelectOptions
+                        value={{
+                            value: this.state.value
+                                ? this.state.value
+                                : state.value.value,
+                            label: "",
+                            symbol: this.state.symbol
+                                ? this.state.symbol
+                                : state.value.symbol,
+                        }}
+                        change={this.onChange}
+                        color={this.props.theme.theme}
+                        style={customSelect}
+                        default={state.options[0]}
+                        option={this.formatOptionLabel}
+                        options={state.options}
+                    />
+                </>
+            );
+        }
+    }
+
     render() {
-        return (
-            <>
-                <SelectOptions
-                    value={{
-                        value: this.state.value.value,
-                        label: "",
-                        symbol: this.state.value.symbol,
-                    }}
-                    change={this.onChange}
-                    color={this.props.theme.theme}
-                    style={customSelect}
-                    default={this.state.options[0]}
-                    option={this.formatOptionLabel}
-                    options={this.state.options}
-                />
-            </>
-        );
+        return <>{this.firstRender()}</>;
     }
 }
 

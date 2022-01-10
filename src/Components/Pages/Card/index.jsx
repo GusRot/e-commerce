@@ -35,10 +35,6 @@ class Card extends Component {
         });
     }
 
-    componentDidMount() {
-        setTimeout(this.rerender.bind(this), 50);
-    }
-
     componentDidUpdate(pp, ps) {
         if (this.props.state.currency !== ps.currency) {
             this.rerender();
