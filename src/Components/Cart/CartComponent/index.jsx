@@ -110,7 +110,7 @@ class CartComponent extends Component {
                     </section>
                 ))}
 
-                <MyOrder hidden={this.state.qtd > 1 ? false : true}>
+                <MyOrder hidden={this.props.state.counters.qtd ? false : true}>
                     <h2>Total</h2>
                     <ItemPrice
                         price={Number(this.props.state.price.price).toFixed(2)}
@@ -124,7 +124,12 @@ class CartComponent extends Component {
                     </Link>
 
                     <Link to="/all">
-                        <Button submit={this.closeOrder.bind(this)}>
+                        <Button
+                            disabled={
+                                this.props.state.counters.qtd ? false : true
+                            }
+                            submit={this.closeOrder.bind(this)}
+                        >
                             Check Out
                         </Button>
                     </Link>

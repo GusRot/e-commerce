@@ -23,11 +23,25 @@ class ModalCart extends Component {
                 <CartComponent hidden={true} />
                 <CheckOut>
                     <Link to="/cart">
-                        <Button submit={this.props.close}>View Bag</Button>
+                        <Button
+                            disabled={
+                                this.props.state.counters.qtd ? false : true
+                            }
+                            submit={this.props.close}
+                        >
+                            View Bag
+                        </Button>
                     </Link>
 
                     <Link to="/">
-                        <Button submit={this.closeOrder}>Check Out</Button>
+                        <Button
+                            disabled={
+                                this.props.state.counters.qtd ? false : true
+                            }
+                            submit={this.closeOrder.bind(this)}
+                        >
+                            Check Out
+                        </Button>
                     </Link>
                 </CheckOut>
             </ModalCartContainer>

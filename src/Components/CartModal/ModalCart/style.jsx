@@ -78,7 +78,6 @@ export const CheckOut = styled.div`
     gap:0.5rem;
     justify-content: space-between;
 
-
     a {
         height: 35px;
         width:49%;
