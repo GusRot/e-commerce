@@ -11,7 +11,6 @@ const initialState = {
     qtd: 0,
 };
 
-
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREMENT:
@@ -93,7 +92,7 @@ const counterReducer = (state = initialState, action) => {
             if (state.products.length > 0) {
                 for (let i = 0; i < state.products.length; i++) {
                     if (action.payload.item.name === state.products[i].name) {
-                        alert("Este produto já esta no carrinho");
+                        alert("Product already on cart");
                         return state;
                     }
                 }
