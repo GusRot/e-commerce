@@ -14,7 +14,7 @@ Used in development:
 
 To run this project just follow the instructions on the Endpoint repository, then open the build link bellow.
 [Access here](https://github.com/scandiweb/junior-react-endpoint) to visualize the Endpoint repository.
-[Access here](https://e-commerce-beta-henna.vercel.app/) to visualize the build.
+[Access link here](https://e-commerce-beta-henna.vercel.app/) to visualize the build.
 
 # Getting Started with Create React App
 
