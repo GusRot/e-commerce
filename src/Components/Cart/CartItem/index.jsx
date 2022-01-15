@@ -87,35 +87,36 @@ class CartItem extends Component {
     }
 
     render() {
+        const {products, index} = this.props
         return (
             <>
                 <CartContainer>
                     <section>
                         <CartInfo cursor={true}>
                             <Item
-                                title={this.props.products.name}
-                                text={this.props.products.brand}
+                                title={products.name}
+                                text={products.brand}
                                 price={this.state.price}
                                 symbol={this.state.symbol}
                             />
                             <Attributes
                                 display={true}
                                 swatch={this.state.swatch}
-                                attribute={this.props.products.attributes}
+                                attribute={products.attributes}
                                 attributes={
                                     this.state ? this.state.attributes : ""
                                 }
                                 attributeSelected={true}
-                                index={this.props.index}
+                                index={index}
                             />
                         </CartInfo>
                         <ItemQuantities
-                            index={this.props.index}
-                            qtd={this.props.products.qtd}
+                            index={index}
+                            qtd={products.qtd}
                         />
                     </section>
                     <CarrouselContainer>
-                        <Slider slides={this.props.products.gallery} />
+                        <Slider slides={products.gallery} />
                     </CarrouselContainer>
                 </CartContainer>
             </>

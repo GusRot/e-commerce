@@ -17,6 +17,10 @@ export const CartContainer = styled.header`
         height: 100%;
         margin-right: 10px;
     }
+
+    .swiper-scrollbar {
+        display: none;
+    }
 `;
 
 export const CartInfo = styled.div`

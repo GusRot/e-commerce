@@ -85,6 +85,7 @@ h6, h2 {
 
 html {
 	min-width: 400px;
+
 }
 
 .react-modal-overlay {

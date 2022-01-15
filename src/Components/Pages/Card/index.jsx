@@ -42,23 +42,21 @@ class Card extends Component {
     }
 
     render() {
+        const { id, inStock, image, name, prices } = this.props;
         return (
             <Link
-                to={`/products/${this.props.id}`}
-                onClick={(e) => this.props.getID(e, this.props.id)}
+                to={`/products/${id}`}
+                onClick={(e) => this.props.getID(e, id)}
             >
-                <CardContainer img={!this.props.inStock}>
+                <CardContainer img={!inStock}>
                     <div>
-                        <img src={this.props.image} alt={"product"} />
+                        <img src={image} alt={"product"} />
                     </div>
                     <span>OUT OF STOCK</span>
-                    <p>{this.props.name}</p>
+                    <p>{name}</p>
                     <h6>
-                        {
-                            this.props.prices[this.state.currencyIndex].currency
-                                .symbol
-                        }{" "}
-                        {this.props.prices[this.state.currencyIndex].amount}
+                        {prices[this.state.currencyIndex].currency.symbol}{" "}
+                        {prices[this.state.currencyIndex].amount}
                     </h6>
                 </CardContainer>
             </Link>

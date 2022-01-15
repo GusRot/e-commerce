@@ -135,6 +135,7 @@ class Product extends Component {
     }
 
     render() {
+        const { data } = this.props;
         return (
             <ContainerSlider>
                 <section>
@@ -152,9 +153,7 @@ class Product extends Component {
                         <Attributes
                             swatch={this.state.swatch}
                             attribute={
-                                this.props.data.product
-                                    ? this.props.data.product.attributes
-                                    : ""
+                                data.product ? data.product.attributes : ""
                             }
                             attributes={this.state ? this.state.attributes : ""}
                             attributeSelected={false}
@@ -169,9 +168,7 @@ class Product extends Component {
 
                         <Button
                             disabled={this.state.disableButton}
-                            submit={() =>
-                                this.props.newCartItem(this.props.data.product)
-                            }
+                            submit={() => this.props.newCartItem(data.product)}
                         >
                             {this.state.disableButton
                                 ? "choose attributes"

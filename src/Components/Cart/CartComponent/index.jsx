@@ -97,28 +97,29 @@ class CartComponent extends Component {
     }
 
     render() {
+        const {state, hidden} = this.props
         return (
             <>
-                {this.props.state.counters.products.map((product, index) => (
+                {state.counters.products.map((product, index) => (
                     <section key={product.id + index}>
                         <CartItem
                             index={index}
                             products={product}
-                            currency={this.props.state.currency}
+                            currency={state.currency}
                         />
                         <Line />
                     </section>
                 ))}
 
-                <MyOrder hidden={this.props.state.counters.qtd ? false : true}>
+                <MyOrder hidden={state.counters.qtd ? false : true}>
                     <h2>Total</h2>
                     <ItemPrice
-                        price={Number(this.props.state.price.price).toFixed(2)}
-                        symbol={this.props.state.price.symbol}
+                        price={Number(state.price.price).toFixed(2)}
+                        symbol={state.price.symbol}
                     />
                 </MyOrder>
 
-                <CheckOutCart hidden={this.props.hidden}>
+                <CheckOutCart hidden={hidden}>
                     <Link to="/all">
                         <Button>Continue Shopping</Button>
                     </Link>
@@ -126,7 +127,7 @@ class CartComponent extends Component {
                     <Link to="/all">
                         <Button
                             disabled={
-                                this.props.state.counters.qtd ? false : true
+                                state.counters.qtd ? false : true
                             }
                             submit={this.closeOrder.bind(this)}
                         >

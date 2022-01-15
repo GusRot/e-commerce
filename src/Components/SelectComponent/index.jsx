@@ -71,7 +71,7 @@ class SelectComponent extends Component {
                         change={this.onChange}
                         color={this.props.theme.theme}
                         style={customSelect}
-                        default={state.options[0]}
+                        defaultOptions={state.options[0]}
                         option={this.formatOptionLabel}
                         options={state.options}
                     />

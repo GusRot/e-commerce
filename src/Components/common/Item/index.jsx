@@ -4,13 +4,11 @@ import ItemPrice from "./ItemPrice";
 
 class Item extends Component {
     render() {
+        const { symbol, price, text, title } = this.props;
         return (
             <div>
-                <ItemName text={this.props.text} title={this.props.title} />
-                <ItemPrice
-                    symbol={this.props.symbol}
-                    price={this.props.price}
-                />
+                <ItemName text={text} title={title} />
+                <ItemPrice symbol={symbol} price={price} />
             </div>
         );
     }

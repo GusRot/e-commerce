@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 class ItemPrice extends Component {
     render() {
+        const {symbol, price} = this.props
         return (
             <>
                 <h3>Price:</h3>
                 <h6>
-                    {this.props.symbol} {this.props.price}
+                    {symbol} {price}
                 </h6>
             </>
         );

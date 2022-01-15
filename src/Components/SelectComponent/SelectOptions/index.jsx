@@ -15,17 +15,19 @@ class SelectOptions extends Component {
     }
 
     render() {
+        const { value, color, style, option, options, defaultOptions } =
+            this.props;
         return (
             <>
                 <Select
                     isSearchable={false}
-                    value={this.props.value}
+                    value={value}
                     onChange={this.onChangeCurrency}
-                    colors={this.props.color}
-                    styles={this.props.style}
-                    defaultValue={this.props.default}
-                    formatOptionLabel={this.props.option}
-                    options={this.props.options}
+                    colors={color}
+                    styles={style}
+                    defaultValue={defaultOptions}
+                    formatOptionLabel={option}
+                    options={options}
                 />
             </>
         );
