@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
     HeaderContainer,
     HeaderFixed,
+    ItemsOnBag,
     OptionsContainer,
     SelectContainer,
 } from "./style";
@@ -13,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Category3 } from "../Router/Clothes";
 import { Category2 } from "../Router/Tech";
 import { Category1 } from "../Router/AllCategories";
+import { connect } from "react-redux";
 
 class Header extends Component {
     constructor(props) {
@@ -31,6 +33,7 @@ class Header extends Component {
     }
 
     render() {
+        const { state } = this.props;
         return (
             <HeaderFixed>
                 <HeaderContainer>
@@ -67,10 +70,17 @@ class Header extends Component {
                             close={this.handleModalClose}
                         />
                     </SelectContainer>
+                    <ItemsOnBag hidden={state.qtd ? false : true}>
+                        {state.qtd ? state.qtd : ""}
+                    </ItemsOnBag>
                 </HeaderContainer>
             </HeaderFixed>
         );
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return { state: state.counters };
+};
+
+export default connect(mapStateToProps)(Header);

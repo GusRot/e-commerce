@@ -87,12 +87,12 @@ class CartItem extends Component {
     }
 
     render() {
-        const {products, index} = this.props
+        const { products, index } = this.props;
         return (
             <>
                 <CartContainer>
                     <section>
-                        <CartInfo cursor={true}>
+                        <CartInfo pointer={true}>
                             <Item
                                 title={products.name}
                                 text={products.brand}
@@ -110,10 +110,7 @@ class CartItem extends Component {
                                 index={index}
                             />
                         </CartInfo>
-                        <ItemQuantities
-                            index={index}
-                            qtd={products.qtd}
-                        />
+                        <ItemQuantities index={index} qtd={products.qtd} />
                     </section>
                     <CarrouselContainer>
                         <Slider slides={products.gallery} />

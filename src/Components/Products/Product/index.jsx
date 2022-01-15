@@ -174,7 +174,11 @@ class Product extends Component {
                                 ? "choose attributes"
                                 : "ADD TO CART"}
                         </Button>
-                        {this.state.description.replace(/<[^>]*>?/gm, "")}
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: this.state.description,
+                            }}
+                        />
                     </CartInfo>
                 </ContainerInfo>
             </ContainerSlider>

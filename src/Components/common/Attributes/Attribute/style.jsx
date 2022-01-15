@@ -14,8 +14,8 @@ export const SelectedAttribute = styled.div`
         selected ? (swatch ? "black" : "white") : ""};
     color: ${({ selected, swatch }) =>
         selected ? (swatch === "#000000" ? "white" : "") : ""};
-    padding: ${({ swatch }) => (swatch ? "0.5rem 0rem" : "0.5rem 1rem")};
-    margin-right: ${({ swatch }) => (swatch ? "0.15rem" : "0.5rem")};
+    padding: ${({ swatch }) => (swatch ? "0.5rem 0rem" : "0.5rem 0.75rem")};
+    margin-right: ${({ swatch }) => (swatch ? "0.15rem" : "0.3rem")};
     min-width: 20px;
     width: ${({ swatch }) => (swatch ? "3.5rem" : "")};
     background-color: ${({ selected }) => (selected ? "black" : "")};

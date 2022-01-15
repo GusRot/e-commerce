@@ -70,3 +70,20 @@ export const SelectContainer = styled.div`
     width: 13.5rem;
     justify-content: flex-end;
 `;
+
+export const ItemsOnBag = styled.div`
+    background-color: ${({ theme, hidden }) =>
+        hidden ? "transparent" : theme.secondary};
+    color: ${({ theme }) => theme.primary};
+    position: absolute;
+    z-index: 2;
+    right: 5px;
+    top: 10px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+`;

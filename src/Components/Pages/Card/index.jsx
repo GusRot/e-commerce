@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { CardContainer } from "./style";
+import { CardContainer, PLPCart } from "./style";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getID } from "../../Store/actions";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 class Card extends Component {
     constructor(props) {
@@ -51,6 +52,17 @@ class Card extends Component {
                 <CardContainer img={!inStock}>
                     <div>
                         <img src={image} alt={"product"} />
+                        <PLPCart>
+                            <AiOutlineShoppingCart
+                                onClick={() => alert("ok")}
+                                style={{
+                                    padding: "0px 0.25rem",
+                                    cursor: "pointer",
+                                    height: "1.2rem",
+                                    width: "1.6rem",
+                                }}
+                            />
+                        </PLPCart>
                     </div>
                     <span>OUT OF STOCK</span>
                     <p>{name}</p>

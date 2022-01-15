@@ -56,7 +56,7 @@ export const CartInfo = styled.div`
         margin-bottom: -0.4rem;
 
         & + div {
-            pointer-events: ${({ cursor }) => (cursor ? "none" : "auto")};
+            pointer-events: ${({ pointer }) => (pointer ? "none" : "auto")};
         }
     }
 

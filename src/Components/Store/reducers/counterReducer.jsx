@@ -89,8 +89,11 @@ const counterReducer = (state = initialState, action) => {
         case NEW_ITEM:
             let qtd3 = state.qtd;
             qtd3++;
+            const arrIncrement = [];
+            let productExist = false;
             if (state.products.length > 0) {
                 for (let i = 0; i < state.products.length; i++) {
+                    arrIncrement.push(state.products[i]);
                     if (action.payload.item.name === state.products[i].name) {
                         let counter =
                             action.payload.item.attributeSelected.length;
@@ -107,10 +110,18 @@ const counterReducer = (state = initialState, action) => {
                             }
                         }
                         if (counter === 0) {
-                            alert("Product already on cart");
-                            return state;
+                            alert("added to cart");
+                            arrIncrement[i].qtd += 1;
+                            productExist = true;
                         }
                     }
+                }
+
+                if (productExist) {
+                    return {
+                        products: [...arrIncrement],
+                        qtd: qtd3,
+                    };
                 }
 
                 const products = {
@@ -124,14 +135,14 @@ const counterReducer = (state = initialState, action) => {
                     qtd: qtd3,
                 };
 
-                alert("product added to cart");
+                alert("new product added to cart");
                 return products;
             } else {
                 const products = {
                     products: [action.payload.item],
                     qtd: qtd3,
                 };
-                alert("product added to cart");
+                alert("new product added to cart");
                 return products;
             }
 

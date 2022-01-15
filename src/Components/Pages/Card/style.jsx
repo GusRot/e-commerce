@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { transparentize } from "polished";
 
 export const CardContainer = styled.div`
-    pointer-events: ${({img}) => (img ? "none" : "all")};
+    pointer-events: ${({ img }) => (img ? "none" : "all")};
     width: 18.5rem;
     display: flex;
     flex-direction: column;
@@ -16,6 +16,10 @@ export const CardContainer = styled.div`
     &:hover {
         box-shadow: 1px 0.2px 6px 0px
             ${({ theme }) => transparentize(0.9, theme.secondary)};
+
+        div div {
+            visibility: visible;
+        }
     }
 
     div {
@@ -34,20 +38,41 @@ export const CardContainer = styled.div`
         font-style: italic;
         text-align: center;
         border-radius: 15px;
-        opacity: ${({img}) => (img ? "" : "0;")};
+        opacity: ${({ img }) => (img ? "" : "0;")};
     }
 
     img {
         height: 350px;
         width: 17.5rem;
         object-fit: fill;
-        filter: ${({img}) => (img ? "blur(0.5px);" : "")};
-        opacity: ${({img}) => (img ? "0.65;" : "")};
-        -webkit-filter: ${({img}) => (img ? "blur(0.5px);" : "")};
+        filter: ${({ img }) => (img ? "blur(0.5px);" : "")};
+        opacity: ${({ img }) => (img ? "0.65;" : "")};
+        -webkit-filter: ${({ img }) => (img ? "blur(0.5px);" : "")};
     }
 
     h6,
     p {
         padding-left: 0.5rem;
+    }
+`;
+
+export const PLPCart = styled.div`
+    background-color: ${({ theme }) => transparentize(0.25, theme.button)};
+    color: ${({ theme }) => theme.primary};
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    top: 20.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    visibility: hidden;
+
+    &:hover {
+        background-color: ${({ theme }) => theme.button};
     }
 `;
