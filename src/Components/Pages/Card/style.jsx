@@ -44,7 +44,7 @@ export const CardContainer = styled.div`
     img {
         height: 350px;
         width: 17.5rem;
-        object-fit: fill;
+        object-fit: scale-down;
         filter: ${({ img }) => (img ? "blur(0.5px);" : "")};
         opacity: ${({ img }) => (img ? "0.65;" : "")};
         -webkit-filter: ${({ img }) => (img ? "blur(0.5px);" : "")};

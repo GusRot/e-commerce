@@ -123,6 +123,25 @@ html {
 
 }
 
+.logoIcon {
+	height: 1.5rem;
+	width: 1.5rem;
+	color: ${({ theme }) => theme.button}
+}
+
+.counterIcon {
+	cursor: pointer;
+	height: 2.2rem;
+	width: 2.2rem;
+}
+
+.cartIcon {
+	padding: 0px 0.25rem;
+	cursor: pointer;
+	height: 1.2rem;
+	width: 1.6rem;
+}
+
 .react-modal-close {
 	position:absolute;
 	right: 1rem;
@@ -156,7 +175,7 @@ html {
 	}
 
 	img {
-	object-fit: cover;
+	object-fit: scale-down;
 	width: 100%;
 	height: 100%;
 	}
@@ -169,7 +188,7 @@ html {
 			}
 
 			img {
-				object-fit: cover;
+				object-fit: scale-down;
 				width: 100%;
 				height: 100%;
 			}
@@ -179,7 +198,7 @@ html {
 		z-index: 0;
 
 		img {
-			object-fit: cover;
+			object-fit: fill;
 			height: 100px;
 		}
 

@@ -8,11 +8,18 @@ import SwiperCore, {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
+import { useEffect } from "react";
 
 SwiperCore.use([Navigation, A11y, Keyboard, Thumbs, Mousewheel]);
 
-function App({ slides }) {
+function App({ slides = [] }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [navigation, setNavigation] = useState(true);
+
+    useEffect(
+        () => (slides.length <= 1 ? setNavigation(false) : ""),
+        [slides.length]
+    );
 
     return (
         <>
@@ -21,7 +28,7 @@ function App({ slides }) {
                 className="swiper-container-vertical"
                 spaceBetween={0}
                 slidesPerView={slides.length < 3 ? slides.length : 3}
-                loop={true}
+                loop={navigation}
                 onSwiper={setThumbsSwiper}
                 direction={"vertical"}
             >
@@ -31,16 +38,15 @@ function App({ slides }) {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
             <Swiper
                 thumbs={{ swiper: thumbsSwiper }}
                 className="swiper-container vertical"
-                mousewheel={true}
-                keyboard={true}
+                mousewheel={navigation}
+                keyboard={navigation}
                 modules={[Navigation, A11y]}
-                navigation={{ clickable: true }}
+                navigation={{ clickable: navigation }}
                 direction={"horizontal"}
-                loop={true}
+                loop={navigation}
                 slidesPerView={1}
             >
                 {slides.map((slide, i) => (

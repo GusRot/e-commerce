@@ -6,31 +6,19 @@ import { connect } from "react-redux";
 
 class ItemQuantities extends Component {
     render() {
-        const {incrementCounter, decrementCounter, qtd, index} = this.props
+        const { incrementCounter, decrementCounter, qtd, index } = this.props;
         return (
             <CartQtd>
                 <AiOutlinePlusSquare
-                    onClick={() =>
-                        incrementCounter(index)
-                    }
+                    onClick={() => incrementCounter(index)}
                     id="item-add"
-                    style={{
-                        cursor: "pointer",
-                        height: "2.2rem",
-                        width: "2.2rem",
-                    }}
+                    className="counterIcon"
                 />
                 <span>{qtd}</span>
                 <AiOutlineMinusSquare
-                    onClick={() =>
-                        decrementCounter(index)
-                    }
+                    onClick={() => decrementCounter(index)}
                     id="item-remove"
-                    style={{
-                        cursor: "pointer",
-                        height: "2.2rem",
-                        width: "2.2rem",
-                    }}
+                    className="counterIcon"
                 />
             </CartQtd>
         );

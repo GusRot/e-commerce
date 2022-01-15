@@ -55,12 +55,7 @@ class Card extends Component {
                         <PLPCart>
                             <AiOutlineShoppingCart
                                 onClick={() => alert("ok")}
-                                style={{
-                                    padding: "0px 0.25rem",
-                                    cursor: "pointer",
-                                    height: "1.2rem",
-                                    width: "1.6rem",
-                                }}
+                                className="cartIcon"
                             />
                         </PLPCart>
                     </div>

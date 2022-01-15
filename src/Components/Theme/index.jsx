@@ -4,13 +4,7 @@ import { Container } from "./style";
 
 const Theme = ({ theme, themeFunction }) => (
     <Container onClick={themeFunction}>
-        <IoBagHandleSharp
-            style={{
-                height: "1.5rem",
-                width: "1.5rem",
-                color: theme.theme.button,
-            }}
-        />
+        <IoBagHandleSharp className="logoIcon" />
         <span>{theme.text}</span>
     </Container>
 );
