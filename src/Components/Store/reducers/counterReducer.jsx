@@ -92,8 +92,24 @@ const counterReducer = (state = initialState, action) => {
             if (state.products.length > 0) {
                 for (let i = 0; i < state.products.length; i++) {
                     if (action.payload.item.name === state.products[i].name) {
-                        alert("Product already on cart");
-                        return state;
+                        let counter =
+                            action.payload.item.attributeSelected.length;
+                        for (
+                            let j = 0;
+                            j < action.payload.item.attributeSelected.length;
+                            j++
+                        ) {
+                            if (
+                                action.payload.item.attributeSelected[j] ===
+                                state.products[i].attributeSelected[j]
+                            ) {
+                                counter--;
+                            }
+                        }
+                        if (counter === 0) {
+                            alert("Product already on cart");
+                            return state;
+                        }
                     }
                 }
 
@@ -108,12 +124,14 @@ const counterReducer = (state = initialState, action) => {
                     qtd: qtd3,
                 };
 
+                alert("product added to cart");
                 return products;
             } else {
                 const products = {
                     products: [action.payload.item],
                     qtd: qtd3,
                 };
+                alert("product added to cart");
                 return products;
             }
 

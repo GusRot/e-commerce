@@ -91,7 +91,7 @@ class CartItem extends Component {
             <>
                 <CartContainer>
                     <section>
-                        <CartInfo>
+                        <CartInfo cursor={true}>
                             <Item
                                 title={this.props.products.name}
                                 text={this.props.products.brand}

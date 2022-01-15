@@ -25,8 +25,8 @@ class SelectComponent extends Component {
 
     formatOptionLabel = ({ value, label, symbol }) => (
         <div>
-            <div>{label}</div>
             <div>{symbol}</div>
+            <div>{label}</div>
         </div>
     );
 
@@ -35,14 +35,14 @@ class SelectComponent extends Component {
         for (let i = 0; i < this.props.data.currencies.length; i++) {
             arr.push({
                 value: this.props.data.currencies[i].label,
-                label: this.props.data.currencies[i].label,
+                label: `${this.props.data.currencies[i].label}`,
                 symbol: this.props.data.currencies[i].symbol,
             });
         }
         return {
             value: {
                 value: this.props.data.currencies[0].label,
-                label: this.props.data.currencies[0].label,
+                label: `${this.props.data.currencies[0].label}`,
                 symbol: this.props.data.currencies[0].symbol,
             },
             select: this.props.data.currencies[0].label,

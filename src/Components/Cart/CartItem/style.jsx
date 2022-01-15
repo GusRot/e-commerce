@@ -22,7 +22,6 @@ export const CartContainer = styled.header`
 export const CartInfo = styled.div`
     display: flex;
     margin: 0;
-    justify-content: space-between;
     flex-direction: column;
     align-items: start;
     height: 100%;
@@ -51,6 +50,10 @@ export const CartInfo = styled.div`
         font-weight: bold;
         font-size: 1.2rem;
         margin-bottom: -0.4rem;
+
+        & + div {
+            pointer-events: ${({ cursor }) => (cursor ? "none" : "auto")};
+        }
     }
 
     h2 + h4 + div {

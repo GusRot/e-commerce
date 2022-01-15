@@ -56,9 +56,10 @@ class Header extends Component {
                         <AiOutlineShoppingCart
                             onClick={this.handleModalOpen}
                             style={{
+                                padding: "0px 0.25rem",
                                 cursor: "pointer",
                                 height: "1.2rem",
-                                width: "1.2rem",
+                                width: "1.6rem",
                             }}
                         />
                         <CartModal

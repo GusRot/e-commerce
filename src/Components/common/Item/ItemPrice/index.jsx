@@ -4,7 +4,7 @@ class ItemPrice extends Component {
     render() {
         return (
             <>
-                <h3>Price</h3>
+                <h3>Price:</h3>
                 <h6>
                     {this.props.symbol} {this.props.price}
                 </h6>

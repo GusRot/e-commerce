@@ -4,22 +4,23 @@ import closeModal from "../../assets/close.svg";
 import ModalCart from "./ModalCart";
 class CartModal extends Component {
     render() {
+        const { close, modal } = this.props;
         return (
             <Modal
                 ariaHideApp={false}
                 parentSelector={() =>
                     document.querySelector("#selectContainer")
                 }
-                isOpen={this.props.modal}
-                onRequestClose={this.props.close}
+                isOpen={modal}
+                onRequestClose={close}
                 overlayClassName="react-modal-overlay"
                 className="react-modal-content"
             >
-                <ModalCart close={this.props.close.bind(this)} />
+                <ModalCart close={close.bind(this)} />
                 <button
                     className="react-modal-close"
                     type="button"
-                    onClick={this.props.close}
+                    onClick={close}
                 >
                     <img src={closeModal} alt="close" />
                 </button>

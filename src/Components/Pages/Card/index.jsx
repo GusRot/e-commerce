@@ -48,7 +48,9 @@ class Card extends Component {
                 onClick={(e) => this.props.getID(e, this.props.id)}
             >
                 <CardContainer img={!this.props.inStock}>
-                    <img src={this.props.image} alt={"product"} />
+                    <div>
+                        <img src={this.props.image} alt={"product"} />
+                    </div>
                     <span>OUT OF STOCK</span>
                     <p>{this.props.name}</p>
                     <h6>

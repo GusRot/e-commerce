@@ -20,7 +20,7 @@ function App({ slides }) {
                 id="thumbs"
                 className="swiper-container-vertical"
                 spaceBetween={0}
-                slidesPerView={3}
+                slidesPerView={slides.length < 3 ? slides.length : 3}
                 loop={true}
                 onSwiper={setThumbsSwiper}
                 direction={"vertical"}

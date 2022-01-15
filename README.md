@@ -13,8 +13,9 @@ Used in development:
 -   Router-DOM to manage different Routes.
 
 To run this project just follow the instructions on the Endpoint repository, then open the build link bellow.
+
 [Access here](https://github.com/scandiweb/junior-react-endpoint) to visualize the Endpoint repository.
-[Access link here] (https://e-commerce-beta-henna.vercel.app/) to visualize the build.
+[Access link here] (https://e-commerce-beta-henna.vercel.app/) to visualize this project build.
 
 # Getting Started with Create React App
 

@@ -13,7 +13,7 @@ export const CheckOutCart = styled.div`
     display: flex;
     gap: 1rem;
     justify-content: space-between;
-    display: ${(props) => (props.hidden ? "none !important" : "")};
+    display: ${({hidden}) => (hidden ? "none !important" : "")};
 
     a {
         height: 50px;
@@ -37,7 +37,7 @@ export const CheckOutCart = styled.div`
 `;
 
 export const MyOrder = styled.div`
-    display: ${(props) => (props.hidden ? "none !important" : "")};
+    display: ${({hidden}) => (hidden ? "none !important" : "")};
     width: 100%;
     display: flex;
     justify-content: space-between;

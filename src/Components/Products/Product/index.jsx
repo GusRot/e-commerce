@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ContainerSlider } from "./style";
+import { ContainerInfo, ContainerSlider } from "./style";
 import VerticalSlider from "./VerticalSlider";
 import Button from "../../common/Button";
 import { CartInfo } from "../../Cart/CartItem/style";
@@ -8,7 +8,6 @@ import ItemPrice from "../../common/Item/ItemPrice";
 import { graphql } from "react-apollo";
 import { LOAD_PRODUCT } from "../../GraphQL/Queries";
 import Attributes from "../../common/Attributes";
-import { Link } from "react-router-dom";
 
 class Product extends Component {
     constructor(props) {
@@ -141,27 +140,33 @@ class Product extends Component {
                 <section>
                     <VerticalSlider slides={this.state.gallery} />
                 </section>
-                <CartInfo>
-                    <ItemName title={this.state.name} text={this.state.brand} />
 
-                    <Attributes
-                        swatch={this.state.swatch}
-                        attribute={
-                            this.props.data.product
-                                ? this.props.data.product.attributes
-                                : ""
-                        }
-                        attributes={this.state ? this.state.attributes : ""}
-                        attributeSelected={false}
-                        index={this.state.name}
-                    />
+                <ContainerInfo>
+                    <CartInfo>
+                        <ItemName
+                            title={this.state.name}
+                            text={this.state.brand}
+                        />
 
-                    <ItemPrice
-                        symbol={this.state.symbol}
-                        price={this.state.price}
-                    />
+                        <br></br>
+                        <Attributes
+                            swatch={this.state.swatch}
+                            attribute={
+                                this.props.data.product
+                                    ? this.props.data.product.attributes
+                                    : ""
+                            }
+                            attributes={this.state ? this.state.attributes : ""}
+                            attributeSelected={false}
+                            index={this.state.name}
+                        />
+                        <br></br>
 
-                    <Link to="/cart">
+                        <ItemPrice
+                            symbol={this.state.symbol}
+                            price={this.state.price}
+                        />
+
                         <Button
                             disabled={this.state.disableButton}
                             submit={() =>
@@ -172,9 +177,9 @@ class Product extends Component {
                                 ? "choose attributes"
                                 : "ADD TO CART"}
                         </Button>
-                    </Link>
-                    {this.state.description.replace(/<[^>]*>?/gm, "")}
-                </CartInfo>
+                        {this.state.description.replace(/<[^>]*>?/gm, "")}
+                    </CartInfo>
+                </ContainerInfo>
             </ContainerSlider>
         );
     }

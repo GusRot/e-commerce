@@ -17,6 +17,7 @@ export const ContainerSlider = styled.div`
 
             img {
                 width: 80%;
+                object-fit: fill;
             }
 
             @media (max-width: 960px) {
@@ -34,6 +35,7 @@ export const ContainerSlider = styled.div`
 
                 img {
                     height: 100px;
+                    object-fit: fill;
                 }
             }
         }
@@ -49,7 +51,7 @@ export const ContainerSlider = styled.div`
         }
     }
 
-    p {
+    button + p {
         text-align: justify;
     }
 
@@ -85,4 +87,8 @@ export const ContainerSlider = styled.div`
     section + div {
         width: 100%;
     }
+`;
+
+export const ContainerInfo = styled.div`
+    max-width: 290px;
 `;

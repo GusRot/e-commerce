@@ -5,43 +5,49 @@ import { connect } from "react-redux";
 
 class Attribute extends Component {
     render() {
+        const {
+            attributes,
+            state,
+            length,
+            attributeSelected,
+            attribute,
+            index,
+        } = this.props;
         return (
             <CartAttribute>
-                {this.props.attributes.map((attribute, index) => {
+                {attributes.map((attributeMap, i) => {
                     let x;
-                    this.props.attributeSelected
-                        ? (x =
-                              this.props.state.counters.products[
-                                  this.props.index
-                              ].attributeSelected)
-                        : (x = this.props.state.attribute.attributes);
-                    if (this.props.attributes.length === 0) {
+                    attributeSelected
+                        ? (x = state.counters.products[index].attributeSelected)
+                        : (x = state.attribute.attributes);
+                    if (attributes.length === 0) {
                         return <></>;
                     } else if (
-                        `${attribute.id}-${index}${this.props.length.length}` !==
-                        x[this.props.length.index]
+                        `${attributeMap.id}-${i}${length.length}` !==
+                        x[length.index]
                     ) {
-                        return attribute.displayValue ? (
+                        return attributeMap.displayValue ? (
                             <SelectedAttribute
-                                swatch={
-                                    this.props.attribute
-                                        ? this.props.attribute[index]
-                                        : ""
-                                }
-                                key={attribute.id + index}
+                                swatch={attribute ? attribute[i] : ""}
+                                key={attributeMap.id + i}
                                 selected={false}
-                                color={attribute.displayValue}
+                                color={attributeMap.displayValue}
                                 onClick={() =>
                                     this.props.getAttribute(
-                                        attribute.id,
-                                        index,
-                                        this.props.length,
-                                        this.props.attributeSelected,
-                                        this.props.index
+                                        attributeMap.id,
+                                        i,
+                                        length,
+                                        attributeSelected,
+                                        index
                                     )
                                 }
                             >
-                                <p> {attribute.displayValue}</p>
+                                <p>
+                                    {" "}
+                                    {attribute
+                                        ? attributeMap.displayValue
+                                        : attributeMap.value}
+                                </p>
                             </SelectedAttribute>
                         ) : (
                             ""
@@ -49,15 +55,16 @@ class Attribute extends Component {
                     } else {
                         return (
                             <SelectedAttribute
-                                key={attribute.id + index}
+                                key={attributeMap.id + i}
                                 selected={true}
-                                swatch={
-                                    this.props.attribute
-                                        ? this.props.attribute[index]
-                                        : ""
-                                }
+                                swatch={attribute ? attribute[i] : ""}
                             >
-                                <p>{attribute.displayValue}</p>
+                                <p>
+                                    {" "}
+                                    {attribute
+                                        ? attributeMap.displayValue
+                                        : attributeMap.value}
+                                </p>
                             </SelectedAttribute>
                         );
                     }

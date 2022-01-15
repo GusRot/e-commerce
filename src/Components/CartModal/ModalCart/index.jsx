@@ -14,20 +14,19 @@ class ModalCart extends Component {
     }
 
     render() {
+        const { state, close } = this.props;
         return (
             <ModalCartContainer>
                 <MyBag>
                     <h3>My Bag,</h3>
-                    <span>{this.props.state.counters.qtd}</span>
+                    <span>{state.counters.qtd}</span>
                 </MyBag>
                 <CartComponent hidden={true} />
                 <CheckOut>
                     <Link to="/cart">
                         <Button
-                            disabled={
-                                this.props.state.counters.qtd ? false : true
-                            }
-                            submit={this.props.close}
+                            disabled={state.counters.qtd ? false : true}
+                            submit={close}
                         >
                             View Bag
                         </Button>
@@ -35,9 +34,7 @@ class ModalCart extends Component {
 
                     <Link to="/">
                         <Button
-                            disabled={
-                                this.props.state.counters.qtd ? false : true
-                            }
+                            disabled={state.counters.qtd ? false : true}
                             submit={this.closeOrder.bind(this)}
                         >
                             Check Out

@@ -16,30 +16,33 @@ const customSelect = {
         padding: "0",
         width: "13px",
         marginLeft: "-15px",
-        marginBottom: "-5px",
+        marginBottom: "-3px",
     }),
     indicatorSeparator: (styles) => ({
         ...styles,
         width: "0",
     }),
-    input: () => ({
-        width: "0",
-        padding: "0px",
-    }),
     singleValue: (styles, state) => ({
         ...styles,
-        marginLeft: "0px",
+        marginRight: "15px",
         color: state.selectProps.colors.secondary,
     }),
     indicatorsContainer: (styles) => ({
         ...styles,
-        marginRight: "7px",
+        marginRight: "0px",
     }),
     option: (styles, state) => ({
         ...styles,
         cursor: "pointer",
-        backgroundColor: transparentize(0.5, state.selectProps.colors.primary),
+        color: state.selectProps.colors.secondary,
+        backgroundColor: state.selectProps.colors.primary,
         justifyContent: "center",
+        "&:hover": {
+            backgroundColor: transparentize(
+                0.95,
+                state.selectProps.colors.button
+            ),
+        },
     }),
     container: (styles) => ({
         ...styles,
@@ -49,13 +52,14 @@ const customSelect = {
         ...styles,
         padding: "0px",
         margin: "0px",
+        justifyContent: "flex-end",
     }),
 
     menuList: (styles, state) => ({
         ...styles,
         backgroundColor: state.selectProps.colors.primary,
-        flexDirection: "column",
         color: state.selectProps.colors.secondary,
+        flexDirection: "column",
     }),
 };
 

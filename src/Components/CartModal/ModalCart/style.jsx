@@ -22,6 +22,10 @@ export const ModalCartContainer = styled.div`
             .swiper-button-prev {
                 display: none;
             }
+
+            .swiper-scrollbar {
+                display: none;
+            }
         }
 
         section {
@@ -37,9 +41,23 @@ export const ModalCartContainer = styled.div`
                     span {
                         font-size: 1rem;
                         padding: 0.6rem 0;
+
+                        & + div {
+                            width: 100%;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+
+                            div {
+                                max-width: 3rem;
+                                justify-content: center;
+                                align-items: center;
+                                margin-bottom: 3px;
+                            }
+                        }
                     }
 
                     div {
+                        max-width: 120px;
                         padding: 0.2rem;
                         justify-content: flex-start;
 

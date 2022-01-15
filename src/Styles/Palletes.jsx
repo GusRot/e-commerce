@@ -1,4 +1,4 @@
-export const primaryLight = "#e5e5e5";
+export const primaryLight = "white";
 export const secondaryLight = "#333333";
 export const buttonLight = "#2ea44f";
 export const headerLight = "white";

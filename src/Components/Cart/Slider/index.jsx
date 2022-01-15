@@ -14,6 +14,7 @@ SwiperCore.use([Navigation, Scrollbar, A11y, Autoplay, Keyboard, Mousewheel]);
 
 class Slider extends Component {
     render() {
+        const { slides } = this.props;
         return (
             <Swiper
                 className="swiper-container"
@@ -29,7 +30,7 @@ class Slider extends Component {
                     disableOnInteraction: false,
                 }}
             >
-                {this.props.slides.map((slide, i) => (
+                {slides.map((slide, i) => (
                     <SwiperSlide key={`Hslide-${i}`} tag="li">
                         <img src={slide} alt="" />
                     </SwiperSlide>

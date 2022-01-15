@@ -11,7 +11,7 @@ class Attributes extends Component {
                               <span>
                                   {this.props.display
                                       ? ""
-                                      : this.props.attribute[index].name}
+                                      : `${this.props.attribute[index].name}:`}
                               </span>
                               <Attribute
                                   attribute={

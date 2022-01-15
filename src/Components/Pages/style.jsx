@@ -12,9 +12,8 @@ export const PagesContainer = styled.div`
 `;
 
 export const CardsContainer = styled.div`
+    width: 100%;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 3rem;
-    padding: 0 0.4rem;
+    gap: 3.15rem;
 `;

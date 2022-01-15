@@ -3,44 +3,37 @@ import { transparentize } from "polished";
 
 export const CartAttribute = styled.div`
     display: flex;
-    gap: 0.2rem;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
     padding: 0 !important;
 `;
 
 export const SelectedAttribute = styled.div`
     cursor: pointer;
+    text-align: center;
     border: 1px solid ${({ theme }) => theme.secondary};
-    color: ${(props) =>
-        props.selected ? (props.swatch ? "black" : "#e5e5e5") : ""};
-    color: ${(props) =>
-        props.selected ? (props.swatch === "#000000" ? "white" : "") : ""};
-    padding: 0.4rem;
-    background-color: ${(props) => (props.selected ? "black" : "")};
-    background-color: ${(props) =>
-        props.swatch
-            ? props.selected
-                ? transparentize(0.1, props.swatch)
-                : transparentize(0.85, props.swatch)
+    color: ${({ selected, swatch }) =>
+        selected ? (swatch ? "black" : "white") : ""};
+    color: ${({ selected, swatch }) =>
+        selected ? (swatch === "#000000" ? "white" : "") : ""};
+    padding: ${({ swatch }) => (swatch ? "0.5rem 0rem" : "0.5rem 1rem")};
+    margin-right: ${({ swatch }) => (swatch ? "0.15rem" : "0.5rem")};
+    min-width: 20px;
+    width: ${({ swatch }) => (swatch ? "3.5rem" : "")};
+    background-color: ${({ selected }) => (selected ? "black" : "")};
+    background-color: ${({ selected, swatch }) =>
+        swatch
+            ? selected
+                ? transparentize(0.1, swatch)
+                : transparentize(0.85, swatch)
             : ""};
-    border-color: ${(props) =>
-        props.swatch
-            ? props.selected
-                ? transparentize(0.1, props.swatch)
-                : ""
-            : ""};
+    border-color: ${({ selected, swatch }) =>
+        swatch ? (selected ? transparentize(0.1, swatch) : "") : ""};
 
     &:hover {
-        background-color: ${(props) =>
-            props.selected ? "" : "rgba(0,0,0,0.3)"};
-        background-color: ${(props) =>
-            props.selected
-                ? ""
-                : props.swatch
-                ? transparentize(0.45, props.swatch)
-                : ""};
-        border-color: ${(props) =>
-            props.swatch ? transparentize(0.45, props.swatch) : ""};
+        background-color: ${({ selected }) =>
+            selected ? "" : "rgba(0,0,0,0.3)"};
+        background-color: ${({ selected, swatch }) =>
+            selected ? "" : swatch ? transparentize(0.45, swatch) : ""};
+        border-color: ${({ swatch }) =>
+            swatch ? transparentize(0.45, swatch) : ""};
     }
 `;

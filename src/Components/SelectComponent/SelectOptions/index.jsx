@@ -18,6 +18,7 @@ class SelectOptions extends Component {
         return (
             <>
                 <Select
+                    isSearchable={false}
                     value={this.props.value}
                     onChange={this.onChangeCurrency}
                     colors={this.props.color}

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { transparentize } from "polished";
 
 export const CardContainer = styled.div`
-    pointer-events: ${(props) => (props.img ? "none" : "all")};
-    width: 280px;
+    pointer-events: ${({img}) => (img ? "none" : "all")};
+    width: 18.5rem;
     display: flex;
     flex-direction: column;
     padding-bottom: 1rem;
@@ -11,13 +11,16 @@ export const CardContainer = styled.div`
     margin-bottom: 0.5rem;
     gap: 0.7rem;
     position: relative;
-    box-shadow: 1px 0.2px 9px 0px
-        ${({ theme }) => transparentize(0.95, theme.secondary)};
     transition: 0.1s;
 
     &:hover {
-        box-shadow: 1px 0.2px 9px 0px
-            ${({ theme }) => transparentize(0.85, theme.secondary)};
+        box-shadow: 1px 0.2px 6px 0px
+            ${({ theme }) => transparentize(0.9, theme.secondary)};
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
     }
 
     span {
@@ -25,26 +28,26 @@ export const CardContainer = styled.div`
         top: 35%;
         right: 25%;
         width: 50%;
-        color: ${({ theme }) => transparentize(0.3, theme.secondary)};
+        color: #8d8f9a;
         font-size: 1.2rem;
         font-weight: 500;
         font-style: italic;
         text-align: center;
-        background-color: rgba(244, 244, 244, 0.35);
         border-radius: 15px;
-        opacity: ${(props) => (props.img ? "" : "0;")};
+        opacity: ${({img}) => (img ? "" : "0;")};
     }
 
     img {
         height: 350px;
-        object-fit: cover;
-        filter: ${(props) => (props.img ? "blur(2px);" : "")};
-        opacity: ${(props) => (props.img ? "0.85;" : "")};
-        -webkit-filter: ${(props) => (props.img ? "blur(2px);" : "")};
+        width: 17.5rem;
+        object-fit: fill;
+        filter: ${({img}) => (img ? "blur(0.5px);" : "")};
+        opacity: ${({img}) => (img ? "0.65;" : "")};
+        -webkit-filter: ${({img}) => (img ? "blur(0.5px);" : "")};
     }
 
     h6,
     p {
-        padding-left: 1rem;
+        padding-left: 0.5rem;
     }
 `;
