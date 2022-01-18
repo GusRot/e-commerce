@@ -36,6 +36,7 @@ class App extends Component {
             theme: lightTheme,
             text: "Light",
         };
+        this.handleTheme= this.handleTheme.bind(this)
     }
 
     handleTheme() {
@@ -60,7 +61,7 @@ class App extends Component {
                         <ApolloProvider client={client}>
                             <BrowserRouter>
                                 <Header
-                                    themeFunction={this.handleTheme.bind(this)}
+                                    themeFunction={this.handleTheme}
                                     theme={this.state}
                                 />
                                 <Router />

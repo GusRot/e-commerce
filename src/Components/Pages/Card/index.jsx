@@ -15,24 +15,32 @@ class Card extends Component {
     }
 
     rerender() {
-        let x = 0;
-        let currency = this.state.currency;
-
-        if (this.props.state.currency) {
-            currency = this.props.state.currency;
-        } else {
-            currency = this.props.prices[0].currency.label;
-        }
-
-        for (let i = 0; i < this.props.prices.length; i++) {
-            if (this.props.prices[i].currency.label === currency) {
-                x = i;
+        function defineCurrency(currency, state, prices) {
+            let newCurrency = currency;
+            let x = 0;
+            if (state.currency) {
+                newCurrency = state.currency;
+            } else {
+                newCurrency = prices[0].currency.label;
             }
+
+            for (let i = 0; i < prices.length; i++) {
+                if (prices[i].currency.label === newCurrency) {
+                    x = i;
+                }
+            }
+            return { x, newCurrency };
         }
+
+        const { x, newCurrency } = defineCurrency(
+            this.state.currency,
+            this.props.state,
+            this.props.prices
+        );
 
         this.setState({
             currencyIndex: x,
-            currency,
+            currency: newCurrency,
         });
     }
 

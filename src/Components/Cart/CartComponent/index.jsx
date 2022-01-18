@@ -28,6 +28,13 @@ class CartComponent extends Component {
 
         if (length === 0) {
             return;
+        } else {
+            for (let i = 1; i < length; i++) {
+                price +=
+                    this.props.state.counters.products[i].prices[x].amount *
+                    this.props.state.counters.products[i].qtd;
+                qtd += this.props.state.counters.products[i].qtd;
+            }
         }
 
         if (this.props.state.currency) {
@@ -53,15 +60,6 @@ class CartComponent extends Component {
                 symbol =
                     this.props.state.counters.products[0].prices[i].currency
                         .symbol;
-            }
-        }
-
-        if (length > 1) {
-            for (let i = 1; i < length; i++) {
-                price +=
-                    this.props.state.counters.products[i].prices[x].amount *
-                    this.props.state.counters.products[i].qtd;
-                qtd += this.props.state.counters.products[i].qtd;
             }
         }
 
@@ -97,7 +95,7 @@ class CartComponent extends Component {
     }
 
     render() {
-        const {state, hidden} = this.props
+        const { state, hidden } = this.props;
         return (
             <>
                 {state.counters.products.map((product, index) => (
@@ -126,10 +124,8 @@ class CartComponent extends Component {
 
                     <Link to="/all">
                         <Button
-                            disabled={
-                                state.counters.qtd ? false : true
-                            }
-                            submit={this.closeOrder.bind(this)}
+                            disabled={state.counters.qtd ? false : true}
+                            submit={this.closeOrder}
                         >
                             Check Out
                         </Button>

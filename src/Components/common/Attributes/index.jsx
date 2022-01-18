@@ -3,33 +3,34 @@ import Attribute from "./Attribute";
 
 class Attributes extends Component {
     render() {
+        const {attributes, attribute, display, swatch, attributeSelected, index} = this.props
         return (
             <>
-                {this.props.attributes.length
-                    ? this.props.attributes.map((att, index) => (
-                          <div key={this.props.attribute[index].id}>
+                {attributes.length
+                    ? attributes.map((att, i) => (
+                          <div key={attribute[i].id}>
                               <span>
-                                  {this.props.display
+                                  {display
                                       ? ""
-                                      : `${this.props.attribute[index].name}:`}
+                                      : `${attribute[i].name}:`}
                               </span>
                               <Attribute
                                   attribute={
-                                      this.props.swatch
-                                          ? this.props.swatch.index === index
-                                              ? this.props.swatch.swatch
+                                      swatch
+                                          ? swatch.index === i
+                                              ? swatch.swatch
                                               : ""
                                           : ""
                                   }
                                   attributes={att}
                                   length={{
-                                      length: this.props.attributes.length,
-                                      index: index,
+                                      length: attributes.length,
+                                      index: i,
                                   }}
                                   attributeSelected={
-                                      this.props.attributeSelected
+                                      attributeSelected
                                   }
-                                  index={this.props.index}
+                                  index={index}
                               />
                           </div>
                       ))

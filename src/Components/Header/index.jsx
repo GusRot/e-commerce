@@ -33,7 +33,7 @@ class Header extends Component {
     }
 
     render() {
-        const { state } = this.props;
+        const { state, theme } = this.props;
         return (
             <HeaderFixed>
                 <HeaderContainer>
@@ -51,11 +51,11 @@ class Header extends Component {
                     <div>
                         <Theme
                             themeFunction={this.props.themeFunction.bind(this)}
-                            theme={this.props.theme}
+                            theme={theme}
                         />
                     </div>
                     <SelectContainer id="selectContainer">
-                        <SelectComponent theme={this.props.theme} />
+                        <SelectComponent theme={theme} />
                         <AiOutlineShoppingCart
                             onClick={this.handleModalOpen}
                             className="cartIcon"

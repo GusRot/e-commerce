@@ -30,83 +30,96 @@ class Product extends Component {
     rerender() {
         const data = this.props.data;
         if (!data.loading) {
-            let currency = "";
-            let price = "";
-            let symbol = "";
-            const attributes = [];
-            const swatchObject = {
-                index: "",
-                swatch: [],
-            };
+            function defineAttributes(attributes) {
+                const newAttributes = [];
+                const swatchObject = {
+                    index: "",
+                    swatch: [],
+                };
+                if (attributes[0]) {
+                    for (let i = 0; i < attributes.length; i++) {
+                        newAttributes.push([
+                            ...newAttributes,
+                            ...attributes[i].items,
+                        ]);
 
-            if (this.props.data.product.attributes[0]) {
-                for (
-                    let i = 0;
-                    i < this.props.data.product.attributes.length;
-                    i++
-                ) {
-                    attributes.push([
-                        ...attributes,
-                        ...this.props.data.product.attributes[i].items,
-                    ]);
-
-                    if (
-                        this.props.data.product.attributes[i].type === "swatch"
-                    ) {
-                        for (
-                            let j = 0;
-                            j <
-                            this.props.data.product.attributes[i].items.length;
-                            j++
-                        ) {
-                            swatchObject.swatch.push(
-                                this.props.data.product.attributes[i].items[j]
-                                    .value
-                            );
+                        if (attributes[i].type === "swatch") {
+                            for (
+                                let j = 0;
+                                j < attributes[i].items.length;
+                                j++
+                            ) {
+                                swatchObject.swatch.push(
+                                    attributes[i].items[j].value
+                                );
+                            }
+                            swatchObject.index = i;
                         }
-                        swatchObject.index = i;
-                    }
-                    for (let j = 0; j < swatchObject.index; j++) {
-                        swatchObject.swatch.unshift("");
-                    }
-                }
-            }
-
-            if (this.props.currency) {
-                currency = this.props.currency;
-            } else {
-                currency = this.props.data.product.prices[0].currency.label;
-            }
-            for (let i = 0; i < this.props.data.product.prices.length; i++) {
-                if (
-                    this.props.data.product.prices[i].currency.label ===
-                    currency
-                ) {
-                    price = this.props.data.product.prices[i].amount;
-                    symbol = this.props.data.product.prices[i].currency.symbol;
-                }
-            }
-
-            let disableButton = this.props.data.product.attributes.length
-                ? true
-                : false;
-
-            const length = this.props.attributes.attributes.length;
-
-            if (
-                length > 0 &&
-                this.props.data.product.name === this.props.attributes.name
-            ) {
-                let arrLength = 0;
-                for (let i = 0; i < length; i++) {
-                    if (this.props.attributes.attributes[i] !== "") {
-                        arrLength++;
+                        for (let j = 0; j < swatchObject.index; j++) {
+                            swatchObject.swatch.unshift("");
+                        }
                     }
                 }
-                if (arrLength === length) {
-                    disableButton = false;
+                return { newAttributes, swatchObject };
+            }
+
+            function defineCurrency(currency, prices) {
+                if (currency) {
+                    const newCurrency = currency;
+                    return newCurrency;
+                } else {
+                    const newCurrency = prices[0].currency.label;
+                    return newCurrency;
                 }
             }
+
+            function definePrice(prices) {
+                let price = "";
+                let symbol = "";
+                for (let i = 0; i < prices.length; i++) {
+                    if (prices[i].currency.label === currency) {
+                        price = prices[i].amount;
+                        symbol = prices[i].currency.symbol;
+                    }
+                }
+                return { price, symbol };
+            }
+
+            function defineButton(product, attributes) {
+                let disableButton = product.attributes.length ? true : false;
+
+                const length = attributes.attributes.length;
+
+                if (length > 0 && product.name === attributes.name) {
+                    let arrLength = 0;
+                    for (let i = 0; i < length; i++) {
+                        if (attributes.attributes[i] !== "") {
+                            arrLength++;
+                        }
+                    }
+                    if (arrLength === length) {
+                        disableButton = false;
+                    }
+                }
+                return disableButton;
+            }
+
+            const { newAttributes, swatchObject } = defineAttributes(
+                this.props.data.product.attributes
+            );
+
+            const currency = defineCurrency(
+                this.props.currency,
+                this.props.data.product.prices
+            );
+            const { price, symbol } = definePrice(
+                this.props.data.product.prices
+            );
+
+            const disableButton = defineButton(
+                this.props.data.product,
+                this.props.attributes
+            );
 
             this.setState({
                 name: this.props.data.product.name,
@@ -114,9 +127,9 @@ class Product extends Component {
                 gallery: [...this.props.data.product.gallery],
                 description: this.props.data.product.description,
                 price,
-                currency: this.props.currency,
+                currency,
                 symbol,
-                attributes: [...attributes],
+                attributes: [...newAttributes],
                 swatch: { ...swatchObject },
                 disableButton,
             });
@@ -135,7 +148,7 @@ class Product extends Component {
     }
 
     render() {
-        const { data } = this.props;
+        const { product } = this.props.data;
         return (
             <ContainerSlider>
                 <section>
@@ -152,9 +165,7 @@ class Product extends Component {
                         <br></br>
                         <Attributes
                             swatch={this.state.swatch}
-                            attribute={
-                                data.product ? data.product.attributes : ""
-                            }
+                            attribute={product ? product.attributes : ""}
                             attributes={this.state ? this.state.attributes : ""}
                             attributeSelected={false}
                             index={this.state.name}
@@ -168,7 +179,7 @@ class Product extends Component {
 
                         <Button
                             disabled={this.state.disableButton}
-                            submit={() => this.props.newCartItem(data.product)}
+                            submit={() => this.props.newCartItem(product)}
                         >
                             {this.state.disableButton
                                 ? "choose attributes"

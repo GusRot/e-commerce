@@ -9,14 +9,15 @@ class Products extends Component {
     }
 
     render() {
+        const { state } = this.props;
         return (
             <>
                 <Product
-                    products={this.props.state.counters.products}
-                    api={this.props.state.api}
+                    products={state.counters.products}
+                    api={state.api}
                     newCartItem={this.callRedux.bind(this)}
-                    currency={this.props.state.currency}
-                    attributes={this.props.state.attribute}
+                    currency={state.currency}
+                    attributes={state.attribute}
                 />
             </>
         );
