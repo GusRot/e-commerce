@@ -24,24 +24,24 @@ class CartComponent extends Component {
         };
     }
     rerender() {
-        let x = 0;
         const length = this.props.state.counters.products.length;
-        let qtd = 0;
 
         if (length === 0) {
             return;
         }
 
-        const { currency } = defineCurrency(
+        const currency = defineCurrency(
             this.props.state.currency,
             this.props.state.counters.products[0].prices
         );
 
-        const { price, symbol } = definePrice(
+        const { price, symbol, x, quantity } = definePrice(
             this.props.state.counters.products[0].prices,
-            currency
+            currency,
+            this.props.state.counters.products[0].qtd
         );
         let newPrice = price;
+        let qtd = quantity;
 
         if (length > 1) {
             for (let i = 1; i < length; i++) {

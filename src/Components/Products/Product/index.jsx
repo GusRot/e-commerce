@@ -46,7 +46,8 @@ class Product extends Component {
             );
             const { price, symbol } = definePrice(
                 this.props.data.product.prices,
-                currency
+                currency,
+                false
             );
 
             const disableButton = defineButton(

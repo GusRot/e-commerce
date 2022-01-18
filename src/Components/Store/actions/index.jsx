@@ -104,13 +104,19 @@ export function defineCurrency(currency, prices) {
     }
 }
 
-export function definePrice(prices, currency) {
+export function definePrice(prices, currency, quantity) {
     let price = "";
     let symbol = "";
+    let x = 0;
+
     for (let i = 0; i < prices.length; i++) {
         if (prices[i].currency.label === currency) {
             price = prices[i].amount;
             symbol = prices[i].currency.symbol;
+            x = i;
+        }
+        if (quantity && prices.length - 1 === i) {
+            return { price, symbol, x, quantity };
         }
     }
     return { price, symbol };

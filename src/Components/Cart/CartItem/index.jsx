@@ -34,7 +34,8 @@ class CartItem extends Component {
 
         const { price, symbol } = definePrice(
             this.props.products.prices,
-            currency
+            currency,
+            false
         );
 
         this.setState({
