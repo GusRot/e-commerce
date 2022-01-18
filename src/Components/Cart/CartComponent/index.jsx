@@ -4,7 +4,12 @@ import { CheckOutCart, Line } from "./style";
 import { connect } from "react-redux";
 import Button from "../../common/Button";
 import { Link } from "react-router-dom";
-import { totalPrice, newCart } from "../../Store/actions";
+import {
+    totalPrice,
+    newCart,
+    defineCurrency,
+    definePrice,
+} from "../../Store/actions";
 import { MyOrder } from "./style";
 import ItemPrice from "../../common/Item/ItemPrice";
 class CartComponent extends Component {
@@ -19,52 +24,36 @@ class CartComponent extends Component {
         };
     }
     rerender() {
-        let currency = "";
-        let price = "";
-        let symbol = "";
         let x = 0;
         const length = this.props.state.counters.products.length;
         let qtd = 0;
 
         if (length === 0) {
             return;
-        } else {
+        }
+
+        const { currency } = defineCurrency(
+            this.props.state.currency,
+            this.props.state.counters.products[0].prices
+        );
+
+        const { price, symbol } = definePrice(
+            this.props.state.counters.products[0].prices,
+            currency
+        );
+        let newPrice = price;
+
+        if (length > 1) {
             for (let i = 1; i < length; i++) {
-                price +=
+                newPrice +=
                     this.props.state.counters.products[i].prices[x].amount *
                     this.props.state.counters.products[i].qtd;
                 qtd += this.props.state.counters.products[i].qtd;
             }
         }
 
-        if (this.props.state.currency) {
-            currency = this.props.state.currency;
-        } else {
-            currency =
-                this.props.state.counters.products[0].prices[0].currency.label;
-        }
-        for (
-            let i = 0;
-            i < this.props.state.counters.products[0].prices.length;
-            i++
-        ) {
-            if (
-                this.props.state.counters.products[0].prices[i].currency
-                    .label === currency
-            ) {
-                x = i;
-                qtd = this.props.state.counters.products[0].qtd;
-                price =
-                    this.props.state.counters.products[0].prices[i].amount *
-                    qtd;
-                symbol =
-                    this.props.state.counters.products[0].prices[i].currency
-                        .symbol;
-            }
-        }
-
         this.setState({
-            price,
+            price: newPrice,
             currency,
             symbol,
             qtd,
@@ -125,7 +114,7 @@ class CartComponent extends Component {
                     <Link to="/all">
                         <Button
                             disabled={state.counters.qtd ? false : true}
-                            submit={this.closeOrder}
+                            submit={this.closeOrder.bind(this)}
                         >
                             Check Out
                         </Button>

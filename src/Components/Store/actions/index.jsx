@@ -69,3 +69,68 @@ export function totalPrice(price) {
         payload: { price },
     };
 }
+
+export function defineAttributes(attributes) {
+    const newAttributes = [];
+    const swatchObject = {
+        index: "",
+        swatch: [],
+    };
+    if (attributes[0]) {
+        for (let i = 0; i < attributes.length; i++) {
+            newAttributes.push([...newAttributes, ...attributes[i].items]);
+
+            if (attributes[i].type === "swatch") {
+                for (let j = 0; j < attributes[i].items.length; j++) {
+                    swatchObject.swatch.push(attributes[i].items[j].value);
+                }
+                swatchObject.index = i;
+            }
+            for (let j = 0; j < swatchObject.index; j++) {
+                swatchObject.swatch.unshift("");
+            }
+        }
+    }
+    return { newAttributes, swatchObject };
+}
+
+export function defineCurrency(currency, prices) {
+    if (currency) {
+        const newCurrency = currency;
+        return newCurrency;
+    } else {
+        const newCurrency = prices[0].currency.label;
+        return newCurrency;
+    }
+}
+
+export function definePrice(prices, currency) {
+    let price = "";
+    let symbol = "";
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[i].currency.label === currency) {
+            price = prices[i].amount;
+            symbol = prices[i].currency.symbol;
+        }
+    }
+    return { price, symbol };
+}
+
+export function defineButton(product, attributes) {
+    let disableButton = product.attributes.length ? true : false;
+
+    const length = attributes.attributes.length;
+
+    if (length > 0 && product.name === attributes.name) {
+        let arrLength = 0;
+        for (let i = 0; i < length; i++) {
+            if (attributes.attributes[i] !== "") {
+                arrLength++;
+            }
+        }
+        if (arrLength === length) {
+            disableButton = false;
+        }
+    }
+    return disableButton;
+}

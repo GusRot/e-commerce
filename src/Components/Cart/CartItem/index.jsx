@@ -4,6 +4,11 @@ import { CartContainer, CartInfo, CarrouselContainer } from "./style";
 import ItemQuantities from "../../common/ItemQuantities";
 import Item from "../../common/Item";
 import Attributes from "../../common/Attributes";
+import {
+    defineCurrency,
+    defineAttributes,
+    definePrice,
+} from "../../Store/actions";
 
 class CartItem extends Component {
     constructor(props) {
@@ -18,57 +23,25 @@ class CartItem extends Component {
     }
 
     rerender() {
-        let currency = "";
-        let price = "";
-        let symbol = "";
-        const attributes = [];
-        const swatchObject = {
-            index: "",
-            swatch: [],
-        };
+        const { newAttributes, swatchObject } = defineAttributes(
+            this.props.products.attributes
+        );
 
-        if (this.props.products.attributes[0]) {
-            for (let i = 0; i < this.props.products.attributes.length; i++) {
-                attributes.push([
-                    ...attributes,
-                    ...this.props.products.attributes[i].items,
-                ]);
+        const currency = defineCurrency(
+            this.props.currency,
+            this.props.products.prices
+        );
 
-                if (this.props.products.attributes[i].type === "swatch") {
-                    for (
-                        let j = 0;
-                        j < this.props.products.attributes[i].items.length;
-                        j++
-                    ) {
-                        swatchObject.swatch.push(
-                            this.props.products.attributes[i].items[j].value
-                        );
-                    }
-                    swatchObject.index = i;
-                }
-                for (let j = 0; j < swatchObject.index; j++) {
-                    swatchObject.swatch.unshift("");
-                }
-            }
-        }
-
-        if (this.props.currency) {
-            currency = this.props.currency;
-        } else {
-            currency = this.props.products.prices[0].currency.label;
-        }
-        for (let i = 0; i < this.props.products.prices.length; i++) {
-            if (this.props.products.prices[i].currency.label === currency) {
-                price = this.props.products.prices[i].amount;
-                symbol = this.props.products.prices[i].currency.symbol;
-            }
-        }
+        const { price, symbol } = definePrice(
+            this.props.products.prices,
+            currency
+        );
 
         this.setState({
-            attributes: [...attributes],
+            attributes: [...newAttributes],
             swatch: { ...swatchObject },
             price,
-            currency: this.props.currency,
+            currency,
             symbol,
         });
     }

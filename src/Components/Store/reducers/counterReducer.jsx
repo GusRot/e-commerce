@@ -120,7 +120,6 @@ const counterReducer = (state = initialState, action) => {
                 ],
                 qtd,
             };
-
             alert("new product added to cart");
             return products;
         } else {

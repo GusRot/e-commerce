@@ -8,6 +8,12 @@ import ItemPrice from "../../common/Item/ItemPrice";
 import { graphql } from "react-apollo";
 import { LOAD_PRODUCT } from "../../GraphQL/Queries";
 import Attributes from "../../common/Attributes";
+import {
+    defineButton,
+    defineCurrency,
+    defineAttributes,
+    definePrice,
+} from "../../Store/actions";
 
 class Product extends Component {
     constructor(props) {
@@ -30,80 +36,6 @@ class Product extends Component {
     rerender() {
         const data = this.props.data;
         if (!data.loading) {
-            function defineAttributes(attributes) {
-                const newAttributes = [];
-                const swatchObject = {
-                    index: "",
-                    swatch: [],
-                };
-                if (attributes[0]) {
-                    for (let i = 0; i < attributes.length; i++) {
-                        newAttributes.push([
-                            ...newAttributes,
-                            ...attributes[i].items,
-                        ]);
-
-                        if (attributes[i].type === "swatch") {
-                            for (
-                                let j = 0;
-                                j < attributes[i].items.length;
-                                j++
-                            ) {
-                                swatchObject.swatch.push(
-                                    attributes[i].items[j].value
-                                );
-                            }
-                            swatchObject.index = i;
-                        }
-                        for (let j = 0; j < swatchObject.index; j++) {
-                            swatchObject.swatch.unshift("");
-                        }
-                    }
-                }
-                return { newAttributes, swatchObject };
-            }
-
-            function defineCurrency(currency, prices) {
-                if (currency) {
-                    const newCurrency = currency;
-                    return newCurrency;
-                } else {
-                    const newCurrency = prices[0].currency.label;
-                    return newCurrency;
-                }
-            }
-
-            function definePrice(prices) {
-                let price = "";
-                let symbol = "";
-                for (let i = 0; i < prices.length; i++) {
-                    if (prices[i].currency.label === currency) {
-                        price = prices[i].amount;
-                        symbol = prices[i].currency.symbol;
-                    }
-                }
-                return { price, symbol };
-            }
-
-            function defineButton(product, attributes) {
-                let disableButton = product.attributes.length ? true : false;
-
-                const length = attributes.attributes.length;
-
-                if (length > 0 && product.name === attributes.name) {
-                    let arrLength = 0;
-                    for (let i = 0; i < length; i++) {
-                        if (attributes.attributes[i] !== "") {
-                            arrLength++;
-                        }
-                    }
-                    if (arrLength === length) {
-                        disableButton = false;
-                    }
-                }
-                return disableButton;
-            }
-
             const { newAttributes, swatchObject } = defineAttributes(
                 this.props.data.product.attributes
             );
@@ -113,7 +45,8 @@ class Product extends Component {
                 this.props.data.product.prices
             );
             const { price, symbol } = definePrice(
-                this.props.data.product.prices
+                this.props.data.product.prices,
+                currency
             );
 
             const disableButton = defineButton(
