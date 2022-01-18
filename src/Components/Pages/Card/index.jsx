@@ -16,8 +16,8 @@ class Card extends Component {
 
     rerender() {
         function defineCurrency(currency, state, prices) {
-            let newCurrency = currency;
             let x = 0;
+            let newCurrency = currency;
             if (state.currency) {
                 newCurrency = state.currency;
             } else {
@@ -50,6 +50,10 @@ class Card extends Component {
         }
     }
 
+    componentDidMount() {
+        setTimeout(this.rerender.bind(this), 10);
+    }
+
     render() {
         const { id, inStock, image, name, prices } = this.props;
         return (
@@ -62,7 +66,7 @@ class Card extends Component {
                         <img src={image} alt={"product"} />
                         <PLPCart>
                             <AiOutlineShoppingCart
-                                onClick={() => alert("ok")}
+                                onClick={() => {}}
                                 className="cartIcon"
                             />
                         </PLPCart>

@@ -40,7 +40,7 @@ class CartComponent extends Component {
             currency,
             this.props.state.counters.products[0].qtd
         );
-        let newPrice = price;
+        let newPrice = price * quantity;
         let qtd = quantity;
 
         if (length > 1) {

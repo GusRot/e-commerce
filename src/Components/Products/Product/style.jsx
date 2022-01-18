@@ -14,10 +14,17 @@ export const ContainerSlider = styled.div`
 
         div:first-child {
             width: 120px;
+            height: fit-content;
+
+            div {
+                height: fit-content !important;
+            }
 
             img {
                 width: 80%;
-                object-fit: fill;
+                object-fit: scale-down;
+                position: relative;
+                z-index: 3;
             }
 
             @media (max-width: 960px) {
