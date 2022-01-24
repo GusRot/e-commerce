@@ -5,19 +5,20 @@ import Product from "./Product";
 
 class Products extends Component {
     callRedux(item) {
-        this.props.newCartItem(item, this.props.state.attribute.attributes);
+        const {attributes} = this.props.state.attribute
+        this.props.newCartItem(item, attributes);
     }
 
     render() {
-        const { state } = this.props;
+        const { counters, api, currency, attribute } = this.props.state;
         return (
             <>
                 <Product
-                    products={state.counters.products}
-                    api={state.api}
+                    products={counters.products}
+                    api={api}
                     newCartItem={this.callRedux.bind(this)}
-                    currency={state.currency}
-                    attributes={state.attribute}
+                    currency={currency}
+                    attributes={attribute}
                 />
             </>
         );

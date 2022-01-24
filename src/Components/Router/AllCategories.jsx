@@ -7,12 +7,10 @@ export const Category1 = "all";
 
 class AllCategories extends Component {
     render() {
+        const { data } = this.props;
         return (
             <>
-                <Page
-                    category={Category1}
-                    products={this.props.data.category?.products}
-                />
+                <Page category={Category1} products={data.category?.products} />
             </>
         );
     }

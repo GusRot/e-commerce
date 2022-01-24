@@ -3,9 +3,10 @@ import { TOTAL_PRICE } from "../actions";
 const initialState = {};
 
 const priceReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case TOTAL_PRICE:
-            return { ...action.payload.price };
+            return { ...payload.price };
 
         default:
             return state;

@@ -3,9 +3,10 @@ import { GET_CURRENCY } from "../actions";
 const initialState = "";
 
 const currencyReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case GET_CURRENCY:
-            return action.payload.currency;
+            return payload.currency;
 
         case "persist/REHYDRATE":
             return "USD";

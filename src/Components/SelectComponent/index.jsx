@@ -32,44 +32,48 @@ class SelectComponent extends Component {
 
     rerender() {
         const arr = [];
-        for (let i = 0; i < this.props.data.currencies.length; i++) {
+        const {currencies} = this.props.data;
+
+        for (let i = 0; i < currencies.length; i++) {
             arr.push({
-                value: this.props.data.currencies[i].label,
-                label: `${this.props.data.currencies[i].label}`,
-                symbol: this.props.data.currencies[i].symbol,
+                value: currencies[i].label,
+                label: `${currencies[i].label}`,
+                symbol: currencies[i].symbol,
             });
         }
         return {
             value: {
-                value: this.props.data.currencies[0].label,
-                label: `${this.props.data.currencies[0].label}`,
-                symbol: this.props.data.currencies[0].symbol,
+                value: currencies[0].label,
+                label: `${currencies[0].label}`,
+                symbol: currencies[0].symbol,
             },
-            select: this.props.data.currencies[0].label,
+            select: currencies[0].label,
             options: [...arr],
         };
     }
 
     firstRender() {
-        const data = this.props.data;
+        const {data, theme} = this.props;
         let state = {};
 
         if (!data.loading) {
             state = { ...this.rerender() };
+            const {value, symbol} = this.state;
+
             return (
                 <>
                     <SelectOptions
                         value={{
-                            value: this.state.value
-                                ? this.state.value
+                            value: value
+                                ? value
                                 : state.value.value,
                             label: "",
-                            symbol: this.state.symbol
-                                ? this.state.symbol
+                            symbol: symbol
+                                ? symbol
                                 : state.value.symbol,
                         }}
                         change={this.onChange}
-                        color={this.props.theme.theme}
+                        color={theme.theme}
                         style={customSelect}
                         defaultOptions={state.options[0]}
                         option={this.formatOptionLabel}

@@ -24,37 +24,34 @@ class CartComponent extends Component {
         };
     }
     rerender() {
-        const length = this.props.state.counters.products.length;
+        const { currency, counters } = this.props.state;
+        const { products } = counters;
+        const length = products.length;
 
         if (length === 0) {
             return;
         }
 
-        const currency = defineCurrency(
-            this.props.state.currency,
-            this.props.state.counters.products[0].prices
-        );
+        const newCurrency = defineCurrency(currency, products[0].prices);
 
         const { price, symbol, x, quantity } = definePrice(
-            this.props.state.counters.products[0].prices,
-            currency,
-            this.props.state.counters.products[0].qtd
+            products[0].prices,
+            newCurrency,
+            products[0].qtd
         );
         let newPrice = price * quantity;
         let qtd = quantity;
 
         if (length > 1) {
             for (let i = 1; i < length; i++) {
-                newPrice +=
-                    this.props.state.counters.products[i].prices[x].amount *
-                    this.props.state.counters.products[i].qtd;
-                qtd += this.props.state.counters.products[i].qtd;
+                newPrice += products[i].prices[x].amount * products[i].qtd;
+                qtd += products[i].qtd;
             }
         }
 
         this.setState({
             price: newPrice,
-            currency,
+            currency: newCurrency,
             symbol,
             qtd,
         });
@@ -67,12 +64,13 @@ class CartComponent extends Component {
     }
 
     componentDidUpdate(pp, ps) {
-        if (this.props.state.counters.qtd !== ps.qtd) {
+        const { counters, currency } = this.props.state;
+        if (counters.qtd !== ps.qtd) {
             this.rerender();
         }
 
-        if (this.props.state.currency) {
-            if (this.props.state.currency !== ps.currency) {
+        if (currency) {
+            if (currency !== ps.currency) {
                 this.rerender();
             }
         }
@@ -85,24 +83,26 @@ class CartComponent extends Component {
 
     render() {
         const { state, hidden } = this.props;
+        const { currency, counters, price } = state;
+        const { products, qtd } = counters;
         return (
             <>
-                {state.counters.products.map((product, index) => (
+                {products.map((product, index) => (
                     <section key={product.id + index}>
                         <CartItem
                             index={index}
                             products={product}
-                            currency={state.currency}
+                            currency={currency}
                         />
                         <Line />
                     </section>
                 ))}
 
-                <MyOrder hidden={state.counters.qtd ? false : true}>
+                <MyOrder hidden={qtd ? false : true}>
                     <h2>Total</h2>
                     <ItemPrice
-                        price={Number(state.price.price).toFixed(2)}
-                        symbol={state.price.symbol}
+                        price={Number(price.price).toFixed(2)}
+                        symbol={price.symbol}
                     />
                 </MyOrder>
 
@@ -113,7 +113,7 @@ class CartComponent extends Component {
 
                     <Link to="/all">
                         <Button
-                            disabled={state.counters.qtd ? false : true}
+                            disabled={qtd ? false : true}
                             submit={this.closeOrder.bind(this)}
                         >
                             Check Out

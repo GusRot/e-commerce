@@ -8,6 +8,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 class Card extends Component {
     constructor(props) {
         super(props);
+        this.toCart = this.toCart.bind(this);
         this.state = {
             currency: "",
             currencyIndex: 0,
@@ -15,6 +16,7 @@ class Card extends Component {
     }
 
     rerender() {
+        const { state, prices } = this.props;
         function defineCurrency(currency, state, prices) {
             let x = 0;
             let newCurrency = currency;
@@ -34,8 +36,8 @@ class Card extends Component {
 
         const { x, newCurrency } = defineCurrency(
             this.state.currency,
-            this.props.state,
-            this.props.prices
+            state,
+            prices
         );
 
         this.setState({
@@ -54,19 +56,23 @@ class Card extends Component {
         setTimeout(this.rerender.bind(this), 10);
     }
 
+    toCart(stock) {
+        if (!stock) {
+            alert("out of stock");
+        }
+    }
+
     render() {
-        const { id, inStock, image, name, prices } = this.props;
+        const { id, inStock, image, name, prices, getID } = this.props;
+        const { currencyIndex } = this.state;
         return (
-            <Link
-                to={`/products/${id}`}
-                onClick={(e) => this.props.getID(e, id)}
-            >
+            <Link to={`/products/${id}`} onClick={(e) => getID(e, id)}>
                 <CardContainer img={!inStock}>
                     <div>
                         <img src={image} alt={"product"} />
                         <PLPCart>
                             <AiOutlineShoppingCart
-                                onClick={() => {}}
+                                onClick={(e) => this.toCart(inStock)}
                                 className="cartIcon"
                             />
                         </PLPCart>
@@ -74,8 +80,8 @@ class Card extends Component {
                     <span>OUT OF STOCK</span>
                     <p>{name}</p>
                     <h6>
-                        {prices[this.state.currencyIndex].currency.symbol}{" "}
-                        {prices[this.state.currencyIndex].amount}
+                        {prices[currencyIndex].currency.symbol}{" "}
+                        {prices[currencyIndex].amount}
                     </h6>
                 </CardContainer>
             </Link>

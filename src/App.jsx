@@ -36,7 +36,7 @@ class App extends Component {
             theme: lightTheme,
             text: "Light",
         };
-        this.handleTheme= this.handleTheme.bind(this)
+        this.handleTheme = this.handleTheme.bind(this);
     }
 
     handleTheme() {
@@ -54,8 +54,10 @@ class App extends Component {
     }
 
     render() {
+        const { theme } = this.state;
+
         return (
-            <ThemeProvider theme={this.state.theme}>
+            <ThemeProvider theme={theme}>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
                         <ApolloProvider client={client}>

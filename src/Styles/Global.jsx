@@ -59,7 +59,6 @@ body {
 	-webkit-font-smoothing: antialiased;
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary}
-	
 }
 
 h1 {
@@ -98,7 +97,6 @@ html {
 	z-index: 2;
 	min-height: 200vh;
 	height: fit-content;
-
 	border-radius: 2px;
 	display: flex;
 	justify-content: flex-end;

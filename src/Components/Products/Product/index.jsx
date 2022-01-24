@@ -30,98 +30,102 @@ class Product extends Component {
             attributes: [],
             swatch: {},
             disableButton: true,
+            inStock: false,
         };
     }
 
     rerender() {
-        const data = this.props.data;
+        const { data, currency, attributes } = this.props;
+
         if (!data.loading) {
+            const { prices, name, brand, gallery, description, inStock } =
+                data.product;
+
             const { newAttributes, swatchObject } = defineAttributes(
-                this.props.data.product.attributes
+                data.product.attributes
             );
 
-            const currency = defineCurrency(
-                this.props.currency,
-                this.props.data.product.prices
-            );
-            const { price, symbol } = definePrice(
-                this.props.data.product.prices,
-                currency,
-                false
-            );
+            const newCurrency = defineCurrency(currency, prices);
+            const { price, symbol } = definePrice(prices, newCurrency, false);
 
-            const disableButton = defineButton(
-                this.props.data.product,
-                this.props.attributes
-            );
+            const disableButton = defineButton(data.product, attributes);
 
             this.setState({
-                name: this.props.data.product.name,
-                brand: this.props.data.product.brand,
-                gallery: [...this.props.data.product.gallery],
-                description: this.props.data.product.description,
+                name,
+                brand,
+                gallery: [...gallery],
+                description,
                 price,
-                currency,
+                currency: newCurrency,
                 symbol,
                 attributes: [...newAttributes],
                 swatch: { ...swatchObject },
                 disableButton,
+                inStock,
             });
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.currency !== this.props.currency) {
+        const { currency, attributes } = this.props;
+        if (prevState.currency !== currency) {
             this.rerender();
         }
-        if (
-            prevProps.attributes.attributes !== this.props.attributes.attributes
-        ) {
+        if (prevProps.attributes.attributes !== attributes.attributes) {
             this.rerender();
         }
     }
 
     render() {
         const { product } = this.props.data;
+        const {
+            gallery,
+            name,
+            brand,
+            swatch,
+            attributes,
+            symbol,
+            price,
+            disableButton,
+            description,
+            inStock,
+        } = this.state;
+
         return (
             <ContainerSlider>
                 <section>
-                    <VerticalSlider slides={this.state.gallery} />
+                    <VerticalSlider slides={gallery} />
                 </section>
 
                 <ContainerInfo>
                     <CartInfo>
-                        <ItemName
-                            title={this.state.name}
-                            text={this.state.brand}
-                        />
+                        <ItemName title={name} text={brand} />
 
                         <br></br>
                         <Attributes
-                            swatch={this.state.swatch}
+                            swatch={swatch}
                             attribute={product ? product.attributes : ""}
-                            attributes={this.state ? this.state.attributes : ""}
+                            attributes={this.state ? attributes : ""}
                             attributeSelected={false}
-                            index={this.state.name}
+                            index={name}
                         />
                         <br></br>
 
-                        <ItemPrice
-                            symbol={this.state.symbol}
-                            price={this.state.price}
-                        />
+                        <ItemPrice symbol={symbol} price={price} />
 
                         <Button
-                            disabled={this.state.disableButton}
+                            disabled={inStock ? disableButton : true}
                             submit={() => this.props.newCartItem(product)}
                         >
-                            {this.state.disableButton
-                                ? "choose attributes"
-                                : "ADD TO CART"}
+                            {inStock
+                                ? disableButton
+                                    ? "choose attributes"
+                                    : "ADD TO CART"
+                                : "out of stock"}
                         </Button>
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: this.state.description,
+                                __html: description,
                             }}
                         />
                     </CartInfo>

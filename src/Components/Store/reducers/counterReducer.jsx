@@ -12,14 +12,17 @@ const initialState = {
 };
 
 const counterReducer = (state = initialState, action) => {
+    const { type, payload } = action;
+
     function incrementFunction(increment) {
         const arrInc = [];
+        const { index } = payload;
         let x = 0;
-        let qtd = state.qtd;
+        let { qtd } = state;
         qtd += increment;
         for (let i = 0; i < state.products.length; i++) {
             arrInc.push(state.products[i]);
-            if (i === action.payload.index) {
+            if (i === index) {
                 arrInc[i].qtd += increment;
             }
             if (increment < 0) {
@@ -44,52 +47,46 @@ const counterReducer = (state = initialState, action) => {
     function attributeFunction() {
         const arrAtt = [];
         const arrAttCart = [];
+        const { arr, attributeSelected, index, cartIndex } = payload;
+        const { qtd, products } = state;
 
-        for (let i = 0; i < action.payload.arr.length; i++) {
-            if (action.payload.arr.index === i) {
-                arrAtt.push(
-                    `${action.payload.attributeSelected}-${action.payload.index}${action.payload.arr.length}`
-                );
+        for (let i = 0; i < arr.length; i++) {
+            if (arr.index === i) {
+                arrAtt.push(`${attributeSelected}-${index}${arr.length}`);
             } else {
-                arrAtt.push(
-                    state.products[action.payload.cartIndex].attributeSelected[
-                        i
-                    ]
-                );
+                arrAtt.push(products[cartIndex].attributeSelected[i]);
             }
         }
 
-        for (let i = 0; i < state.products.length; i++) {
-            arrAttCart.push(state.products[i]);
-            if (i === action.payload.cartIndex) {
+        for (let i = 0; i < products.length; i++) {
+            arrAttCart.push(products[i]);
+            if (i === cartIndex) {
                 arrAttCart[i].attributeSelected = arrAtt;
             }
         }
 
         const productsAttribute = {
             products: [...arrAttCart],
-            qtd: state.qtd,
+            qtd,
         };
         return productsAttribute;
     }
 
     function newItemFunction() {
-        let qtd = state.qtd;
+        let { qtd } = state;
         qtd++;
         const arrIncrement = [];
+        const { item, attributeSelected } = payload;
         let productExist = false;
+
         if (state.products.length > 0) {
             for (let i = 0; i < state.products.length; i++) {
                 arrIncrement.push(state.products[i]);
-                if (action.payload.item.name === state.products[i].name) {
-                    let counter = action.payload.item.attributeSelected.length;
-                    for (
-                        let j = 0;
-                        j < action.payload.item.attributeSelected.length;
-                        j++
-                    ) {
+                if (item.name === state.products[i].name) {
+                    let counter = item.attributeSelected.length;
+                    for (let j = 0; j < item.attributeSelected.length; j++) {
                         if (
-                            action.payload.item.attributeSelected[j] ===
+                            item.attributeSelected[j] ===
                             state.products[i].attributeSelected[j]
                         ) {
                             counter--;
@@ -114,8 +111,8 @@ const counterReducer = (state = initialState, action) => {
                 products: [
                     ...state.products,
                     {
-                        ...action.payload.item,
-                        ...action.payload.attributeSelected,
+                        ...item,
+                        ...attributeSelected,
                     },
                 ],
                 qtd,
@@ -124,7 +121,7 @@ const counterReducer = (state = initialState, action) => {
             return products;
         } else {
             const products = {
-                products: [action.payload.item],
+                products: [item],
                 qtd,
             };
             alert("new product added to cart");
@@ -132,7 +129,7 @@ const counterReducer = (state = initialState, action) => {
         }
     }
 
-    switch (action.type) {
+    switch (type) {
         case INCREMENT:
             return incrementFunction(1);
 

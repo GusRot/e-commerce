@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ModalCartContainer = styled.div`
     flex-direction: column;
     overflow: auto;
+    align-items: flex-start !important;
 
     header {
         height: fit-content;
@@ -35,6 +36,21 @@ export const ModalCartContainer = styled.div`
                 &:first-child {
                     flex-direction: column;
                     align-items: flex-start;
+
+                    div + div {
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        span {
+                            font-size: 0.7rem;
+                            padding: 0 0 0.6rem;
+                        }
+
+                        div {
+                            flex-direction: row;
+                            justify-content: flex-start;
+                        }
+                    }
                 }
 
                 &:last-child {
@@ -82,8 +98,8 @@ export const ModalCartContainer = styled.div`
 `;
 
 export const MyBag = styled.div`
-    margin-left: -145px;
     gap: 0.5rem;
+    margin-bottom: 10px;
 
     h3 {
         font-weight: 600;

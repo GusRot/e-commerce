@@ -8,11 +8,12 @@ export const Category3 = "clothes";
 
 class Clothes extends Component {
     render() {
+        const {data} = this.props;
         return (
             <>
                 <Page
                     category={Category3}
-                    products={this.props.data.category?.products}
+                    products={data.category?.products}
                 />
             </>
         );

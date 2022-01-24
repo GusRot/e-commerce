@@ -23,18 +23,16 @@ class CartItem extends Component {
     }
 
     rerender() {
+        const { products, currency } = this.props;
         const { newAttributes, swatchObject } = defineAttributes(
-            this.props.products.attributes
+            products.attributes
         );
 
-        const currency = defineCurrency(
-            this.props.currency,
-            this.props.products.prices
-        );
+        const newCurrency = defineCurrency(currency, products.prices);
 
         const { price, symbol } = definePrice(
-            this.props.products.prices,
-            currency,
+            products.prices,
+            newCurrency,
             false
         );
 
@@ -42,7 +40,7 @@ class CartItem extends Component {
             attributes: [...newAttributes],
             swatch: { ...swatchObject },
             price,
-            currency,
+            currency: newCurrency,
             symbol,
         });
     }
@@ -52,42 +50,42 @@ class CartItem extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.currency !== this.props.currency) {
+        const { currency, products } = this.props;
+        if (prevState.currency !== currency) {
             this.rerender();
         }
-        if (prevProps.products.name !== this.props.products.name) {
+        if (prevProps.products.name !== products.name) {
             this.rerender();
         }
     }
 
     render() {
         const { products, index } = this.props;
+        const { price, symbol, swatch, attributes } = this.state;
+        const { brand, name, qtd, gallery } = products;
         return (
             <>
                 <CartContainer>
                     <section>
                         <CartInfo pointer={true}>
                             <Item
-                                title={products.name}
-                                text={products.brand}
-                                price={this.state.price}
-                                symbol={this.state.symbol}
+                                title={name}
+                                text={brand}
+                                price={price}
+                                symbol={symbol}
                             />
                             <Attributes
-                                display={true}
-                                swatch={this.state.swatch}
+                                swatch={swatch}
                                 attribute={products.attributes}
-                                attributes={
-                                    this.state ? this.state.attributes : ""
-                                }
+                                attributes={this.state ? attributes : ""}
                                 attributeSelected={true}
                                 index={index}
                             />
                         </CartInfo>
-                        <ItemQuantities index={index} qtd={products.qtd} />
+                        <ItemQuantities index={index} qtd={qtd} />
                     </section>
                     <CarrouselContainer>
-                        <Slider slides={products.gallery} />
+                        <Slider slides={gallery} />
                     </CarrouselContainer>
                 </CartContainer>
             </>

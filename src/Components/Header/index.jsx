@@ -33,7 +33,9 @@ class Header extends Component {
     }
 
     render() {
-        const { state, theme } = this.props;
+        const { state, theme, themeFunction } = this.props;
+        const {modal} = this.state;
+
         return (
             <HeaderFixed>
                 <HeaderContainer>
@@ -50,7 +52,7 @@ class Header extends Component {
                     </OptionsContainer>
                     <div>
                         <Theme
-                            themeFunction={this.props.themeFunction.bind(this)}
+                            themeFunction={themeFunction.bind(this)}
                             theme={theme}
                         />
                     </div>
@@ -61,7 +63,7 @@ class Header extends Component {
                             className="cartIcon"
                         />
                         <CartModal
-                            modal={this.state.modal}
+                            modal={modal}
                             close={this.handleModalClose}
                         />
                     </SelectContainer>

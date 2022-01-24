@@ -13,12 +13,14 @@ class Attribute extends Component {
             attribute,
             index,
         } = this.props;
+        const {products} = state.counters
+        
         return (
             <CartAttribute>
                 {attributes.map((attributeMap, i) => {
                     let x;
                     attributeSelected
-                        ? (x = state.counters.products[index].attributeSelected)
+                        ? (x = products[index].attributeSelected)
                         : (x = state.attribute.attributes);
                     if (attributes.length === 0) {
                         return <></>;

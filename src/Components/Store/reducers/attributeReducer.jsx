@@ -7,42 +7,44 @@ const initialState = {
 
 const attributeReducer = (state = initialState, action) => {
     const arrAtt = [];
+    const {type, payload} = action
+    const {attributes} = state
 
     function defineAttributeState() {
-        for (let i = 0; i < action.payload.arr.length; i++) {
-            if (state.attributes.length > action.payload.arr.length) {
-                state.attributes.splice(0, state.attributes.length);
+        for (let i = 0; i < payload.arr.length; i++) {
+            if (attributes.length > payload.arr.length) {
+                attributes.splice(0, attributes.length);
             }
-            if (state.attributes.length < action.payload.arr.length) {
+            if (attributes.length < payload.arr.length) {
                 arrAtt.push("");
-                state.attributes.push("");
+                attributes.push("");
             } else {
                 arrAtt.push("");
-                arrAtt[i] = state.attributes[i];
+                arrAtt[i] = attributes[i];
             }
 
-            if (action.payload.arr.index === i) {
+            if (payload.arr.index === i) {
                 arrAtt[
                     i
-                ] = `${action.payload.attributes}-${action.payload.index}${action.payload.arr.length}`;
+                ] = `${payload.attributes}-${payload.index}${payload.arr.length}`;
             }
         }
     }
 
-    switch (action.type) {
+    switch (type) {
         case GET_ATTRIBUTE:
-            if (action.payload.arr) {
-                if (action.payload.arr.length > 1) {
+            if (payload.arr) {
+                if (payload.arr.length > 1) {
                     defineAttributeState();
                 } else {
                     arrAtt.push(
-                        `${action.payload.attributes}-${action.payload.index}${action.payload.arr.length}`
+                        `${payload.attributes}-${payload.index}${payload.arr.length}`
                     );
                 }
             }
 
             return {
-                name: action.payload.name,
+                name: payload.name,
                 attributes: [...arrAtt],
             };
 

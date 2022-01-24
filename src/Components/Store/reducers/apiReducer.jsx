@@ -3,9 +3,10 @@ import { GET_API } from "../actions";
 const initialState = "";
 
 const currencyReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case GET_API:
-            return action.payload.id;
+            return payload.id;
 
         default:
             return state;
