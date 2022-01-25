@@ -89,15 +89,16 @@ class CartComponent extends Component {
             <>
                 {products.map((product, index) => (
                     <section key={product.id + index}>
+                        <Line hidden={hidden} />
                         <CartItem
                             index={index}
                             products={product}
                             currency={currency}
                             hidden={hidden}
                         />
-                        <Line />
                     </section>
                 ))}
+                <Line hidden={hidden} />
 
                 <MyOrder hidden={qtd ? false : true}>
                     <h2>Total</h2>

@@ -132,7 +132,8 @@ export const ModalCartContainer = styled.div`
             }
         }
     }
-    section + div {
+
+    section + div + div {
         h2,
         h6 {
             font-size: 1rem;

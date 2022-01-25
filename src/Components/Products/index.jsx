@@ -5,7 +5,7 @@ import Product from "./Product";
 
 class Products extends Component {
     callRedux(item) {
-        const {attributes} = this.props.state.attribute
+        const { attributes } = this.props.state.attribute;
         this.props.newCartItem(item, attributes);
     }
 

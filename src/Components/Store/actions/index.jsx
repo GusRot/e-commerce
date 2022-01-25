@@ -1,6 +1,6 @@
 export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
-export const ATTRIBUTE = "ATTRIBUTE";
+// export const ATTRIBUTE = "ATTRIBUTE";
 export const NEW_ITEM = "NEW_ITEM";
 export const GET_API = "GET_API";
 export const GET_CURRENCY = "GET_CURRENCY";
@@ -25,7 +25,13 @@ export function decrementCounter(index) {
 export function newCartItem(item, attributeSelected) {
     return {
         type: NEW_ITEM,
-        payload: { item: { ...item, qtd: 1, attributeSelected } },
+        payload: {
+            item: {
+                ...item,
+                qtd: 1,
+                attributeSelected: [...attributeSelected],
+            },
+        },
     };
 }
 
@@ -45,10 +51,11 @@ export function getCurrency(currency) {
 
 export function getAttribute(attributes, index, arr, inCart, cartIndex) {
     if (inCart) {
-        return {
-            type: ATTRIBUTE,
-            payload: { index, attributeSelected: attributes, arr, cartIndex },
-        };
+        // **change inCart attributes** //
+        // return {
+        //     type: ATTRIBUTE,
+        //     payload: { index, attributeSelected: attributes, arr, cartIndex },
+        // };
     } else {
         return {
             type: GET_ATTRIBUTE,

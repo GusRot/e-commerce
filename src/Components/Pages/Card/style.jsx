@@ -51,10 +51,12 @@ export const CardContainer = styled.div`
 
     h6 {
         font-weight: 500;
+        font-size: 1.125rem;
     }
 
     p {
         font-weight: 300;
+        font-size: 1.125rem;
     }
 `;
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ContainerInfo, ContainerSlider } from "./style";
+import { ContainerInfo, ContainerSlider, DescriptionInfo } from "./style";
 import VerticalSlider from "./VerticalSlider";
 import Button from "../../common/Button";
 import { CartInfo } from "../../Cart/CartItem/style";
@@ -116,7 +116,7 @@ class Product extends Component {
 
                         <Button
                             disabled={inStock ? disableButton : true}
-                            submit={() => this.props.newCartItem(product)}
+                            submit={(e) => this.props.newCartItem(product)}
                         >
                             {inStock
                                 ? disableButton
@@ -124,7 +124,7 @@ class Product extends Component {
                                     : "ADD TO CART"
                                 : "out of stock"}
                         </Button>
-                        {parse(description)}
+                        <DescriptionInfo>{parse(description)}</DescriptionInfo>
                     </CartInfo>
                 </ContainerInfo>
             </ContainerSlider>

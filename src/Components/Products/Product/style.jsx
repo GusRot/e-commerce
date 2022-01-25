@@ -49,9 +49,10 @@ export const ContainerSlider = styled.div`
     }
     div {
         h3 {
-            font-family: "Roboto";
+            font-family: "Roboto Condensed", sans-serif;
             display: inline-block;
             font-weight: 700;
+            text-transform: uppercase;
         }
 
         h2 {
@@ -65,7 +66,10 @@ export const ContainerSlider = styled.div`
         }
 
         span {
+            font-family: "Roboto Condensed", sans-serif;
             font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.125rem;
         }
 
         h6 {
@@ -118,4 +122,25 @@ export const ContainerSlider = styled.div`
 
 export const ContainerInfo = styled.div`
     max-width: 350px;
+`;
+
+export const DescriptionInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+    }
+
+    p,
+    span {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+    }
 `;

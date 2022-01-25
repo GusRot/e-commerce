@@ -7,14 +7,15 @@ const initialState = {
 
 const attributeReducer = (state = initialState, action) => {
     const arrAtt = [];
-    const {type, payload} = action
-    const {attributes} = state
+    const { type, payload } = action;
+    const { attributes } = state;
 
     function defineAttributeState() {
         for (let i = 0; i < payload.arr.length; i++) {
             if (attributes.length > payload.arr.length) {
                 attributes.splice(0, attributes.length);
             }
+
             if (attributes.length < payload.arr.length) {
                 arrAtt.push("");
                 attributes.push("");
@@ -42,7 +43,6 @@ const attributeReducer = (state = initialState, action) => {
                     );
                 }
             }
-
             return {
                 name: payload.name,
                 attributes: [...arrAtt],

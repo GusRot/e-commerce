@@ -28,7 +28,7 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
 
         h5 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: ${({ theme }) => theme.secondary};
             position: relative;
             cursor: pointer;

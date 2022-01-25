@@ -44,6 +44,7 @@ export const CartInfo = styled.div`
         line-height: 1.8rem;
         font-weight: 400;
         word-break: break-all;
+        margin: 0.75rem 0;
     }
 
     h2 {
@@ -61,7 +62,7 @@ export const CartInfo = styled.div`
 
     h6 {
         font-size: 1.5rem;
-        margin: 0.7rem 0 0.35rem;
+        margin: 1rem 0 0.35rem;
         font-weight: 700;
     }
 
@@ -71,9 +72,10 @@ export const CartInfo = styled.div`
     }
 
     span {
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: 600;
+        font-size: 0.875rem;
         margin-bottom: -0.4rem;
+        text-transform: uppercase;
 
         & + div {
             pointer-events: ${({ pointer }) => (pointer ? "none" : "auto")};
