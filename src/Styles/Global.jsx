@@ -91,7 +91,10 @@ h4 {
 
 html {
 	min-width: 400px;
-
+	
+	@media(max-width: 480px) {
+		width: 480px;
+	}
 }
 
 span {

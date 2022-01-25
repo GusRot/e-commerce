@@ -132,6 +132,14 @@ export const ModalCartContainer = styled.div`
             }
         }
     }
+    section + div {
+        h2,
+        h6 {
+            font-size: 1rem;
+            line-height: 1.2rem;
+            margin: 0;
+        }
+    }
 `;
 
 export const MyBag = styled.div`

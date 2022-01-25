@@ -37,6 +37,7 @@ export const CartInfo = styled.div`
     padding: 0.25rem 0;
     gap: 0.35rem;
     min-width: 7rem;
+    align-self: start;
 
     h4 {
         font-size: 1.875rem;

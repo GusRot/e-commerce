@@ -8,6 +8,7 @@ import ItemPrice from "../../common/Item/ItemPrice";
 import { graphql } from "react-apollo";
 import { LOAD_PRODUCT } from "../../GraphQL/Queries";
 import Attributes from "../../common/Attributes";
+import parse from "html-react-parser";
 import {
     defineButton,
     defineCurrency,
@@ -123,11 +124,7 @@ class Product extends Component {
                                     : "ADD TO CART"
                                 : "out of stock"}
                         </Button>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: description,
-                            }}
-                        />
+                        {parse(description)}
                     </CartInfo>
                 </ContainerInfo>
             </ContainerSlider>

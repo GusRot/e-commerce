@@ -46,4 +46,11 @@ export const MyOrder = styled.div`
     h3 {
         display: none;
     }
+
+    h2,
+    h6 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin: 0.3rem 0;
+    }
 `;
