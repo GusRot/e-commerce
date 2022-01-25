@@ -50,7 +50,7 @@ table {
 * {
     box-sizing: border-box;
     font-size: 1rem;
-    font-family: 'Roboto', Arial, Helvetica sans-serif;
+	font-family: 'Raleway', sans-serif;
     font-weight: 400;
     scroll-behavior: smooth;
 }
@@ -62,15 +62,16 @@ body {
 }
 
 h1 {
-        padding-left: 2rem;
         font-weight: 700;
         margin: 1.5rem 0;
+		font-family: 'Raleway', sans-serif;
         font-size: 2rem;
     }
 
 p {
 	font-size: 1rem;
 	font-weight: 400;	
+	font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -80,50 +81,58 @@ a {
 
 h6, h2 {
         font-weight: 700;
+		font-family: 'Raleway', sans-serif;
+		font-size: 1rem;
     }
+
+h4 {
+	font-family: 'Raleway', sans-serif;
+}
 
 html {
 	min-width: 400px;
 
 }
 
+span {
+	font-family: 'Raleway', sans-serif;
+}
+
 .react-modal-overlay {
-	position: absolute;
-	top:0;
+	position: fixed;
+	top:5rem;
 	bottom:0;
 	right:0;
 	left:0;
-	background-color:transparent;
+	background-color: rgba(57, 55, 72, 0.25);
 	z-index: 2;
 	min-height: 200vh;
 	height: fit-content;
 	border-radius: 2px;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: flex-start !important;
-
+	border: 1px solid transparent
 }
 
 .react-modal-content {
-	position: relative;
-	top:3.3rem;
-	width:16rem;
+	width:1240px;
+	border: 1px solid transparent
 	min-height: 20vh;
 	height: fit-content;
 	max-height: 80vh;
 	position: relative;
-	background-color: ${({ theme }) => theme.header};
-	padding: 0.5rem;
+	background-color: transparent;
 	display: flex;
-    align-items: center;
+    align-items: flex-end !important;
     justify-content: center;
 	flex-direction: column;
-
+    outline: none;
 }
 
 .logoIcon {
-	height: 1.5rem;
-	width: 1.5rem;
+	height: 1.87rem;
+	width: 1.87rem;
 	color: ${({ theme }) => theme.button}
 }
 
@@ -136,13 +145,13 @@ html {
 .cartIcon {
 	padding: 0px 0.25rem;
 	cursor: pointer;
-	height: 1.2rem;
-	width: 1.6rem;
+	height: 1.4rem;
+	width: 2rem;
 }
 
 .react-modal-close {
 	position:absolute;
-	right: 1rem;
+	right: 0.6rem;
 	top: 0.6rem;
 	border: 0;
 	background: transparent;

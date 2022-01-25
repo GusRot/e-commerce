@@ -6,7 +6,7 @@ const customSelect = {
         backgroundColor: state.selectProps.colors.header,
         border: "none",
         gap: "0px",
-        width: "4.2rem",
+        width: "5.6rem",
         cursor: "pointer",
         boxShadow: "none",
         paddingLeft: "1.7rem",

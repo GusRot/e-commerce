@@ -3,10 +3,10 @@ import { transparentize } from "polished";
 
 export const CardContainer = styled.div`
     pointer-events: all;
-    width: 18.5rem;
+    width: 24rem;
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
+    padding: 1rem;
     border-radius: 2px;
     margin-bottom: 0.5rem;
     gap: 0.7rem;
@@ -33,9 +33,8 @@ export const CardContainer = styled.div`
         right: 25%;
         width: 50%;
         color: #8d8f9a;
-        font-size: 1.2rem;
-        font-weight: 500;
-        font-style: italic;
+        font-size: 1.4rem;
+        font-weight: 400;
         text-align: center;
         border-radius: 15px;
         opacity: ${({ img }) => (img ? "" : "0;")};
@@ -50,9 +49,12 @@ export const CardContainer = styled.div`
         -webkit-filter: ${({ img }) => (img ? "blur(0.5px);" : "")};
     }
 
-    h6,
+    h6 {
+        font-weight: 500;
+    }
+
     p {
-        padding-left: 0.5rem;
+        font-weight: 300;
     }
 `;
 

@@ -93,6 +93,7 @@ class CartComponent extends Component {
                             index={index}
                             products={product}
                             currency={currency}
+                            hidden={hidden}
                         />
                         <Line />
                     </section>

@@ -49,12 +49,27 @@ export const ContainerSlider = styled.div`
     }
     div {
         h3 {
+            font-family: "Roboto";
             display: inline-block;
-            margin-top: 1.2rem;
+            font-weight: 700;
         }
 
         h2 {
             padding-bottom: 0rem;
+            font-weight: 600;
+            font-size: 1.875rem;
+        }
+
+        h4 {
+            font-size: 1.875rem;
+        }
+
+        span {
+            font-weight: 700;
+        }
+
+        h6 {
+            font-size: 1.5rem;
         }
     }
 
@@ -97,5 +112,5 @@ export const ContainerSlider = styled.div`
 `;
 
 export const ContainerInfo = styled.div`
-    max-width: 290px;
+    max-width: 350px;
 `;

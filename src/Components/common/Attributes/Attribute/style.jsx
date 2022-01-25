@@ -19,14 +19,23 @@ export const SelectedAttribute = styled.div`
     min-width: 20px;
     width: ${({ swatch }) => (swatch ? "3.5rem" : "")};
     background-color: ${({ selected }) => (selected ? "black" : "")};
-    background-color: ${({ selected, swatch }) =>
-        swatch
-            ? selected
-                ? transparentize(0.1, swatch)
-                : transparentize(0.85, swatch)
+    background-color: ${({ selected, swatch, modal }) =>
+        !modal
+            ? swatch
+                ? selected
+                    ? transparentize(0.1, swatch)
+                    : transparentize(0.85, swatch)
+                : ""
             : ""};
     border-color: ${({ selected, swatch }) =>
         swatch ? (selected ? transparentize(0.1, swatch) : "") : ""};
+
+    background-color: ${({ modal, selected }) =>
+        modal ? (selected ? "rgba(166, 166, 166, 0.3)" : "") : ""};
+    color: ${({ modal, selected, theme }) =>
+        modal ? (selected ? transparentize(0.5, theme.secondary) : "") : ""};
+    border: ${({ modal, selected, theme }) =>
+        modal ? (selected ? "1px solid rgba(234, 240, 248, 0.3)" : "") : ""};
 
     &:hover {
         background-color: ${({ selected }) =>

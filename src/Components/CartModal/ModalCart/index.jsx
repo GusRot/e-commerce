@@ -20,7 +20,7 @@ class ModalCart extends Component {
             <ModalCartContainer>
                 <MyBag>
                     <h3>My Bag,</h3>
-                    <span>{qtd}</span>
+                    <span>{qtd} items</span>
                 </MyBag>
                 <CartComponent hidden={true} />
                 <CheckOut>

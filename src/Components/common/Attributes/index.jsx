@@ -3,18 +3,25 @@ import Attribute from "./Attribute";
 
 class Attributes extends Component {
     render() {
-        const {attributes, attribute, display, swatch, attributeSelected, index} = this.props
+        const {
+            attributes,
+            attribute,
+            display,
+            swatch,
+            attributeSelected,
+            index,
+            hidden,
+        } = this.props;
         return (
             <>
                 {attributes.length
                     ? attributes.map((att, i) => (
                           <div key={attribute[i].id}>
                               <span>
-                                  {display
-                                      ? ""
-                                      : `${attribute[i].name}:`}
+                                  {display ? "" : `${attribute[i].name}:`}
                               </span>
                               <Attribute
+                                  hidden={hidden}
                                   attribute={
                                       swatch
                                           ? swatch.index === i
@@ -27,9 +34,7 @@ class Attributes extends Component {
                                       length: attributes.length,
                                       index: i,
                                   }}
-                                  attributeSelected={
-                                      attributeSelected
-                                  }
+                                  attributeSelected={attributeSelected}
                                   index={index}
                               />
                           </div>

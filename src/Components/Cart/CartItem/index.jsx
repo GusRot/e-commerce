@@ -60,7 +60,7 @@ class CartItem extends Component {
     }
 
     render() {
-        const { products, index } = this.props;
+        const { products, index, hidden } = this.props;
         const { price, symbol, swatch, attributes } = this.state;
         const { brand, name, qtd, gallery } = products;
         return (
@@ -75,6 +75,7 @@ class CartItem extends Component {
                                 symbol={symbol}
                             />
                             <Attributes
+                                hidden={hidden}
                                 swatch={swatch}
                                 attribute={products.attributes}
                                 attributes={this.state ? attributes : ""}

@@ -1,13 +1,18 @@
 import styled from "styled-components";
 
 export const CartContainer = styled.header`
-    height: 25vh;
+    min-height: 14rem;
+    height: fit-content;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    min-height: 160px;
+    align-items: center;
+    min-height: 10rem;
     gap: 1rem;
+
+    img {
+        max-height: 12rem;
+    }
 
     section {
         display: flex;
@@ -33,10 +38,17 @@ export const CartInfo = styled.div`
     gap: 0.35rem;
     min-width: 7rem;
 
-    h2,
     h4 {
-        font-size: 1.4rem;
-        padding-bottom: 2%;
+        font-size: 1.875rem;
+        line-height: 1.8rem;
+        font-weight: 400;
+        word-break: break-all;
+    }
+
+    h2 {
+        font-weight: 600;
+        line-height: 1.8rem;
+        font-size: 1.875rem;
         word-break: break-all;
     }
 
@@ -47,11 +59,18 @@ export const CartInfo = styled.div`
     }
 
     h6 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+        margin: 0.7rem 0 0.35rem;
+        font-weight: 700;
+    }
+
+    p {
+        padding: 0.3rem 0;
+        min-width: 3rem;
     }
 
     span {
-        font-weight: bold;
+        font-weight: 700;
         font-size: 1.2rem;
         margin-bottom: -0.4rem;
 

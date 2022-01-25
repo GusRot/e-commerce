@@ -12,9 +12,10 @@ class Attribute extends Component {
             attributeSelected,
             attribute,
             index,
+            hidden,
         } = this.props;
-        const {products} = state.counters
-        
+        const { products } = state.counters;
+
         return (
             <CartAttribute>
                 {attributes.map((attributeMap, i) => {
@@ -33,6 +34,7 @@ class Attribute extends Component {
                                 swatch={attribute ? attribute[i] : ""}
                                 key={attributeMap.id + i}
                                 selected={false}
+                                modal={hidden}
                                 color={attributeMap.displayValue}
                                 onClick={() =>
                                     this.props.getAttribute(
@@ -59,6 +61,7 @@ class Attribute extends Component {
                             <SelectedAttribute
                                 key={attributeMap.id + i}
                                 selected={true}
+                                modal={hidden}
                                 swatch={attribute ? attribute[i] : ""}
                             >
                                 <p>

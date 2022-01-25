@@ -7,10 +7,12 @@ export const CartQtd = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    min-height: 12rem;
     height: 100%;
 
     span {
         font-size: 1.5rem;
+        font-weight: 500;
     }
 
     #item-add,

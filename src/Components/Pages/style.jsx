@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
 export const PagesContainer = styled.div`
-    max-width: 1024px;
-    margin: 0px auto 3rem;
-    padding: 4.5rem 1rem 0 1rem;
+    max-width: 1240px;
+    margin: 0px auto;
+    padding: 5rem 0rem 0 0rem;
     flex-wrap: wrap;
+
+    h1 {
+        line-height: 4.2rem;
+        font-weight: 400;
+        font-size: 2.6rem;
+        margin-bottom: 5rem;
+        padding-left: 1.3rem;
+    }
 
     a {
         pointer-events: none;
@@ -13,7 +21,7 @@ export const PagesContainer = styled.div`
 
 export const CardsContainer = styled.div`
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3.15rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem 2.3rem;
 `;
