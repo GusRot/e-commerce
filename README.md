@@ -1,3 +1,5 @@
+# You must run the backend to visualize this project, see instructions below. (Você Precisa rodar o backend na sua maquina para visualisar este projeto - instruções abaixo)
+
 Simulation of e-commerce application:
 
 -   PLP - product listing page, a.k.a. category page
