@@ -5,7 +5,7 @@
 <a href="#">
 <img alt="Repository size" src="https://img.shields.io/github/repo-size/GusRot/e-commerce">
 </a>
-<a href="https://www.figma.com/file/1SxgOMojOB2zYT0Mdk28lB/Ecoleta?node-id=136%3A546">
+<a href="https://www.figma.com/file/oQcfYNV61yUHHdi2LrwmF5/Junior-Frontend-Test-Designs-(Public)-(Copy)">
   <img alt="FIGMA" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
 </a>
 <a href="#">
