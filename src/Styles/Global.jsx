@@ -148,7 +148,7 @@ span {
 .cartIcon {
 	padding: 0px 0.25rem;
 	cursor: pointer;
-	height: 1.4rem;
+	height: 1.25rem;
 	width: 2rem;
 }
 

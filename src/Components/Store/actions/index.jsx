@@ -7,6 +7,7 @@ export const GET_CURRENCY = "GET_CURRENCY";
 export const GET_ATTRIBUTE = "GET_ATTRIBUTE";
 export const NEW_CART = "NEW_CART";
 export const TOTAL_PRICE = "TOTAL_PRICE";
+export const FILTER = "FILTER"
 
 export function incrementCounter(index) {
     return {
@@ -146,4 +147,11 @@ export function defineButton(product, attributes) {
         }
     }
     return disableButton;
+}
+
+export function filterCounter(filter) {
+    return {
+        type: FILTER,
+        payload: { filter },
+    };
 }

@@ -7,6 +7,7 @@ export const ModalCartContainer = styled.div`
     align-items: flex-start !important;
     background-color: ${({ theme }) => theme.header};
     padding: 10px;
+    margin-top: -1.6px;
 
     header {
         height: fit-content;

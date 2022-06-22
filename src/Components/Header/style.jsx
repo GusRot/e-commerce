@@ -68,6 +68,15 @@ export const OptionsContainer = styled.div`
         font-family: "Raleway", sans-serif;
         line-height: 120%;
     }
+
+    @media (max-width: 800px) {
+        margin-right: 15%;
+    }
+
+    @media (max-width: 540px) {
+        margin-right: 1.8rem;
+        width: 17.5rem;
+    }
 `;
 
 export const SelectContainer = styled.div`
@@ -80,6 +89,10 @@ export const SelectContainer = styled.div`
     .cart-icon + div {
         background-color: red;
         position: relative;
+    }
+
+    @media (max-width: 540px) {
+        width: 12.5rem;
     }
 `;
 

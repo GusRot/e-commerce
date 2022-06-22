@@ -7,6 +7,7 @@ export const Line = styled.div`
     width: 100%;
     margin: 0.5rem 0;
     display: ${({ hidden }) => (hidden ? "none" : "")};
+    transition: 0.3 background-color;
 `;
 
 export const CheckOutCart = styled.div`

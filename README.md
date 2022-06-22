@@ -39,7 +39,7 @@
 ## How to run the Backend Endpoint
 
 - Open another terminal in the folder of this repository.
-- Utilize commands: `cd BackendEndpoint` `yarn install` `yarn build` `yarn start` and the server will run at localhost:4000
+- Utilize commands: `cd BackendEndpoint` && `yarn install` && `yarn build` && `yarn start` and the server will run at localhost:4000. (`cd BackendEndpoint` && `npm i` && `npm run build` && `npm start`)
 
 You can also open the original repository with just the backend and follow the instructions in it.
 
@@ -49,7 +49,7 @@ You can also open the original repository with just the backend and follow the i
 
 [Access link here] (https://e-commerce-beta-henna.vercel.app/) to visualize this project build.
 
-Or utilize commands `yarn install` `yarn start` in the folder of this repository.
+Or utilize commands `yarn install` && `yarn start` in the folder of this repository. (`npm install --legacy-peer-deps` && `npm start`)
 
 ## Video Preview (Youtube)
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Attribute from "./Attribute";
 
 class Attributes extends Component {
+
     render() {
         const {
             attributes,

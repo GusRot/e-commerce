@@ -58,6 +58,24 @@ export const CardContainer = styled.div`
         font-weight: 300;
         font-size: 1.125rem;
     }
+
+    @media (max-width: 1000px) {
+        width: 20rem;
+
+        img {
+            height: 300px;
+            width: 15.5rem;
+        }
+    }
+
+    @media (max-width: 540px) {
+        width: 15rem;
+
+        img {
+            height: 250px;
+            width: 12.5rem;
+        }
+    }
 `;
 
 export const PLPCart = styled.div`
