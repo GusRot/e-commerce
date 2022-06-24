@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import {
-    FiltersContainer,
-    SelectContainer,
-    CheckboxesContainer,
-    ColorsContainer,
-    ColorsFilter,
-} from "./style";
+import SelectFilters from "./SelectFilter";
+import ColorFilter from "./ColorFilter";
+import CheckboxFilter from "./CheckboxFilter";
+import { FiltersContainer } from "./style";
 
 class Filters extends Component {
     render() {
@@ -18,61 +15,28 @@ class Filters extends Component {
 
         return (
             <FiltersContainer>
-                {console.log(selectAttributes)}
-                {console.log(checkboxAttributes)}
-                {console.log(colorAttributes)}
                 <div>
                     <h3>FILTER BY</h3>
 
                     {selectQty?.map((name) => (
-                        <div key={name}>
-                            <h4>{name}</h4>
-                            <SelectContainer>
-                                {[...new Set(selectAttributes[name])].map(
-                                    (item) => (
-                                        <option key={item}>{item}</option>
-                                    )
-                                )}
-                            </SelectContainer>
-                        </div>
+                        <SelectFilters
+                            selectAttributes={selectAttributes}
+                            name={name}
+                            key={name}
+                        />
                     ))}
 
                     {colorAttributes.name ? (
-                        <ColorsFilter>
-                            <h4>{colorAttributes.name}</h4>
-                            <ul>
-                                {[
-                                    ...new Set(colorAttributes.items?.colors),
-                                ].map((color) => (
-                                    <ColorsContainer
-                                        key={color}
-                                        color={color}
-                                    ></ColorsContainer>
-                                ))}
-                            </ul>
-                        </ColorsFilter>
+                        <ColorFilter colorAttributes={colorAttributes} />
                     ) : (
                         <></>
                     )}
 
                     {checkboxAttributes?.map((checkbox) => (
-                        <div key={checkbox.name}>
-                            <h4>{checkbox.name}</h4>
-                            <CheckboxesContainer>
-                                {checkbox.items.map((item) => (
-                                    <>
-                                        <input
-                                            type="checkbox"
-                                            id={`${
-                                                checkbox.name +
-                                                item.displayValue
-                                            }`}
-                                        />
-                                        <label>{item.displayValue}</label>
-                                    </>
-                                ))}
-                            </CheckboxesContainer>
-                        </div>
+                        <CheckboxFilter
+                            key={checkbox.name}
+                            checkbox={checkbox}
+                        />
                     ))}
                 </div>
             </FiltersContainer>

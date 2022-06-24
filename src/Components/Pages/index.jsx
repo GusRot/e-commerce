@@ -18,6 +18,22 @@ class Page extends Component {
         const { products } = this.props;
 
         if (products) {
+            const {
+                selectAttributes,
+                checkboxAttributes,
+                colorAttributes,
+                selectQty,
+            } = checkForFilters();
+
+            this.setState({
+                selectAttributes,
+                checkboxAttributes,
+                colorAttributes,
+                selectQty,
+            });
+        }
+
+        function checkForFilters() {
             const selectAttributes = {};
             const checkboxAttributes = [];
             const colorAttributes = {
@@ -77,12 +93,12 @@ class Page extends Component {
                 }
             }
 
-            this.setState({
+            return {
                 selectAttributes,
                 checkboxAttributes,
                 colorAttributes,
                 selectQty,
-            });
+            };
         }
     }
 

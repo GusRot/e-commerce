@@ -40,55 +40,5 @@ export const FiltersContainer = styled.div`
         }
     }
 `;
-export const CheckboxesContainer = styled.div`
-    input[type="checkbox"] {
-        width: 15px;
-        height: 15px;
-        border-radius: 10px;
-        cursor: pointer;
 
-        &:first-child {
-            margin-left: 0;
-        }
 
-        &:after {
-            content: "";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 2px;
-            width: 15px;
-            height: 15px;
-        }
-
-        &:checked:after {
-            content: "✓";
-            color: ${({ theme }) => theme.primary};
-            background-color: ${({ theme }) => theme.button};
-        }
-    }
-`;
-
-export const SelectContainer = styled.select`
-    background-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.secondary};
-    cursor: pointer;
-    width: 100%;
-`;
-
-export const ColorsFilter = styled.div`
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.15rem;
-    }
-`;
-
-export const ColorsContainer = styled.li`
-    height: 1rem;
-    width: ${({ selected }) => (selected ? "3rem" : "2rem")};
-    cursor: pointer;
-    transition: 0.2s;
-    margin-bottom: 0.4rem;
-    background-color: ${({ color, theme }) => (color ? color : theme.button)};
-`;
