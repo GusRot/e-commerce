@@ -31,7 +31,7 @@
 - REACT - Class Components as standard;
 - REDUX to control variables as currency, products, attributes, qtds;
 - REDUX-Persist to save user data;
-- Data fetch in GRAPHQL (Endpoint provided by Scandiweb).
+- Data fetch in GRAPHQL (Endpoint provided by Scandiweb) using Apollo Client.
 - Styled components to manage props and theme dark/light mode.
 - Router-DOM to manage different Routes.
 - `react-modal`  `react-select`  `swiper`  `react-icons`  `polished`  `html-react-parser`.

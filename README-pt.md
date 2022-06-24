@@ -29,7 +29,7 @@
 
 - Class Components como padrão;
 - REDUX para controlar produtos no carrinho com variáveis globais;
-- Requisições com o client Apollo de um endpoint desenvolvido em GRAPHQL;
+- Requisições com o client Apollo de um endpoint desenvolvido em GRAPHQL(Endpoint desenvolvido por: Scandiweb);
 - Styled componentes para manusear estados por props, como o dark-mode;
 - Utilização do REDUX-Persist para salvar os dados salvos pelo usuário;
 - React-router-dom para manusear as diferentes rotas(PLP, PDP, CartPage);

@@ -33,10 +33,11 @@ export const ProductsContainer = styled.div`
             margin-left: 1.3rem;
             min-width: 150px;
             height: fit-content;
-            border: 1px solid ${({ theme }) => transparentize(0.85, theme.secondary)};
-        } 
+            border: 1px solid
+                ${({ theme }) => transparentize(0.65, theme.secondary)};
+        }
     }
-`
+`;
 export const CardsContainer = styled.div`
     width: 80%;
     display: grid;
@@ -57,7 +58,7 @@ export const CardsContainer = styled.div`
 
     @media (max-width: 800px) {
         grid-template-columns: 1fr;
-        
+
         > a {
             justify-self: center;
         }

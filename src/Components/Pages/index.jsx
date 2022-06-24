@@ -4,32 +4,92 @@ import Filters from "../Filters";
 import { PagesContainer, CardsContainer, ProductsContainer } from "./style";
 
 class Page extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            productsAttributes: [],
+            selectAttributes: {},
+            checkboxAttributes: [],
+            colorAttributes: {},
+            selectQty: [],
         };
     }
 
     rerender() {
         const { products } = this.props;
 
-        if(products) {
-            for(let i=0; i < products.length; i++) {
+        if (products) {
+            const selectAttributes = {};
+            const checkboxAttributes = [];
+            const colorAttributes = {
+                name: "",
+                items: {
+                    name: [],
+                    colors: [],
+                },
+            };
+            const selectQty = [];
+            let pageAttr = null;
+
+            for (let i = 0; i < products.length; i++) {
                 let j = 0;
-                if(products[i].attributes) {
-                    while(products[i].attributes.length > j) {
-                        this.state.productsAttributes.push(products[i].attributes[j]);
-                        j++
+                if (products[i].attributes) {
+                    while (products[i].attributes.length > j) {
+                        const attr = products[i].attributes[j];
+                        const binaryAttr = attr.items[0].id.toUpperCase();
+
+                        if (attr.type === "swatch") {
+                            colorAttributes.name = attr.id;
+
+                            for (let k = 0; k < attr.items.length; k++) {
+                                colorAttributes.items.name.push(
+                                    attr.items[k].displayValue
+                                );
+                                colorAttributes.items.colors.push(
+                                    attr.items[k].value
+                                );
+                            }
+                        } else if (
+                            binaryAttr === "Yes".toUpperCase() ||
+                            binaryAttr === "No".toUpperCase()
+                        ) {
+                            const alreadyExists = checkboxAttributes?.find(
+                                (element) => element.id === binaryAttr
+                            );
+
+                            if (!alreadyExists) {
+                                checkboxAttributes.push(attr);
+                            }
+                        } else {
+                            if (pageAttr !== attr.id) {
+                                pageAttr = attr.id;
+                                selectQty.push(attr.id);
+                                selectAttributes[pageAttr] = [];
+                            }
+
+                            for (let k = 0; k < attr.items.length; k++) {
+                                selectAttributes[pageAttr].push(
+                                    attr.items[k].id
+                                );
+                            }
+                        }
+                        j++;
                     }
                 }
             }
+
+            this.setState({
+                selectAttributes,
+                checkboxAttributes,
+                colorAttributes,
+                selectQty,
+            });
         }
     }
 
-    componentDidMount() {
-        setTimeout(this.rerender.bind(this), 10);
+    componentDidUpdate(pp, ps) {
+        if (this.props.products !== pp.products) {
+            this.rerender();
+        }
     }
 
     render() {
@@ -39,11 +99,15 @@ class Page extends Component {
             <PagesContainer>
                 <h1>{category.toUpperCase()}</h1>
                 <ProductsContainer>
-                    <Filters productsAttributes = {this.state.productsAttributes}/>
+                    <Filters
+                        selectAttributes={this.state.selectAttributes}
+                        selectQty={this.state.selectQty}
+                        checkboxAttributes={this.state.checkboxAttributes}
+                        colorAttributes={this.state.colorAttributes}
+                    />
                     <CardsContainer>
-                        {products ? (
-                            products.map((product) => (
-                                <Card
+                        {products?.map((product) => (
+                            <Card
                                 key={product.id}
                                 id={product.id}
                                 inStock={product.inStock}
@@ -51,11 +115,8 @@ class Page extends Component {
                                 prices={product.prices}
                                 image={product.gallery[0]}
                                 brand={product.brand}
-                                />
-                                ))
-                        ) : (
-                            <></>
-                            )}
+                            />
+                        ))}
                     </CardsContainer>
                 </ProductsContainer>
             </PagesContainer>

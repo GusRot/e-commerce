@@ -1,88 +1,79 @@
 import React, { Component } from "react";
-import {FiltersContainer, SelectContainer, CheckboxesContainer, ColorsContainer} from "./style"
+import {
+    FiltersContainer,
+    SelectContainer,
+    CheckboxesContainer,
+    ColorsContainer,
+    ColorsFilter,
+} from "./style";
 
 class Filters extends Component {
-
     render() {
-        const { productsAttributes } = this.props;
+        const {
+            selectAttributes,
+            checkboxAttributes,
+            colorAttributes,
+            selectQty,
+        } = this.props;
+
         return (
             <FiltersContainer>
-                {console.log(productsAttributes)}
+                {console.log(selectAttributes)}
+                {console.log(checkboxAttributes)}
+                {console.log(colorAttributes)}
                 <div>
-                <h3>FILTER BY</h3>
-                
-                <h4>Categories</h4>
-                <SelectContainer>
-                    <option>test</option>
-                    <option>test</option>
-                    <option>test</option>
-                    <option>test</option>
-                </SelectContainer>
-                
-                <h4>CHECKBOX</h4>
-                <CheckboxesContainer>
-                    <input type="checkbox" />
-                    <input type="checkbox" />
-                </CheckboxesContainer>
+                    <h3>FILTER BY</h3>
 
-                <h4>COLOR</h4>
-                <ColorsContainer>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ColorsContainer>
-                
-                {/* {filter.color ? (
-                    <>
-                    <h4>{filter.color}</h4>
-                    <ColorContainer>
-                        {availablefilter.color.map((color, index) => (
-                            <li
-                                key={`${color}${index}`}
-                                onClick={() => functionFilter(color)}
-                            ></li>
-                        ))}
-                    </ColorContainer>
-                </>
-            ) : (
-                ""
-                )}
+                    {selectQty?.map((name) => (
+                        <div key={name}>
+                            <h4>{name}</h4>
+                            <SelectContainer>
+                                {[...new Set(selectAttributes[name])].map(
+                                    (item) => (
+                                        <option key={item}>{item}</option>
+                                    )
+                                )}
+                            </SelectContainer>
+                        </div>
+                    ))}
 
-            {filter.select ? (
-                <>
-                    <h4>{filter.select}</h4>
-                    <ul>
-                    {availablefilter.select.map((select, index) => (
-                        <li
-                        key={`${select}${index}`}
-                                onClick={() => functionFilter(select)}
-                                >
-                                {select}
-                                </li>
+                    {colorAttributes.name ? (
+                        <ColorsFilter>
+                            <h4>{colorAttributes.name}</h4>
+                            <ul>
+                                {[
+                                    ...new Set(colorAttributes.items?.colors),
+                                ].map((color) => (
+                                    <ColorsContainer
+                                        key={color}
+                                        color={color}
+                                    ></ColorsContainer>
                                 ))}
-                    </ul>
-                    </>
-            ) : (
-                ""
-                )} */
-                
-                /* filter.checkbox ? (
-                    <>
-                    <h4>{filter.checkbox}</h4>
-                    <ul>
-                    {availablefilter.checkbox.map((checkbox, index) => (
-                            <li
-                            key={`${checkbox}${index}`}
-                                onClick={() => functionFilter(checkbox)}
-                                >
-                                {checkbox}
-                            </li>
-                        ))}
-                        </ul>
-                        </>
-                        ) : (
-                            ""
-                        )} */}
+                            </ul>
+                        </ColorsFilter>
+                    ) : (
+                        <></>
+                    )}
+
+                    {checkboxAttributes?.map((checkbox) => (
+                        <div key={checkbox.name}>
+                            <h4>{checkbox.name}</h4>
+                            <CheckboxesContainer>
+                                {checkbox.items.map((item) => (
+                                    <>
+                                        <input
+                                            type="checkbox"
+                                            id={`${
+                                                checkbox.name +
+                                                item.displayValue
+                                            }`}
+                                        />
+                                        <label>{item.displayValue}</label>
+                                    </>
+                                ))}
+                            </CheckboxesContainer>
+                        </div>
+                    ))}
                 </div>
             </FiltersContainer>
         );

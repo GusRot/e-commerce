@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { transparentize } from "polished";
 
 export const FiltersContainer = styled.div`
     display: flex;
     flex-direction: column;
-    ;
+
+    > div {
+        background-color: ${({ theme }) =>
+            transparentize(0.95, theme.secondary)};
+    }
 
     h3 {
         font-size: 1.5rem;
@@ -34,9 +39,9 @@ export const FiltersContainer = styled.div`
             font-size: 1rem;
         }
     }
-`
+`;
 export const CheckboxesContainer = styled.div`
-    input[type=checkbox] {
+    input[type="checkbox"] {
         width: 15px;
         height: 15px;
         border-radius: 10px;
@@ -45,7 +50,7 @@ export const CheckboxesContainer = styled.div`
         &:first-child {
             margin-left: 0;
         }
-        
+
         &:after {
             content: "";
             display: flex;
@@ -55,33 +60,35 @@ export const CheckboxesContainer = styled.div`
             width: 15px;
             height: 15px;
         }
-        
+
         &:checked:after {
             content: "✓";
             color: ${({ theme }) => theme.primary};
             background-color: ${({ theme }) => theme.button};
         }
     }
-`
+`;
 
 export const SelectContainer = styled.select`
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary};
     cursor: pointer;
     width: 100%;
-`
-export const ColorsContainer = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.15rem;
+`;
 
-    li {
-        height: 1rem;
-        width: ${({ selected }) => (selected ? "3rem" : "2rem")};
-        cursor: pointer;
-        transition: .2s;
-        margin-bottom: 0.4rem;
-        background-color: ${({ color, theme }) => (color ? color : theme.button)};
+export const ColorsFilter = styled.div`
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.15rem;
     }
-`
+`;
 
+export const ColorsContainer = styled.li`
+    height: 1rem;
+    width: ${({ selected }) => (selected ? "3rem" : "2rem")};
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 0.4rem;
+    background-color: ${({ color, theme }) => (color ? color : theme.button)};
+`;
