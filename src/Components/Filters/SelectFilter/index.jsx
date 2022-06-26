@@ -5,16 +5,23 @@ import { connect } from "react-redux";
 
 class SelectFilters extends Component {
     render() {
-        const { name, selectAttributes, setFilter, active } = this.props;
+        const { name, selectAttributes, setFilter, active, filter } =
+            this.props;
+        const selectAttributesSet = [...new Set(selectAttributes[name])];
+        const filterValue =
+            selectAttributesSet.includes(filter?.value) &&
+            name === filter?.name;
 
         return (
             <Selects active={active}>
                 <h4>{name}</h4>
                 <SelectContainer
                     onChange={(e) => setFilter(e, name, null, true)}
+                    placeholder={`'filter by '${name}`}
+                    value={filterValue ? filter.value : ""}
                 >
                     <option value="">None</option>
-                    {[...new Set(selectAttributes[name])].map((item) => (
+                    {selectAttributesSet.map((item) => (
                         <option value={item} key={item}>
                             {item}
                         </option>

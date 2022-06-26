@@ -11,7 +11,9 @@ const filterReducer = (state = initialState, action) => {
 
     switch (type) {
         case NEW_FILTER:
-            if (payload.value === state.value || !payload.filterOn) {
+            const equals =
+                payload.value === state.value && state.name === payload.name;
+            if (equals || !payload.filterOn) {
                 return initialState;
             }
             return payload;

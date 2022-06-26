@@ -13,6 +13,7 @@ class Filters extends Component {
             selectQty,
             activeFilter,
         } = this.props;
+        const colorFilterActive = colorAttributes.name === activeFilter.name;
 
         return (
             <FiltersContainer>
@@ -29,20 +30,16 @@ class Filters extends Component {
                                 name={name}
                                 key={name}
                                 active={active}
+                                filter={active ? activeFilter : {}}
                             />
                         );
                     })}
 
                     {colorAttributes.name ? (
                         <ColorFilter
-                            filter={
-                                colorAttributes.name === activeFilter.name
-                                    ? activeFilter
-                                    : {}
-                            }
+                            filter={colorFilterActive ? activeFilter : {}}
                             active={
-                                colorAttributes.name === activeFilter.name ||
-                                !activeFilter.filterOn
+                                colorFilterActive || !activeFilter.filterOn
                                     ? true
                                     : false
                             }
@@ -53,16 +50,15 @@ class Filters extends Component {
                     )}
 
                     {checkboxAttributes?.map((checkbox) => {
+                        const checkboxFilterActive =
+                            activeFilter.name === checkbox.name;
                         const active =
-                            activeFilter.name === checkbox.name ||
-                            !activeFilter.filterOn;
-                        console.log(activeFilter);
+                            checkboxFilterActive || !activeFilter.filterOn;
+
                         return (
                             <CheckboxFilter
                                 filter={
-                                    activeFilter.name === checkbox.name
-                                        ? activeFilter
-                                        : {}
+                                    checkboxFilterActive ? activeFilter : {}
                                 }
                                 key={checkbox.name}
                                 checkbox={checkbox}

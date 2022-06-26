@@ -11,21 +11,19 @@ class CheckboxFilters extends Component {
             <CheckboxContainer active={active}>
                 <h4>{checkbox.name}</h4>
                 <CheckboxesContainer>
-                    {console.log(filter)}
                     {checkbox.items.map((item) => {
                         const checkboxName = (
                             checkbox.name + item.displayValue
                         ).replace(/ /g, "");
+                        const checked =
+                            filter?.value === item.displayValue &&
+                            checkbox.name === filter?.name;
                         return (
                             <div key={checkboxName}>
                                 <input
                                     type="checkbox"
                                     id={checkboxName}
-                                    checked={
-                                        filter?.value === item.displayValue
-                                            ? true
-                                            : ""
-                                    }
+                                    checked={checked ? true : ""}
                                     onChange={(e) =>
                                         setFilter(
                                             null,
