@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import { CheckboxesContainer } from "./style";
+import { CheckboxesContainer, CheckboxContainer } from "./style";
 import { connect } from "react-redux";
 import { setFilter } from "../../Store/actions";
 
 class CheckboxFilters extends Component {
     render() {
-        const { checkbox, setFilter } = this.props;
+        const { checkbox, active, filter, setFilter } = this.props;
 
         return (
-            <>
+            <CheckboxContainer active={active}>
                 <h4>{checkbox.name}</h4>
                 <CheckboxesContainer>
+                    {console.log(filter)}
                     {checkbox.items.map((item) => {
                         const checkboxName = (
                             checkbox.name + item.displayValue
@@ -20,11 +21,17 @@ class CheckboxFilters extends Component {
                                 <input
                                     type="checkbox"
                                     id={checkboxName}
-                                    onClick={() =>
+                                    checked={
+                                        filter?.value === item.displayValue
+                                            ? true
+                                            : ""
+                                    }
+                                    onChange={(e) =>
                                         setFilter(
                                             null,
                                             checkbox.name,
-                                            item.displayValue
+                                            item.displayValue,
+                                            true
                                         )
                                     }
                                 />
@@ -35,14 +42,15 @@ class CheckboxFilters extends Component {
                         );
                     })}
                 </CheckboxesContainer>
-            </>
+            </CheckboxContainer>
         );
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (e, name, color) => dispatch(setFilter(e, name, color)),
+        setFilter: (e, name, color, on) =>
+            dispatch(setFilter(e, name, color, on)),
     };
 };
 

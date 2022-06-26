@@ -5,10 +5,10 @@ import { ColorsFilter, ColorsContainer } from "./style";
 
 class ColorFilters extends Component {
     render() {
-        const { colorAttributes, setFilter } = this.props;
+        const { colorAttributes, setFilter, active, filter } = this.props;
 
         return (
-            <ColorsFilter>
+            <ColorsFilter active={active}>
                 <h4>{colorAttributes.name}</h4>
                 <ul>
                     {[...new Set(colorAttributes.items?.colors)].map(
@@ -16,8 +16,16 @@ class ColorFilters extends Component {
                             <ColorsContainer
                                 key={color}
                                 color={color}
+                                selected={
+                                    filter?.value === color ? true : false
+                                }
                                 onClick={() =>
-                                    setFilter(null, colorAttributes.name, color)
+                                    setFilter(
+                                        null,
+                                        colorAttributes.name,
+                                        color,
+                                        true
+                                    )
                                 }
                             ></ColorsContainer>
                         )
@@ -30,7 +38,8 @@ class ColorFilters extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (e, name, color) => dispatch(setFilter(e, name, color)),
+        setFilter: (e, name, color, on) =>
+            dispatch(setFilter(e, name, color, on)),
     };
 };
 

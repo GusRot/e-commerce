@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "./Card";
 import Filters from "../Filters";
 import { defineFilters } from "../Store/actions";
+import { connect } from "react-redux";
 import { PagesContainer, CardsContainer, ProductsContainer } from "./style";
 
 class Page extends Component {
@@ -42,7 +43,7 @@ class Page extends Component {
     }
 
     render() {
-        const { category, products } = this.props;
+        const { category, products, filters } = this.props;
         const {
             selectAttributes,
             selectQty,
@@ -55,23 +56,42 @@ class Page extends Component {
                 <h1>{category.toUpperCase()}</h1>
                 <ProductsContainer>
                     <Filters
+                        activeFilter={filters}
                         selectAttributes={selectAttributes}
                         selectQty={selectQty}
                         checkboxAttributes={checkboxAttributes}
                         colorAttributes={colorAttributes}
                     />
                     <CardsContainer>
-                        {products?.map((product) => (
-                            <Card
-                                key={product.id}
-                                id={product.id}
-                                inStock={product.inStock}
-                                name={product.name}
-                                prices={product.prices}
-                                image={product.gallery[0]}
-                                brand={product.brand}
-                            />
-                        ))}
+                        {products?.map((product) => {
+                            const display = filters.filterOn
+                                ? product.attributes
+                                      .map(
+                                          (item) =>
+                                              item.items.filter(
+                                                  (value) =>
+                                                      value.id ===
+                                                          filters.value ||
+                                                      value.value ===
+                                                          filters.value
+                                              ).length
+                                      )
+                                      .includes(1)
+                                : true;
+                            return display ? (
+                                <Card
+                                    key={product.id}
+                                    id={product.id}
+                                    inStock={product.inStock}
+                                    name={product.name}
+                                    prices={product.prices}
+                                    image={product.gallery[0]}
+                                    brand={product.brand}
+                                />
+                            ) : (
+                                ""
+                            );
+                        })}
                     </CardsContainer>
                 </ProductsContainer>
             </PagesContainer>
@@ -79,4 +99,8 @@ class Page extends Component {
     }
 }
 
-export default Page;
+const mapStateToProps = (state) => {
+    return { filters: state.filters };
+};
+
+export default connect(mapStateToProps)(Page);

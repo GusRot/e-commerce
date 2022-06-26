@@ -11,6 +11,7 @@ class Filters extends Component {
             checkboxAttributes,
             colorAttributes,
             selectQty,
+            activeFilter,
         } = this.props;
 
         return (
@@ -18,26 +19,57 @@ class Filters extends Component {
                 <div>
                     <h3>FILTER BY</h3>
 
-                    {selectQty?.map((name) => (
-                        <SelectFilters
-                            selectAttributes={selectAttributes}
-                            name={name}
-                            key={name}
-                        />
-                    ))}
+                    {selectQty?.map((name) => {
+                        const active =
+                            activeFilter.name === name ||
+                            !activeFilter.filterOn;
+                        return (
+                            <SelectFilters
+                                selectAttributes={selectAttributes}
+                                name={name}
+                                key={name}
+                                active={active}
+                            />
+                        );
+                    })}
 
                     {colorAttributes.name ? (
-                        <ColorFilter colorAttributes={colorAttributes} />
+                        <ColorFilter
+                            filter={
+                                colorAttributes.name === activeFilter.name
+                                    ? activeFilter
+                                    : {}
+                            }
+                            active={
+                                colorAttributes.name === activeFilter.name ||
+                                !activeFilter.filterOn
+                                    ? true
+                                    : false
+                            }
+                            colorAttributes={colorAttributes}
+                        />
                     ) : (
                         <></>
                     )}
 
-                    {checkboxAttributes?.map((checkbox) => (
-                        <CheckboxFilter
-                            key={checkbox.name}
-                            checkbox={checkbox}
-                        />
-                    ))}
+                    {checkboxAttributes?.map((checkbox) => {
+                        const active =
+                            activeFilter.name === checkbox.name ||
+                            !activeFilter.filterOn;
+                        console.log(activeFilter);
+                        return (
+                            <CheckboxFilter
+                                filter={
+                                    activeFilter.name === checkbox.name
+                                        ? activeFilter
+                                        : {}
+                                }
+                                key={checkbox.name}
+                                checkbox={checkbox}
+                                active={active}
+                            />
+                        );
+                    })}
                 </div>
             </FiltersContainer>
         );
