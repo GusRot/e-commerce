@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { setFilter } from "../../Store/actions";
+import { connect } from "react-redux";
 import { ColorsFilter, ColorsContainer } from "./style";
 
 class ColorFilters extends Component {
     render() {
-        const { colorAttributes } = this.props;
+        const { colorAttributes, setFilter } = this.props;
 
         return (
             <ColorsFilter>
@@ -14,7 +16,9 @@ class ColorFilters extends Component {
                             <ColorsContainer
                                 key={color}
                                 color={color}
-                                onClick={() => console.log("ok")}
+                                onClick={() =>
+                                    setFilter(null, colorAttributes.name, color)
+                                }
                             ></ColorsContainer>
                         )
                     )}
@@ -24,4 +28,10 @@ class ColorFilters extends Component {
     }
 }
 
-export default ColorFilters;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFilter: (e, name, color) => dispatch(setFilter(e, name, color)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(ColorFilters);

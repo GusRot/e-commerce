@@ -10,7 +10,7 @@ export const ColorsFilter = styled.div`
 
 export const ColorsContainer = styled.li`
     height: 1rem;
-    width: ${({ selected }) => (selected ? "3rem" : "2rem")};
+    width: ${({ selected }) => (selected ? "2.8rem" : "1.8rem")};
     cursor: pointer;
     transition: 0.2s;
     margin-bottom: 0.4rem;

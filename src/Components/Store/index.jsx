@@ -6,12 +6,19 @@ import filterReducer from "./reducers/filterReducer";
 import currencyReducer from "./reducers/currencyReducer";
 import attributeReducer from "./reducers/attributeReducer";
 import priceReducer from "./reducers/totalPrice";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer, createTransform } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { parse, stringify } from "flatted";
+
+const transformCircular = createTransform(
+    (inboundState, key) => stringify(inboundState),
+    (outboundState, key) => parse(outboundState)
+);
 
 const persistConfig = {
     key: "root",
     storage,
+    transforms: [transformCircular],
 };
 
 const reducers = combineReducers({
@@ -20,7 +27,7 @@ const reducers = combineReducers({
     currency: currencyReducer,
     attribute: attributeReducer,
     price: priceReducer,
-    filters: filterReducer
+    filters: filterReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { CheckboxesContainer } from "./style";
+import { connect } from "react-redux";
+import { setFilter } from "../../Store/actions";
 
 class CheckboxFilters extends Component {
     render() {
-        const { checkbox } = this.props;
+        const { checkbox, setFilter } = this.props;
 
         return (
             <>
@@ -18,7 +20,13 @@ class CheckboxFilters extends Component {
                                 <input
                                     type="checkbox"
                                     id={checkboxName}
-                                    onClick={() => console.log("ok")}
+                                    onClick={() =>
+                                        setFilter(
+                                            null,
+                                            checkbox.name,
+                                            item.displayValue
+                                        )
+                                    }
                                 />
                                 <label htmlFor={checkboxName}>
                                     {item.displayValue}
@@ -32,4 +40,10 @@ class CheckboxFilters extends Component {
     }
 }
 
-export default CheckboxFilters;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFilter: (e, name, color) => dispatch(setFilter(e, name, color)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(CheckboxFilters);
