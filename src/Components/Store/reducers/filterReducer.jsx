@@ -1,9 +1,8 @@
 import { NEW_FILTER } from "../actions";
 
 const initialState = {
-    name: "",
-    value: "",
     filterOn: false,
+    filters: {},
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -11,12 +10,43 @@ const filterReducer = (state = initialState, action) => {
 
     switch (type) {
         case NEW_FILTER:
-            const equals =
-                payload.value === state.value && state.name === payload.name;
-            if (equals || !payload.filterOn) {
-                return initialState;
+            let equals = false;
+            let payloadKey = "";
+            const payloadFilter = { ...payload.filters };
+            const stateFilter = { ...state.filters };
+
+            Object.keys(payloadFilter).forEach(function (key) {
+                if (
+                    payloadFilter[key] === state.filters[key] ||
+                    payloadFilter[key] === ""
+                ) {
+                    equals = true;
+                    payloadKey = key;
+                }
+            });
+
+            if (equals) {
+                delete stateFilter[payloadKey];
+
+                if (Object.keys(stateFilter).length === 0) {
+                    return initialState;
+                }
+
+                return {
+                    filterOn: true,
+                    filters: {
+                        ...stateFilter,
+                    },
+                };
             }
-            return payload;
+
+            return {
+                filterOn: true,
+                filters: {
+                    ...state.filters,
+                    ...payloadFilter,
+                },
+            };
 
         default:
             return state;

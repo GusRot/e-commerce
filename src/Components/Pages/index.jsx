@@ -68,13 +68,18 @@ class Page extends Component {
                                 ? product.attributes
                                       .map(
                                           (item) =>
-                                              item.items.filter(
-                                                  (value) =>
+                                              item.items.filter((value) => {
+                                                  return (
                                                       value.id ===
-                                                          filters.value ||
+                                                          filters.filters[
+                                                              item.id
+                                                          ] ||
                                                       value.value ===
-                                                          filters.value
-                                              ).length
+                                                          filters.filters[
+                                                              item.id
+                                                          ]
+                                                  );
+                                              }).length
                                       )
                                       .includes(1)
                                 : true;

@@ -43,21 +43,22 @@ export function getID(e, id) {
     };
 }
 
-export function setFilter(e, name, attr, on) {
+export function setFilter(e, name, attr) {
     let value = "";
-    let filterOn = on;
 
     if (attr) {
         value = attr;
-    } else if (!e.target.value) {
-        filterOn = false;
     } else {
         value = e.target.value;
     }
 
     return {
         type: NEW_FILTER,
-        payload: { name, value, filterOn },
+        payload: {
+            filters: {
+                [name]: value,
+            },
+        },
     };
 }
 

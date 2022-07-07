@@ -8,17 +8,19 @@ class SelectFilters extends Component {
         const { name, selectAttributes, setFilter, active, filter } =
             this.props;
         const selectAttributesSet = [...new Set(selectAttributes[name])];
-        const filterValue =
-            selectAttributesSet.includes(filter?.value) &&
-            name === filter?.name;
+        let filterValue = false;
+
+        if (filter?.filterOn) {
+            filterValue = selectAttributesSet.includes(filter.filters[name]);
+        }
 
         return (
             <Selects active={active}>
                 <h4>{name}</h4>
                 <SelectContainer
-                    onChange={(e) => setFilter(e, name, null, true)}
+                    onChange={(e) => setFilter(e, name, null)}
                     placeholder={`'filter by '${name}`}
-                    value={filterValue ? filter.value : ""}
+                    value={filterValue ? filter.filters[name] : ""}
                 >
                     <option value="">None</option>
                     {selectAttributesSet.map((item) => (
@@ -34,7 +36,7 @@ class SelectFilters extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (e, name, x, on) => dispatch(setFilter(e, name, x, on)),
+        setFilter: (e, name, x) => dispatch(setFilter(e, name, x)),
     };
 };
 

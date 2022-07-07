@@ -12,23 +12,30 @@ class ColorFilters extends Component {
                 <h4>{colorAttributes.name}</h4>
                 <ul>
                     {[...new Set(colorAttributes.items?.colors)].map(
-                        (color) => (
-                            <ColorsContainer
-                                key={color}
-                                color={color}
-                                selected={
-                                    filter?.value === color ? true : false
-                                }
-                                onClick={() =>
-                                    setFilter(
-                                        null,
-                                        colorAttributes.name,
-                                        color,
-                                        true
-                                    )
-                                }
-                            ></ColorsContainer>
-                        )
+                        (color) => {
+                            let selected = false;
+
+                            if (filter?.filterOn) {
+                                selected =
+                                    filter.filters[colorAttributes.name] ===
+                                    color;
+                            }
+
+                            return (
+                                <ColorsContainer
+                                    key={color}
+                                    color={color}
+                                    selected={selected}
+                                    onClick={() =>
+                                        setFilter(
+                                            null,
+                                            colorAttributes.name,
+                                            color
+                                        )
+                                    }
+                                ></ColorsContainer>
+                            );
+                        }
                     )}
                 </ul>
             </ColorsFilter>
@@ -38,8 +45,7 @@ class ColorFilters extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (e, name, color, on) =>
-            dispatch(setFilter(e, name, color, on)),
+        setFilter: (e, name, color, on) => dispatch(setFilter(e, name, color)),
     };
 };
 

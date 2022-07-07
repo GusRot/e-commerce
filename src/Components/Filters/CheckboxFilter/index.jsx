@@ -15,21 +15,25 @@ class CheckboxFilters extends Component {
                         const checkboxName = (
                             checkbox.name + item.displayValue
                         ).replace(/ /g, "");
-                        const checked =
-                            filter?.value === item.displayValue &&
-                            checkbox.name === filter?.name;
+                        let checked = false;
+
+                        if (filter?.filterOn) {
+                            checked =
+                                filter.filters[checkbox.name] ===
+                                item.displayValue;
+                        }
+
                         return (
                             <div key={checkboxName}>
                                 <input
                                     type="checkbox"
                                     id={checkboxName}
-                                    checked={checked ? true : ""}
+                                    checked={checked}
                                     onChange={(e) =>
                                         setFilter(
                                             null,
                                             checkbox.name,
-                                            item.displayValue,
-                                            true
+                                            item.displayValue
                                         )
                                     }
                                 />
@@ -48,7 +52,7 @@ class CheckboxFilters extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         setFilter: (e, name, color, on) =>
-            dispatch(setFilter(e, name, color, on)),
+            dispatch(setFilter(e, name, color)),
     };
 };
 
